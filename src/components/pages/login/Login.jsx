@@ -78,14 +78,20 @@ const Login = () => {
         console.log(userDoc);
 
         if (!userDoc.exists()) {
+          const fullName = res.user.displayName;
+          const [firstName, lastName] = fullName.split(" ");
           const userData = {
+            nombre: firstName,
+            apellido: lastName,
             email: res.user.email,
             roll: "customer",
             // Otros datos que desees agregar
           };
+          console.log(userData);
 
           await setDoc(userRef, userData);
         }
+
         const finalyUser = {
           email: res.user.email,
           rol: "customer",
