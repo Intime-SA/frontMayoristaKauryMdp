@@ -66,6 +66,13 @@ const Login = () => {
     }
   };
 
+  function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
   const googleSingIn = async () => {
     try {
       const res = await loginGoogle();
@@ -80,12 +87,15 @@ const Login = () => {
         if (!userDoc.exists()) {
           const fullName = res.user.displayName;
           const [firstName, lastName] = fullName.split(" ");
+          const currentDate = new Date(); // Capturar la fecha actual
+          const date = formatDate(currentDate);
+          console.log(date);
           const userData = {
             nombre: firstName,
             apellido: lastName,
             email: res.user.email,
             roll: "customer",
-            // Otros datos que desees agregar
+            fechaInicio: date,
           };
           console.log(userData);
 
