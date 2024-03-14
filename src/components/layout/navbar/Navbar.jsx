@@ -171,7 +171,7 @@ function Navbar(props) {
                 }}
               >
                 <img
-                  style={{ width: "10vw", color: "white", marginTop: "2rem" }}
+                  style={{ width: "15vw", color: "white", marginTop: "2rem" }}
                   src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo-927322684-1687738908-786eafccc1dcfd968724c4c5cba6acf61687738908-320-0.jpg?alt=media&token=4415c358-8994-40b2-bee0-9fe378428bea"
                   alt="kaury"
                 />
@@ -203,9 +203,11 @@ function Navbar(props) {
           </div>
           <div
             style={{
-              width: "80%",
+              width: "90%",
               marginBottom: "3rem",
               height: "1vh",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <TextField
