@@ -1,6 +1,6 @@
 import Home from "../components/pages/home/Home";
 import ItemListContainer from "../components/pages/products/ItemListContainer";
-import UserOrders from "../components/pages/userOrders/userOrders";
+import UserOrders from "../components/pages/userOrders/UserOrders";
 
 export const routes = [
   {
