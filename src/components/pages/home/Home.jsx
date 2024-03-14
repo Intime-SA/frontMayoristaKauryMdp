@@ -162,36 +162,46 @@ const Home = () => {
                 height: "20vh",
                 width: "100%",
                 display: "flex",
-                justifyContent: "center",
                 alignItems: "center",
               }}
             >
               <div
                 style={{
-                  height: "auto",
-                  width: "auto",
+                  height: "50%",
+                  width: "100%",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  padding: "1rem",
                 }}
               >
                 <div
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "5rem",
-                    height: "5rem",
+                    width: "auto",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    height: "auto%",
                   }}
                 >
-                  <span
-                    style={{ fontSize: "120%" }}
-                    class="material-symbols-outlined"
+                  <div
+                    style={{
+                      width: "5rem",
+                      height: "5rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
                   >
-                    local_shipping
-                  </span>
+                    <span
+                      style={{ fontSize: "120%" }}
+                      class="material-symbols-outlined"
+                    >
+                      local_shipping
+                    </span>
+                  </div>
                 </div>
                 <div
                   style={{
@@ -230,25 +240,36 @@ const Home = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  padding: "1rem",
                 }}
               >
                 <div
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "5rem",
-                    height: "5rem",
+                    width: "auto",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    height: "auto%",
                   }}
                 >
-                  <span
-                    style={{ fontSize: "120%" }}
-                    class="material-symbols-outlined"
+                  <div
+                    style={{
+                      width: "5rem",
+                      height: "5rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
                   >
-                    home
-                  </span>
+                    <span
+                      style={{ fontSize: "120%" }}
+                      class="material-symbols-outlined"
+                    >
+                      home
+                    </span>
+                  </div>
                 </div>
                 <div
                   style={{
