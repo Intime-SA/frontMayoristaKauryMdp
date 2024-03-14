@@ -131,7 +131,6 @@ function Navbar(props) {
             width: "100vw",
             height: "30vh",
             background: "#DD0831",
-            paddingTop: "1rem",
             padding: "1rem",
           }}
         >
@@ -193,15 +192,14 @@ function Navbar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              style={{ margin: 0, padding: 0 }}
+              style={{ marginRight: "1rem", padding: 0 }}
             >
               <span
                 style={{
                   color: "white",
                   fontWeight: 100,
                   fontSize: "3rem",
-                  margin: "1rem",
-                  marginTop: "1.5rem",
+                  marginTop: "1rem",
                 }}
                 class="material-symbols-outlined"
               >
@@ -211,7 +209,7 @@ function Navbar(props) {
           </div>
           <div
             style={{
-              width: "100%",
+              width: "95%",
               marginBottom: "3rem",
               height: "1vh",
               display: "flex",

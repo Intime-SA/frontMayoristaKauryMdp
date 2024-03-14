@@ -15,7 +15,14 @@ const Home = () => {
     };
 
     return (
-      <div style={{ width: "100vw", paddingLeft: "0px", paddingRight: "0px" }}>
+      <div
+        style={{
+          width: "100vw",
+          paddingLeft: "0px",
+          paddingRight: "0px",
+          margin: "0",
+        }}
+      >
         {" "}
         {/* Ajusta el ancho según tu diseño */}
         <Slider {...settings}>
