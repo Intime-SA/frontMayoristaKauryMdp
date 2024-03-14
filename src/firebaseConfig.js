@@ -19,13 +19,12 @@ import { useNavigate } from "react-router-dom";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC82Xmj6-MfN1lpnmabdANaU4c9ZNjpPh4",
-  authDomain: "mayoristakaurymdp.firebaseapp.com",
-  projectId: "mayoristakaurymdp",
-  storageBucket: "mayoristakaurymdp.appspot.com",
-  messagingSenderId: "1059207647185",
-  appId: "1:1059207647185:web:e5c8298f7225cd48585af0",
-  measurementId: "G-ST43E089JF",
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase
