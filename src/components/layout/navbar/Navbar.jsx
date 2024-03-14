@@ -188,7 +188,13 @@ function Navbar(props) {
                 </h1>
               </div>
             </Link>
-            <Button>
+            <IconButton
+              color="#FFFFFF"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              style={{ margin: 0, padding: 0 }}
+            >
               <span
                 style={{
                   color: "white",
@@ -201,11 +207,11 @@ function Navbar(props) {
               >
                 shopping_cart
               </span>
-            </Button>
+            </IconButton>
           </div>
           <div
             style={{
-              width: "90%",
+              width: "100%",
               marginBottom: "3rem",
               height: "1vh",
               display: "flex",
