@@ -129,7 +129,7 @@ function Navbar(props) {
             backgroundColor: "white",
             alignItems: "center",
             width: "100vw",
-            height: "20vh",
+            height: "30vh",
             background: "#DD0831",
             paddingTop: "1rem",
             padding: "1rem",
