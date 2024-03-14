@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -9,47 +10,59 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
-
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signUp, db } from "../../../firebaseConfig";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
-  const { handleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
     confirmPassword: "",
+    name: "",
+    apellido: "",
+    numeroTelefono: "",
   });
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const handleChange = (e) => {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
-    console.log(userCredentials);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res = await signUp(userCredentials);
-    if (res.user.uid) {
-      let userDoc = {
-        email: res.user.email,
-        rol: "customer",
-      };
-      await setDoc(doc(db, "users", res.user.uid), {
-        email: res.user.email,
-        roll: "customer",
-      });
-      handleLogin(userDoc);
+    const { email, password, name, apellido, telefono, confirmPassword } =
+      userCredentials;
+
+    if (password !== confirmPassword) {
+      setPasswordError(true);
+      return;
     }
-    if (res.status !== 400) {
+
+    try {
+      const res = await signUp({ email, password });
+      if (res.user.uid) {
+        const userDoc = {
+          email: res.user.email,
+          roll: "customer",
+          name,
+          apellido,
+          telefono,
+          fechaInicio: serverTimestamp(),
+        };
+        await setDoc(doc(db, "users", res.user.uid), userDoc);
+      }
       navigate("/login");
+    } catch (error) {
+      // Manejo de errores de Firebase
+      console.error("Error al registrarse:", error.message);
+      // Puedes mostrar un mensaje de error al usuario aquí
     }
   };
 
@@ -62,16 +75,34 @@ const Register = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        // backgroundColor: theme.palette.secondary.main,
       }}
     >
       <form onSubmit={handleSubmit}>
-        <Grid
-          container
-          rowSpacing={2}
-          // alignItems="center"
-          justifyContent={"center"}
-        >
+        <Grid container rowSpacing={2} justifyContent="center">
+          <Grid item xs={10} md={12}>
+            <TextField
+              onChange={handleChange}
+              name="name"
+              label="Nombre"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={10} md={12}>
+            <TextField
+              onChange={handleChange}
+              name="apellido"
+              label="Apellido"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={10} md={12}>
+            <TextField
+              onChange={handleChange}
+              name="telefono"
+              label="Número de Teléfono"
+              fullWidth
+            />
+          </Grid>
           <Grid item xs={10} md={12}>
             <TextField
               onChange={handleChange}
@@ -81,7 +112,7 @@ const Register = () => {
             />
           </Grid>
           <Grid item xs={10} md={12}>
-            <FormControl variant="outlined" fullWidth>
+            <FormControl variant="outlined" fullWidth error={passwordError}>
               <InputLabel htmlFor="outlined-adornment-password">
                 Contraseña
               </InputLabel>
@@ -110,7 +141,7 @@ const Register = () => {
             </FormControl>
           </Grid>
           <Grid item xs={10} md={12}>
-            <FormControl variant="outlined" fullWidth>
+            <FormControl variant="outlined" fullWidth error={passwordError}>
               <InputLabel htmlFor="outlined-adornment-password">
                 Confirmar contraseña
               </InputLabel>
@@ -138,6 +169,11 @@ const Register = () => {
               />
             </FormControl>
           </Grid>
+          {passwordError && (
+            <Grid item xs={10} md={12}>
+              <p style={{ color: "red" }}>Las contraseñas no coinciden.</p>
+            </Grid>
+          )}
           <Grid container justifyContent="center" spacing={3} mt={2}>
             <Grid item xs={10} md={7}>
               <Button

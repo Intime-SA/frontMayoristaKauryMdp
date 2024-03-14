@@ -13,7 +13,14 @@ import {
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { db, loginGoogle, onSingIn } from "../../../firebaseConfig";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -87,15 +94,12 @@ const Login = () => {
         if (!userDoc.exists()) {
           const fullName = res.user.displayName;
           const [firstName, lastName] = fullName.split(" ");
-          const currentDate = new Date(); // Capturar la fecha actual
-          const date = formatDate(currentDate);
-          console.log(date);
           const userData = {
-            nombre: firstName,
+            name: firstName,
             apellido: lastName,
             email: res.user.email,
             roll: "customer",
-            fechaInicio: date,
+            fechaInicio: serverTimestamp(),
           };
           console.log(userData);
 

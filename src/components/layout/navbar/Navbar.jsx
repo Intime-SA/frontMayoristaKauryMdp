@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { menuItems } from "../../../router/navigation";
 import {
@@ -24,6 +24,7 @@ import {
 } from "../../../firebaseConfig";
 import { AuthContext } from "../../context/AuthContext";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { Button, TextField } from "@mui/material";
 
 const drawerWidth = 200;
 
@@ -31,6 +32,24 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+
+  const inputRef = useRef(null);
+  useEffect(() => {
+    // Accede al elemento input después de que el componente se haya montado
+    if (inputRef.current) {
+      // Puedes manipular el elemento input aquí
+      inputRef.current.style.border = "none"; // Elimina el borde
+      inputRef.current.style.boxShadow = "none"; // Elimina cualquier sombra
+      inputRef.current.style.outline = "none";
+      inputRef.current.style.height = "30px";
+      inputRef.current.style.width = "50px";
+      inputRef.current.style.display = "inline";
+      inputRef.current.style.outline = "none";
+      inputRef.current.style.textDecoration = "none";
+      // Elimina el resaltado de enfoque
+      // Puedes agregar más estilos aquí según sea necesario para eliminar otras propiedades visuales
+    }
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -105,44 +124,118 @@ function Navbar(props) {
           sx={{
             gap: "20px",
             display: "flex",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            justifyContent: "center",
             backgroundColor: "white",
+            alignItems: "center",
+            width: "100vw",
+            height: "20vh",
+            background: "#DD0831",
+            paddingTop: "1rem",
+            padding: "1rem",
           }}
         >
-          <Link to="/" style={{ color: "#c4072c" }}>
-            <div
-              style={{
-                marginLeft: "0",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <img
-                style={{ height: "50%" }}
-                src="https://www.kaury.com/img/kaury_logo_19.svg"
-                alt="logo"
-              />
-              <h1 style={{ color: "#c4072c", marginLeft: "8.3%" }}>
-                Mayorista Mar del Plata
-              </h1>
-
-              <h5 style={{ color: "#c4072c", marginLeft: "8.3%" }}>
-                Front-End
-              </h5>
-              <h6 style={{ color: "#c4072c", marginLeft: "8.3%" }}>
-                {welcomeUser()}
-              </h6>
-            </div>
-          </Link>
-          <IconButton
-            color="#c4072c"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              backgroundColor: "white",
+              alignItems: "flex-start",
+              width: "100%",
+              height: "20vh",
+              background: "#DD0831",
+              paddingTop: "1rem",
+            }}
           >
-            <MenuIcon color="secondary.primary" />
-          </IconButton>
+            <IconButton
+              color="#FFFFFF"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              style={{ margin: 0, padding: 0 }}
+            >
+              <span
+                style={{ color: "white", fontWeight: 100, fontSize: "200%" }}
+                class="material-symbols-outlined"
+              >
+                menu
+              </span>
+            </IconButton>
+            <Link to="/" style={{ color: "#c4072c" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  style={{ width: "50%", color: "white" }}
+                  src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo-927322684-1687738908-786eafccc1dcfd968724c4c5cba6acf61687738908-320-0.jpg?alt=media&token=4415c358-8994-40b2-bee0-9fe378428bea"
+                  alt="kaury"
+                />
+                <h1
+                  style={{
+                    color: "#c4072c",
+                    marginTop: "1%",
+                    fontSize: "50%",
+                    color: "white",
+                    fontWeight: 250,
+                  }}
+                >
+                  Mayorista
+                </h1>
+              </div>
+            </Link>
+            <Button>
+              <span
+                style={{
+                  color: "white",
+                  fontWeight: 100,
+                  fontSize: "350%",
+                  marginTop: "0.2rem",
+                }}
+                class="material-symbols-outlined"
+              >
+                shopping_cart
+              </span>
+            </Button>
+          </div>
+          <div
+            style={{
+              width: "100%",
+            }}
+          >
+            <TextField
+              inputRef={inputRef}
+              variant="standard"
+              InputProps={{
+                startAdornment: (
+                  <span
+                    style={{
+                      fontWeight: 300,
+                      fontSize: "250%",
+                      color: "#c4072c",
+                    }}
+                    class="material-symbols-outlined"
+                  >
+                    search
+                  </span>
+                ),
+                style: { paddingRight: "0" }, // Elimina el espacio del icono
+              }}
+              style={{
+                width: "100%",
+                height: "3rem",
+                borderRadius: "15px",
+                backgroundColor: "white",
+                paddingLeft: "1rem",
+                paddingRight: "1rem",
+                display: "inline-grid",
+              }}
+            />
+          </div>
         </Toolbar>
       </AppBar>
       <Box component="nav" aria-label="mailbox folders">
