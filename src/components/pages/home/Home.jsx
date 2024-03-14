@@ -43,18 +43,27 @@ const Home = () => {
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "40%",
+                    width: "auto",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "140%",
+                    height: "auto",
                   }}
                 >
-                  <img
-                    style={{ width: "50%" }}
-                    src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/whatsapp.svg?alt=media&token=83bb48a7-7405-4a69-867c-44568a7e108f"
-                    alt=""
-                  />
+                  <div
+                    style={{
+                      width: "5rem",
+                      height: "5rem",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      style={{ width: "3rem" }}
+                      src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/whatsapp.svg?alt=media&token=83bb48a7-7405-4a69-867c-44568a7e108f"
+                      alt=""
+                    />
+                  </div>
                 </div>
                 <div
                   style={{
@@ -101,19 +110,29 @@ const Home = () => {
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "35%",
+                    width: "auto",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "140%",
+                    height: "auto%",
                   }}
                 >
-                  <span
-                    style={{ fontSize: "120%" }}
-                    class="material-symbols-outlined"
+                  <div
+                    style={{
+                      width: "5rem",
+                      height: "5rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
                   >
-                    credit_card
-                  </span>
+                    <span
+                      style={{ fontSize: "120%" }}
+                      class="material-symbols-outlined"
+                    >
+                      credit_card
+                    </span>
+                  </div>
                 </div>
                 <div
                   style={{
@@ -143,13 +162,14 @@ const Home = () => {
                 height: "20vh",
                 width: "100%",
                 display: "flex",
+                justifyContent: "center",
                 alignItems: "center",
               }}
             >
               <div
                 style={{
-                  height: "50%",
-                  width: "100%",
+                  height: "auto",
+                  width: "auto",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -160,15 +180,15 @@ const Home = () => {
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "32%",
+                    width: "8rem",
+                    height: "5rem",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "140%",
                   }}
                 >
                   <span
-                    style={{ fontSize: "115%" }}
+                    style={{ fontSize: "120%" }}
                     class="material-symbols-outlined"
                   >
                     local_shipping
@@ -218,11 +238,11 @@ const Home = () => {
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "27%",
+                    width: "7rem",
+                    height: "5rem",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "140%",
                   }}
                 >
                   <span
