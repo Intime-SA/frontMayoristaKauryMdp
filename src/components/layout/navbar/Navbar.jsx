@@ -142,7 +142,7 @@ function Navbar(props) {
               backgroundColor: "white",
               alignItems: "flex-start",
               width: "100%",
-              height: "20vh",
+              height: "auto",
               background: "#DD0831",
               paddingTop: "1rem",
             }}
@@ -216,6 +216,7 @@ function Navbar(props) {
                       fontWeight: 300,
                       fontSize: "250%",
                       color: "#c4072c",
+                      position: "relative",
                     }}
                     class="material-symbols-outlined"
                   >
