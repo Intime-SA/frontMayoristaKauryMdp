@@ -59,7 +59,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      style={{ width: "3rem" }}
+                      style={{ width: "2.5rem" }}
                       src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/whatsapp.svg?alt=media&token=83bb48a7-7405-4a69-867c-44568a7e108f"
                       alt=""
                     />
@@ -180,7 +180,7 @@ const Home = () => {
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "8rem",
+                    width: "5.4rem",
                     height: "5rem",
                     display: "flex",
                     justifyContent: "center",
@@ -238,7 +238,7 @@ const Home = () => {
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "6rem",
+                    width: "5rem",
                     height: "5rem",
                     display: "flex",
                     justifyContent: "center",
