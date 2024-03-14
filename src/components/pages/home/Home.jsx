@@ -265,7 +265,7 @@ const Home = () => {
         alignItems: "center",
         flexDirection: "column",
         fontSize: "2rem",
-        top: "13vh",
+        top: "15vh",
         position: "relative",
         width: "100%",
         padding: 0,
