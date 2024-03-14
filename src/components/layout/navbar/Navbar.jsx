@@ -155,7 +155,7 @@ function Navbar(props) {
               style={{ margin: 0, padding: 0 }}
             >
               <span
-                style={{ color: "white", fontWeight: 100, fontSize: "5rem" }}
+                style={{ color: "white", fontWeight: 100, fontSize: "3rem" }}
                 class="material-symbols-outlined"
               >
                 menu
@@ -193,7 +193,9 @@ function Navbar(props) {
                 style={{
                   color: "white",
                   fontWeight: 100,
-                  fontSize: "4rem",
+                  fontSize: "3rem",
+                  margin: "1rem",
+                  marginTop: "1.5rem",
                 }}
                 class="material-symbols-outlined"
               >
