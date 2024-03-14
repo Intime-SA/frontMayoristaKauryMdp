@@ -3,14 +3,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./home.css";
-import CardHome from "./cards/CardHome";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import ListCards from "./cards/ListCards";
+import ListOferta from "./cards/ListOferta";
+import { Typography } from "@mui/material";
 
 const Home = () => {
-  const theme = useTheme();
-  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm")); // Verificar si el ancho de la pantalla es menor que 'sm' (600px)
-
   const Carousel = () => {
     const settings = {
       dots: true,
@@ -319,37 +316,25 @@ const Home = () => {
         fontSize: "2rem",
         top: "20vh",
         position: "relative",
-        width: "100%",
+        width: "90%",
         padding: 0,
         margin: 0,
       }}
     >
       <Carousel />
+      <ListCards />
 
-      <div
+      <Typography
+        variant="h2"
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "5rem",
-          marginBottom: "5rem",
-          width: "100%",
+          fontFamily: "Arial, sans-serif",
+          fontWeight: 700,
+          marginBottom: "1rem",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: isNarrowScreen ? "column" : "row", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "space-around",
-          }}
-        >
-          <CardHome />
-          <CardHome />
-          <CardHome />
-        </div>
-      </div>
+        OFERTAS
+      </Typography>
+      <ListOferta />
     </div>
   );
 };
