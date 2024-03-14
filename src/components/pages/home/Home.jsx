@@ -238,7 +238,7 @@ const Home = () => {
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "7rem",
+                    width: "6rem",
                     height: "5rem",
                     display: "flex",
                     justifyContent: "center",
