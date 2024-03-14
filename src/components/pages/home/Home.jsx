@@ -173,14 +173,13 @@ const Home = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  padding: "1rem",
                 }}
               >
                 <div
                   style={{
                     border: "1px solid black",
                     borderRadius: "50px",
-                    width: "5.4rem",
+                    width: "5rem",
                     height: "5rem",
                     display: "flex",
                     justifyContent: "center",
@@ -231,7 +230,6 @@ const Home = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  padding: "1rem",
                 }}
               >
                 <div
@@ -285,7 +283,7 @@ const Home = () => {
         alignItems: "center",
         flexDirection: "column",
         fontSize: "2rem",
-        top: "15vh",
+        top: "20vh",
         position: "relative",
         width: "100%",
         padding: 0,

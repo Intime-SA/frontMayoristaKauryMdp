@@ -41,7 +41,7 @@ function Navbar(props) {
       inputRef.current.style.border = "none"; // Elimina el borde
       inputRef.current.style.boxShadow = "none"; // Elimina cualquier sombra
       inputRef.current.style.outline = "none";
-      inputRef.current.style.height = "30px";
+      inputRef.current.style.height = "1vh";
       inputRef.current.style.width = "50px";
       inputRef.current.style.display = "inline";
       inputRef.current.style.outline = "none";
@@ -125,11 +125,11 @@ function Navbar(props) {
             gap: "20px",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "flex-end",
             backgroundColor: "white",
             alignItems: "center",
             width: "100vw",
-            height: "20vh",
+            height: "30vh",
             background: "#DD0831",
             paddingTop: "1rem",
             padding: "1rem",
@@ -140,11 +140,11 @@ function Navbar(props) {
               display: "flex",
               justifyContent: "space-between",
               backgroundColor: "white",
-              alignItems: "flex-start",
+              alignItems: "center",
               width: "100%",
               height: "auto",
               background: "#DD0831",
-              paddingTop: "1rem",
+              paddingTop: "3rem",
             }}
           >
             <IconButton
@@ -171,7 +171,7 @@ function Navbar(props) {
                 }}
               >
                 <img
-                  style={{ width: "15vw", color: "white" }}
+                  style={{ width: "10vw", color: "white", marginTop: "2rem" }}
                   src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo-927322684-1687738908-786eafccc1dcfd968724c4c5cba6acf61687738908-320-0.jpg?alt=media&token=4415c358-8994-40b2-bee0-9fe378428bea"
                   alt="kaury"
                 />
@@ -204,7 +204,8 @@ function Navbar(props) {
           <div
             style={{
               width: "80%",
-              marginBottom: "1rem",
+              marginBottom: "3rem",
+              height: "1vh",
             }}
           >
             <TextField
@@ -217,7 +218,6 @@ function Navbar(props) {
                       fontWeight: 300,
                       fontSize: "250%",
                       color: "#c4072c",
-                      position: "relative",
                     }}
                     class="material-symbols-outlined"
                   >
