@@ -316,7 +316,7 @@ const Home = () => {
         fontSize: "2rem",
         top: "20vh",
         position: "relative",
-        width: "90%",
+        width: "100%",
         padding: 0,
         margin: 0,
       }}

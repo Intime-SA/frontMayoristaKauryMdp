@@ -1,4 +1,17 @@
 .MuiBox-root {
   padding-left: 0px;
   padding-right: 0px;
+  box-sizing: content-box;
+  width: 100vw;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
