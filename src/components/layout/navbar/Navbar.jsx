@@ -129,7 +129,7 @@ function Navbar(props) {
             backgroundColor: "white",
             alignItems: "center",
             width: "100vw",
-            height: "25vh",
+            height: "20vh",
             background: "#DD0831",
             paddingTop: "1rem",
             padding: "1rem",
@@ -138,7 +138,7 @@ function Navbar(props) {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               backgroundColor: "white",
               alignItems: "flex-start",
               width: "100%",
@@ -155,7 +155,7 @@ function Navbar(props) {
               style={{ margin: 0, padding: 0 }}
             >
               <span
-                style={{ color: "white", fontWeight: 100, fontSize: "200%" }}
+                style={{ color: "white", fontWeight: 100, fontSize: "5rem" }}
                 class="material-symbols-outlined"
               >
                 menu
@@ -171,7 +171,7 @@ function Navbar(props) {
                 }}
               >
                 <img
-                  style={{ width: "100%", color: "white" }}
+                  style={{ width: "20vw", color: "white" }}
                   src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo-927322684-1687738908-786eafccc1dcfd968724c4c5cba6acf61687738908-320-0.jpg?alt=media&token=4415c358-8994-40b2-bee0-9fe378428bea"
                   alt="kaury"
                 />
@@ -179,7 +179,7 @@ function Navbar(props) {
                   style={{
                     color: "#c4072c",
                     marginTop: "1%",
-                    fontSize: "50%",
+                    fontSize: "100%",
                     color: "white",
                     fontWeight: 250,
                   }}
@@ -193,8 +193,7 @@ function Navbar(props) {
                 style={{
                   color: "white",
                   fontWeight: 100,
-                  fontSize: "350%",
-                  marginTop: "0.2rem",
+                  fontSize: "4rem",
                 }}
                 class="material-symbols-outlined"
               >
