@@ -3,8 +3,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./home.css";
+import CardHome from "./cards/CardHome";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const Home = () => {
+  const theme = useTheme();
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm")); // Verificar si el ancho de la pantalla es menor que 'sm' (600px)
+
   const Carousel = () => {
     const settings = {
       dots: true,
@@ -319,6 +325,31 @@ const Home = () => {
       }}
     >
       <Carousel />
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "5rem",
+          marginBottom: "5rem",
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isNarrowScreen ? "column" : "row", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <CardHome />
+          <CardHome />
+          <CardHome />
+        </div>
+      </div>
     </div>
   );
 };
