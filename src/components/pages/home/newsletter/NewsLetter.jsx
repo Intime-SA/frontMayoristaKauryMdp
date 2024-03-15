@@ -1,12 +1,22 @@
 import React from "react";
-import { Typography, TextField, Button, Container } from "@mui/material";
+import {
+  Typography,
+  TextField,
+  Button,
+  Container,
+  useMediaQuery,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const Newsletter = () => {
+  const theme = useTheme();
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <div
       maxWidth="sm"
       style={{
-        marginTop: "2rem",
+        marginTop: "4rem",
         textAlign: "center",
         padding: "20px",
         border: "1px solid #ccc",
@@ -30,7 +40,7 @@ const Newsletter = () => {
         style={{
           marginBottom: "20px",
           width: "80%",
-          fontSize: "70%",
+          fontSize: isNarrowScreen ? "40%" : "100%",
           display: "flex",
           justifyContent: "center",
         }}
