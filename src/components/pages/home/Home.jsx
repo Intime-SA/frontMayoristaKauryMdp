@@ -6,6 +6,7 @@ import "./home.css";
 import ListCards from "./cards/ListCards";
 import ListOferta from "./cards/ListOferta";
 import { Typography } from "@mui/material";
+import Newsletter from "./newsletter/NewsLetter";
 
 const Home = () => {
   const Carousel = () => {
@@ -343,6 +344,16 @@ const Home = () => {
         }}
       >
         <ListOferta />
+      </div>
+      <div
+        style={{
+          width: "100vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Newsletter />
       </div>
     </div>
   );

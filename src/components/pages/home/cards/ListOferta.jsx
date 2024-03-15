@@ -74,12 +74,22 @@ const ListOferta = () => {
 
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-      <div style={{ width: "90%", maxWidth: "800px" }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "800px",
+          marginLeft: isNarrowScreen ? "0rem" : "row", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
+        }}
+      >
         <Slider {...settings}>
           {products.map((product) => (
             <div
               key={product.id}
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                width: "100%",
+                maxWidth: "800px",
+                marginLeft: isNarrowScreen ? "3rem" : "row", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
+              }}
             >
               <CardOfert product={product} />
             </div>

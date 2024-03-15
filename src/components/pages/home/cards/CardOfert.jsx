@@ -3,9 +3,17 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import {
+  Button,
+  CardActionArea,
+  CardActions,
+  useMediaQuery,
+} from "@mui/material";
 
 export default function CardOfert({ product }) {
+  const theme = useTheme();
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Card
       sx={{
@@ -13,6 +21,7 @@ export default function CardOfert({ product }) {
         borderRadius: "20px",
         margin: "1rem",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+        marginLeft: isNarrowScreen ? "3.5rem" : "0", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
       }}
     >
       <CardActionArea>
