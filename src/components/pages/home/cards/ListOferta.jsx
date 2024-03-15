@@ -54,7 +54,7 @@ const ListOferta = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Número de tarjetas que deseas mostrar en el carrusel
+    slidesToShow: 2, // Número de tarjetas que deseas mostrar en el carrusel
     slidesToScroll: 1,
     responsive: [
       {
@@ -73,14 +73,19 @@ const ListOferta = () => {
   };
 
   return (
-    <div style={{ width: "100%", margin: "auto" }}>
-      <Slider {...settings}>
-        {products.map((product) => (
-          <div key={product.id}>
-            <CardOfert product={product} />
-          </div>
-        ))}
-      </Slider>
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <div style={{ width: "90%", maxWidth: "800px" }}>
+        <Slider {...settings}>
+          {products.map((product) => (
+            <div
+              key={product.id}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <CardOfert product={product} />
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };

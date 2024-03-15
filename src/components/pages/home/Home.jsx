@@ -334,7 +334,16 @@ const Home = () => {
       >
         OFERTAS
       </Typography>
-      <ListOferta />
+      <div
+        style={{
+          width: "100vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ListOferta />
+      </div>
     </div>
   );
 };
