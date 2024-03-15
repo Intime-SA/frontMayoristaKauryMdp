@@ -21,7 +21,7 @@ export default function CardOfert({ product }) {
         borderRadius: "20px",
         margin: "1rem",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        marginLeft: isNarrowScreen ? "3.5rem" : "0", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
+        marginLeft: isNarrowScreen ? "2rem" : "0", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
       }}
     >
       <CardActionArea>
