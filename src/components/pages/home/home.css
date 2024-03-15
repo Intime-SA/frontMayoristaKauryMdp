@@ -1,17 +1,12 @@
 .MuiBox-root {
   padding-left: 0px; /* Ejemplo de margen interior a la izquierda */
   padding-right: 0px; /* Ejemplo de margen interior a la derecha */
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-sizing: border-box;
 }

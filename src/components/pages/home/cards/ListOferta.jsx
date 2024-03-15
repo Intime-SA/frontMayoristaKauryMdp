@@ -73,7 +73,7 @@ const ListOferta = () => {
   };
 
   return (
-    <div style={{ width: "80%", margin: "0 auto" }}>
+    <div style={{ width: "100%", margin: "auto" }}>
       <Slider {...settings}>
         {products.map((product) => (
           <div key={product.id}>
