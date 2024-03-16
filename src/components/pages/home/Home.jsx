@@ -361,12 +361,22 @@ const Home = () => {
       <Redes />
       <div
         style={{
-          backgroundColor: "rgba(19, 85, 136, 0.15)",
-          height: "50vh",
+          backgroundColor: "rgba(175, 155, 144, 0.21)",
+          height: "auto",
           width: "100vw",
         }}
       >
         <Contacto />
+      </div>
+      <div
+        style={{
+          backgroundColor: "rgba(175, 155, 144, 0.21)",
+          height: "auto",
+          width: "100vw",
+          position: "relative",
+          top: "0px",
+        }}
+      >
         <Footer />
       </div>
     </div>

@@ -29,16 +29,23 @@ const Contacto = () => {
     <div
       style={{
         backgroundColor: "rgba(175, 155, 144, 0.21)",
-        height: "50vh",
+        height: "60vh",
         width: "100%",
         margin: "0px",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "flex-start",
-        paddingTop: "2%",
+        paddingTop: "3%",
       }}
     >
-      <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "space-between",
+        }}
+      >
         <Typography
           variant="p"
           gutterBottom
@@ -61,7 +68,7 @@ const Contacto = () => {
                   style={{
                     margin: "0.5rem",
                     color: "#c4072c",
-                    fontSize: "50%",
+                    fontSize: isNarrowScreen ? "25%" : "50%",
                   }}
                 >
                   {cat.name}{" "}
@@ -72,64 +79,101 @@ const Contacto = () => {
           </ul>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "space-around",
-        }}
-      >
-        <Typography
-          variant="p"
-          gutterBottom
+      <div>
+        <div
           style={{
-            marginBottom: "0.5rem",
-            fontSize: isNarrowScreen ? "20%" : "60%",
-            fontWeight: 600,
-            color: "#c4072c",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "space-around",
           }}
         >
-          Contactános
-        </Typography>
-        <Typography variant="p" style={{ color: "#c4072c", fontSize: "60%" }}>
-          <span style={{ marginTop: "1rem" }} class="material-symbols-outlined">
-            call
-          </span>
+          <Typography
+            variant="p"
+            gutterBottom
+            style={{
+              marginBottom: "0.5rem",
+              fontSize: isNarrowScreen ? "20%" : "60%",
+              fontWeight: 600,
+              color: "#c4072c",
+            }}
+          >
+            Contactános
+          </Typography>
           <Typography
             variant="p"
             style={{
               color: "#c4072c",
-              fontSize: "40%%",
-              marginLeft: "1rem",
-              marginTop: "1rem",
+              fontSize: isNarrowScreen ? "20%" : "60%",
             }}
           >
-            +54 (223) 348-5438
+            <span
+              style={{ marginTop: "1rem" }}
+              class="material-symbols-outlined"
+            >
+              call
+            </span>
+            <Typography
+              variant="p"
+              style={{
+                color: "#c4072c",
+                fontSize: isNarrowScreen ? "130%" : "80%",
+                marginLeft: "1rem",
+                marginTop: "1rem",
+              }}
+            >
+              +54 (223) 348-5438
+            </Typography>
           </Typography>
-        </Typography>
-        <Typography variant="p" style={{ color: "#c4072c", fontSize: "60%" }}>
-          <span style={{ marginTop: "1rem" }} class="material-symbols-outlined">
-            mail
-          </span>
           <Typography
             variant="p"
-            style={{ color: "#c4072c", fontSize: "40%%", marginLeft: "1rem" }}
+            style={{
+              color: "#c4072c",
+              fontSize: isNarrowScreen ? "20%" : "60%",
+            }}
           >
-            kaurymdp.store@gmail.com
+            <span
+              style={{ marginTop: "1rem" }}
+              class="material-symbols-outlined"
+            >
+              mail
+            </span>
+            <Typography
+              variant="p"
+              style={{
+                color: "#c4072c",
+                fontSize: isNarrowScreen ? "130%" : "80%",
+                marginLeft: "1rem",
+              }}
+            >
+              kaurymdp.store@gmail.com
+            </Typography>
           </Typography>
-        </Typography>
-        <Typography variant="p" style={{ color: "#c4072c", fontSize: "60%" }}>
-          <span style={{ marginTop: "1rem" }} class="material-symbols-outlined">
-            location_on
-          </span>
           <Typography
             variant="p"
-            style={{ color: "#c4072c", fontSize: "40%%", marginLeft: "1rem" }}
+            style={{
+              color: "#c4072c",
+              fontSize: isNarrowScreen ? "20%" : "60%",
+            }}
           >
-            Jose marmol 970 timbre 104 de 10 a 17hs, Mar del Plata
+            <span
+              style={{ marginTop: "1rem" }}
+              class="material-symbols-outlined"
+            >
+              location_on
+            </span>
+            <Typography
+              variant="p"
+              style={{
+                color: "#c4072c",
+                fontSize: isNarrowScreen ? "130%" : "80%",
+                marginLeft: "1rem",
+              }}
+            >
+              Jose marmol 970 timbre 104 de 10 a 17hs, Mar del Plata
+            </Typography>
           </Typography>
-        </Typography>
+        </div>
       </div>
     </div>
   );

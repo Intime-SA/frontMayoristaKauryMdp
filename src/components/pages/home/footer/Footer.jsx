@@ -14,7 +14,6 @@ const Footer = () => {
   return (
     <div
       style={{
-        height: "15vh",
         backgroundColor: "#DD0831",
         color: "white",
         width: "100%",
@@ -22,6 +21,7 @@ const Footer = () => {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
+        height: "20vh",
       }}
     >
       <Typography
