@@ -88,6 +88,7 @@ const Contacto = () => {
             flexDirection: "column",
             alignItems: "flex-start",
             height: "20vh",
+            marginTop: "1%",
           }}
         >
           <Typography
@@ -160,22 +161,24 @@ const Contacto = () => {
               fontSize: isNarrowScreen ? "20%" : "80%",
             }}
           >
-            <span
-              style={{ fontSize: isNarrowScreen ? "130%" : "80%" }}
-              class="material-symbols-outlined"
-            >
-              location_on
-            </span>
-            <Typography
-              variant="p"
-              style={{
-                color: "#c4072c",
-                fontSize: isNarrowScreen ? "130%" : "60%",
-                marginLeft: "1rem",
-              }}
-            >
-              Jose marmol 970 timbre 104 de 10 a 17hs, Mar del Plata
-            </Typography>
+            <div style={{ width: "80%" }}>
+              <span
+                style={{ fontSize: isNarrowScreen ? "130%" : "80%" }}
+                class="material-symbols-outlined"
+              >
+                location_on
+              </span>
+              <Typography
+                variant="p"
+                style={{
+                  color: "#c4072c",
+                  fontSize: isNarrowScreen ? "130%" : "60%",
+                  marginLeft: "1rem",
+                }}
+              >
+                Jose marmol 970 timbre 104 de 10 a 17hs, Mar del Plata
+              </Typography>
+            </div>
           </Typography>
         </div>
       </div>
