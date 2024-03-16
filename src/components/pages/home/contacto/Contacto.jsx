@@ -88,7 +88,7 @@ const Contacto = () => {
             flexDirection: "column",
             alignItems: "flex-start",
             height: "20vh",
-            marginTop: "1%",
+            marginTop: "2%",
           }}
         >
           <Typography
