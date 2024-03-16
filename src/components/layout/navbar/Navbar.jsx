@@ -129,7 +129,7 @@ function Navbar(props) {
             backgroundColor: "white",
             alignItems: "center",
             width: "100vw",
-            height: "22vh",
+            height: "25vh",
             background: "#DD0831",
             padding: "1rem",
           }}
@@ -139,7 +139,7 @@ function Navbar(props) {
               display: "flex",
               justifyContent: "space-between",
               backgroundColor: "white",
-              alignItems: "center",
+              alignItems: "flex-end",
               width: "100%",
               height: "auto",
               background: "#DD0831",
@@ -151,7 +151,7 @@ function Navbar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              style={{ margin: 0, padding: 0 }}
+              style={{ margin: 0, padding: 0, marginLeft: "5%" }}
             >
               <span
                 style={{ color: "white", fontWeight: 100, fontSize: "3rem" }}
@@ -163,14 +163,15 @@ function Navbar(props) {
             <Link to="/" style={{ color: "#c4072c" }}>
               <div
                 style={{
+                  marginTop: "5rem",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "center",
+                  justifyContent: "flex-end",
                   alignItems: "center",
                 }}
               >
                 <img
-                  style={{ width: "15vw", color: "white", marginTop: "2rem" }}
+                  style={{ width: "10vw", color: "white", marginTop: "5rem" }}
                   src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo-927322684-1687738908-786eafccc1dcfd968724c4c5cba6acf61687738908-320-0.jpg?alt=media&token=4415c358-8994-40b2-bee0-9fe378428bea"
                   alt="kaury"
                 />
@@ -192,7 +193,7 @@ function Navbar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              style={{ marginRight: "1rem", padding: 0 }}
+              style={{ marginRight: "5%", padding: 0, marginTop: "1rem  " }}
             >
               <span
                 style={{
@@ -200,6 +201,7 @@ function Navbar(props) {
                   fontWeight: 100,
                   fontSize: "3rem",
                   marginTop: "1rem",
+                  marginRight: "50%",
                 }}
                 class="material-symbols-outlined"
               >
@@ -209,7 +211,7 @@ function Navbar(props) {
           </div>
           <div
             style={{
-              width: "95%",
+              width: "90%",
               marginBottom: "3rem",
               height: "1vh",
               display: "flex",

@@ -22,7 +22,7 @@ const Newsletter = () => {
         border: "1px solid #ccc",
         borderRadius: "8px",
         width: "100%",
-        height: "30vh",
+        height: "60vh",
         backgroundColor: "#DD0831",
         color: "white",
         display: "flex",
@@ -31,21 +31,41 @@ const Newsletter = () => {
         justifyContent: "center",
       }}
     >
-      <Typography variant="body1" gutterBottom style={{ marginBottom: "20px" }}>
+      <Typography
+        variant="p"
+        gutterBottom
+        style={{
+          marginBottom: "0.5rem",
+          fontSize: isNarrowScreen ? "70%" : "90%",
+          fontWeight: 100,
+        }}
+      >
         NewsLetter
       </Typography>
       <Typography
         variant="h4"
         gutterBottom
         style={{
-          marginBottom: "20px",
+          marginBottom: "0.5rem",
           width: "80%",
-          fontSize: isNarrowScreen ? "40%" : "100%",
+          fontSize: isNarrowScreen ? "60%" : "80%",
           display: "flex",
           justifyContent: "center",
         }}
       >
-        Recibí todas las ofertas y noticias
+        <strong>Recibí todas las ofertas y noticias</strong>
+      </Typography>
+      <Typography
+        variant="p"
+        gutterBottom
+        style={{
+          marginBottom: "0.5rem",
+          fontSize: isNarrowScreen ? "40%" : "90%",
+          fontWeight: 100,
+        }}
+      >
+        ¿Querés recibir nuestras ofertas? ¡Registrate ya mismo y comenzá a
+        disfrutarlas!
       </Typography>
       <form
         style={{
@@ -64,12 +84,12 @@ const Newsletter = () => {
               marginBottom: "20px",
               backgroundColor: "white",
               borderRadius: "10px",
-              width: "50vw",
-              height: "4vh",
+              width: "80vw",
+              height: "8vh",
               padding: "12px 20px",
               boxSizing: "border-box",
               border: "1px solid #ccc",
-              fontSize: "16px",
+              fontSize: "50%",
               outline: "none",
             }}
           />
@@ -77,9 +97,9 @@ const Newsletter = () => {
 
         <Button
           variant="contained"
-          color="primary"
+          color="inherit"
           type="submit"
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: "20px", color: "black" }}
         >
           Suscribirse
         </Button>

@@ -7,6 +7,9 @@ import ListCards from "./cards/ListCards";
 import ListOferta from "./cards/ListOferta";
 import { Typography } from "@mui/material";
 import Newsletter from "./newsletter/NewsLetter";
+import Redes from "./redes/Redes";
+import Contacto from "./contacto/Contacto";
+import Footer from "./footer/Footer";
 
 const Home = () => {
   const Carousel = () => {
@@ -354,6 +357,17 @@ const Home = () => {
         }}
       >
         <Newsletter />
+      </div>
+      <Redes />
+      <div
+        style={{
+          backgroundColor: "rgba(19, 85, 136, 0.15)",
+          height: "50vh",
+          width: "100vw",
+        }}
+      >
+        <Contacto />
+        <Footer />
       </div>
     </div>
   );
