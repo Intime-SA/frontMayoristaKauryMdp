@@ -21,7 +21,7 @@ const Footer = () => {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
-        height: "20vh",
+        height: "15vh",
       }}
     >
       <Typography

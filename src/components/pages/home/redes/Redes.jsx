@@ -9,7 +9,7 @@ const Redes = () => {
   return (
     <div
       style={{
-        height: "30vh",
+        height: "25vh",
         width: "100%",
         backgroundColor: "white",
         display: "flex",
@@ -19,7 +19,7 @@ const Redes = () => {
     >
       <div
         style={{
-          width: "20vw",
+          width: "30vw",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-around",
@@ -37,7 +37,7 @@ const Redes = () => {
           gutterBottom
           style={{
             marginBottom: "0.5rem",
-            fontSize: isNarrowScreen ? "20%" : "60%",
+            fontSize: isNarrowScreen ? "30%" : "60%",
             fontWeight: 100,
           }}
         >
@@ -46,9 +46,11 @@ const Redes = () => {
         <Button
           variant="outlined"
           style={{
+            width: "auto",
             borderRadius: "20px",
             color: "red",
             border: "1px solid red",
+            fontSize: isNarrowScreen ? "20%" : "40%",
           }}
         >
           SEGUINOS

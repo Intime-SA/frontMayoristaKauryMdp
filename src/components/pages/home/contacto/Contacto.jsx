@@ -44,6 +44,7 @@ const Contacto = () => {
           justifyContent: "center",
           flexDirection: "column",
           alignItems: "space-between",
+          marginTop: "1rem",
         }}
       >
         <Typography
@@ -83,16 +84,16 @@ const Contacto = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-around",
             flexDirection: "column",
-            alignItems: "space-around",
+            alignItems: "flex-start",
+            height: "20vh",
           }}
         >
           <Typography
             variant="p"
             gutterBottom
             style={{
-              marginBottom: "0.5rem",
               fontSize: isNarrowScreen ? "20%" : "60%",
               fontWeight: 600,
               color: "#c4072c",
@@ -108,7 +109,9 @@ const Contacto = () => {
             }}
           >
             <span
-              style={{ marginTop: "1rem" }}
+              style={{
+                fontSize: isNarrowScreen ? "130%" : "80%",
+              }}
               class="material-symbols-outlined"
             >
               call
@@ -119,7 +122,6 @@ const Contacto = () => {
                 color: "#c4072c",
                 fontSize: isNarrowScreen ? "130%" : "80%",
                 marginLeft: "1rem",
-                marginTop: "1rem",
               }}
             >
               +54 (223) 348-5438
@@ -133,7 +135,9 @@ const Contacto = () => {
             }}
           >
             <span
-              style={{ marginTop: "1rem" }}
+              style={{
+                fontSize: isNarrowScreen ? "130%" : "80%",
+              }}
               class="material-symbols-outlined"
             >
               mail
@@ -153,11 +157,11 @@ const Contacto = () => {
             variant="p"
             style={{
               color: "#c4072c",
-              fontSize: isNarrowScreen ? "20%" : "60%",
+              fontSize: isNarrowScreen ? "20%" : "80%",
             }}
           >
             <span
-              style={{ marginTop: "1rem" }}
+              style={{ fontSize: isNarrowScreen ? "130%" : "80%" }}
               class="material-symbols-outlined"
             >
               location_on
@@ -166,7 +170,7 @@ const Contacto = () => {
               variant="p"
               style={{
                 color: "#c4072c",
-                fontSize: isNarrowScreen ? "130%" : "80%",
+                fontSize: isNarrowScreen ? "130%" : "60%",
                 marginLeft: "1rem",
               }}
             >
