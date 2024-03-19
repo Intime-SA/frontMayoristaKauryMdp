@@ -8,15 +8,16 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import SelectProduct from "./SelectProduct";
 import { useParams } from "react-router-dom";
+import VerticalCarrusel from "./VerticalCarrusel";
 
 const ViewProduct = () => {
   const article = useParams();
-  console.log(article);
 
   return (
     <div style={{ display: "flex", marginTop: "20vh" }}>
-      <div>Carrusel vertical</div>
-      <div>Imagen Principal</div>
+      <div>
+        <VerticalCarrusel article={article} />
+      </div>
       <div>
         <SelectProduct article={article} />
       </div>
