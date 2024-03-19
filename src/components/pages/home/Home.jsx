@@ -10,6 +10,7 @@ import Newsletter from "./newsletter/NewsLetter";
 import Redes from "./redes/Redes";
 import Contacto from "./contacto/Contacto";
 import Footer from "./footer/Footer";
+import ViewProduct from "./viewProduct/ViewProduct";
 
 const Home = () => {
   const Carousel = () => {
@@ -318,7 +319,6 @@ const Home = () => {
         alignItems: "center",
         flexDirection: "column",
         fontSize: "2rem",
-        top: "20vh",
         position: "relative",
         width: "100%",
         padding: 0,
@@ -328,7 +328,7 @@ const Home = () => {
       <Carousel />
       <ListCards />
 
-      <Typography
+      {/* <Typography
         variant="h2"
         style={{
           fontFamily: "Arial, sans-serif",
@@ -347,38 +347,7 @@ const Home = () => {
         }}
       >
         <ListOferta />
-      </div>
-      <div
-        style={{
-          width: "100vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Newsletter />
-      </div>
-      <Redes />
-      <div
-        style={{
-          backgroundColor: "rgba(175, 155, 144, 0.21)",
-          height: "auto",
-          width: "100vw",
-        }}
-      >
-        <Contacto />
-      </div>
-      <div
-        style={{
-          backgroundColor: "rgba(175, 155, 144, 0.21)",
-          height: "auto",
-          width: "100vw",
-          position: "relative",
-          top: "0px",
-        }}
-      >
-        <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,4 +1,8 @@
+import CheckOut from "../components/pages/checkOut/CheckOut";
 import Home from "../components/pages/home/Home";
+import ListArticles from "../components/pages/home/cards/ListArticles";
+import Cart from "../components/pages/home/cart/Cart";
+import ViewProduct from "../components/pages/home/viewProduct/ViewProduct";
 import ItemListContainer from "../components/pages/products/ItemListContainer";
 import UserOrders from "../components/pages/userOrders/UserOrders";
 
@@ -9,13 +13,23 @@ export const routes = [
     Element: Home,
   },
   {
-    id: "products",
-    path: "/products",
-    Element: ItemListContainer,
+    id: "cart",
+    path: "/cart",
+    Element: Cart,
   },
   {
-    id: "userOrders",
-    path: "/userOrders",
-    Element: UserOrders,
+    id: "checkout",
+    path: "/checkout",
+    Element: CheckOut,
+  },
+  {
+    id: "viewProduct",
+    path: "/viewProduct/:id",
+    Element: ViewProduct,
+  },
+  {
+    id: "listArticles",
+    path: "/listArticles/:id",
+    Element: ListArticles,
   },
 ];

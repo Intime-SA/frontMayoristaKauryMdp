@@ -25,6 +25,10 @@ import {
 import { AuthContext } from "../../context/AuthContext";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { Button, TextField } from "@mui/material";
+import Newsletter from "../../pages/home/newsletter/NewsLetter";
+import Contacto from "../../pages/home/contacto/Contacto";
+import Redes from "../../pages/home/redes/Redes";
+import Footer from "../../pages/home/footer/Footer";
 
 const drawerWidth = 200;
 
@@ -32,6 +36,8 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const [cart, setCart] = useState([]);
 
   const inputRef = useRef(null);
   useEffect(() => {
@@ -68,6 +74,14 @@ function Navbar(props) {
     logOut();
     navigate("/login");
   };
+
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, [cart]);
+
+  useEffect(() => {
+    setCartItemCount(cart.length);
+  }, [cart]);
 
   const drawer = (
     <div
@@ -188,11 +202,11 @@ function Navbar(props) {
                 </h1>
               </div>
             </Link>
-            <IconButton
+            <Link
               color="#FFFFFF"
               aria-label="open drawer"
               edge="start"
-              onClick={handleDrawerToggle}
+              to="/cart"
               style={{ marginRight: "5%", padding: 0, marginTop: "1rem  " }}
             >
               <span
@@ -206,8 +220,13 @@ function Navbar(props) {
                 class="material-symbols-outlined"
               >
                 shopping_cart
+                {cartItemCount > 0 && (
+                  <span style={{ fontSize: "14px", marginLeft: "5px" }}>
+                    {cartItemCount}
+                  </span>
+                )}
               </span>
-            </IconButton>
+            </Link>
           </div>
           <div
             style={{
@@ -279,11 +298,53 @@ function Navbar(props) {
           width: "100%",
           minHeight: "100vh",
           px: 2,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          fontSize: "2rem",
+          top: "20vh",
+          position: "relative",
+          width: "100%",
+          padding: 0,
+          margin: 0,
         }}
       >
         <Toolbar />
 
         <Outlet />
+        <div
+          style={{
+            width: "100vw",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Newsletter />
+        </div>
+        <Redes />
+        <div
+          style={{
+            backgroundColor: "rgba(175, 155, 144, 0.21)",
+            height: "auto",
+            width: "100vw",
+          }}
+        >
+          <Contacto />
+        </div>
+
+        <div
+          style={{
+            backgroundColor: "rgba(175, 155, 144, 0.21)",
+            height: "auto",
+            width: "100vw",
+            position: "relative",
+            top: "0px",
+          }}
+        >
+          <Footer />
+        </div>
       </Box>
     </Box>
   );

@@ -10,21 +10,9 @@ export const menuItems = [
     Icon: HomeIcon,
   },
   {
-    id: "products",
-    path: "/products",
-    title: "Productos",
-    Icon: StoreIcon,
-  },
-  /*     {
-        id: "cart",
-        path: "/cart",
-        title: "Carrito",
-        Icon: ShoppingCartCheckoutIcon
-    }, */
-  {
-    id: "userOrders",
-    path: "/userOrders",
-    title: "Ventas",
-    Icon: ShopIcon,
+    id: "cart",
+    path: "/cart",
+    title: "Carrito",
+    Icon: ShoppingCartCheckoutIcon,
   },
 ];
