@@ -6,38 +6,56 @@ const VerticalCarrusel = ({ article }) => {
   const [filteredArticules, setFilteredArticules] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  console.log(article);
+
   useEffect(() => {
     const fetchArticle = async () => {
-      const collectionRef = collection(db, "articules");
+      const collectionRef = collection(db, "products");
       const querySnapshot = await getDocs(collectionRef);
 
       const filteredArticles = [];
 
       querySnapshot.forEach((doc) => {
-        if (doc.id === article.id) {
-          filteredArticles.push(doc.data().image);
+        if (doc.data().name === article.id) {
+          const color = doc.data().color;
+          // Verificar si el color ya está presente en filteredArticles
+          if (color && !filteredArticles.some((item) => item.color === color)) {
+            // Si el color no está presente, agregamos el objeto con la imagen y el color
+            filteredArticles.push({
+              image: doc.data().image,
+              color: color,
+            });
+          }
         }
       });
       setFilteredArticules(filteredArticles);
+
+      if (filteredArticles.length > 0 && !selectedImage) {
+        setSelectedImage(filteredArticles[0].image);
+      }
     };
 
     fetchArticle();
   }, [article]);
 
+  console.log(filteredArticules);
+
   const handleImageClick = (image) => {
+    console.log(image);
     setSelectedImage(image);
   };
+  console.log(filteredArticules);
 
   return (
     <div style={styles.verticalCarousel}>
       <div style={styles.imageList}>
-        {filteredArticules[0].map((image, index) => (
+        {filteredArticules.map((item, index) => (
           <img
             key={index}
-            src={image}
-            alt={`Slide ${index}`}
+            src={item.image}
+            alt={`Article ${index + 1}`}
             style={styles.imageThumbnail}
-            onClick={() => handleImageClick(image)}
+            onClick={() => handleImageClick(item.image)}
           />
         ))}
       </div>
@@ -76,7 +94,7 @@ const styles = {
     marginLeft: "20px",
   },
   selectedImage: {
-    width: "100%",
+    width: "30vw",
     height: "auto",
   },
 };

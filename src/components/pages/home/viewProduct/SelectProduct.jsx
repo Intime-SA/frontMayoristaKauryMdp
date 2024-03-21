@@ -36,6 +36,8 @@ const SelectProduct = ({ article }) => {
     navigate("/");
   };
 
+  useEffect(() => {}, [errorMessage]);
+
   const manejoStock = useEffect(() => {
     let usuario = JSON.parse(localStorage.getItem("userInfo"));
     const fetchData = async () => {
@@ -56,12 +58,14 @@ const SelectProduct = ({ article }) => {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: "20vw",
         padding: "20px",
         border: "1px solid #e0e0e0",
         borderRadius: "8px",
+        margin: "1rem",
       }}
     >
+      <h3>Art {article.id}</h3>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
           Seleccionar Producto
@@ -125,14 +129,20 @@ const SelectProduct = ({ article }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          width: "50%",
+          border: "1px solid black",
+          padding: "0.5rem",
+          borderRadius: "10px",
         }}
       >
         <Button
           onClick={() => setCount(count - 1)}
-          variant="outlined"
+          variant="text"
           disabled={count <= 0}
         >
-          -1
+          <span style={{ color: "black" }} class="material-symbols-outlined">
+            horizontal_rule
+          </span>
         </Button>
         <Typography variant="h6">{count}</Typography>
         <Button
@@ -143,17 +153,19 @@ const SelectProduct = ({ article }) => {
               setErrorMessage("No hay suficiente stock disponible");
             }
           }}
-          variant="contained"
+          variant="text"
           disabled={product && count >= product.stock}
         >
-          +1
+          <span style={{ color: "black" }} class="material-symbols-outlined">
+            add
+          </span>
         </Button>
-        {errorMessage && (
-          <Typography variant="body2" color="error" sx={{ marginTop: "10px" }}>
-            {errorMessage}
-          </Typography>
-        )}
       </Box>
+      {errorMessage && (
+        <Typography variant="body2" color="error" sx={{ marginTop: "10px" }}>
+          {errorMessage}
+        </Typography>
+      )}
       <Box sx={{ marginTop: "20px" }}>
         <Button
           onClick={add}

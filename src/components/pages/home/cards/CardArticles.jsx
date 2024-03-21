@@ -22,7 +22,6 @@ export default function CardArticles({
 
   const handleClick = (article) => {
     setArticle(article);
-    setOpenProductView(true);
   };
 
   return (
