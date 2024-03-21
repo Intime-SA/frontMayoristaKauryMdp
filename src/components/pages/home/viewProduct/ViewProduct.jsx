@@ -14,7 +14,7 @@ const ViewProduct = () => {
   const article = useParams();
 
   return (
-    <div style={{ display: "flex", marginTop: "20vh" }}>
+    <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
       <div>
         <VerticalCarrusel article={article} />
       </div>

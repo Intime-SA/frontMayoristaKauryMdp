@@ -84,10 +84,11 @@ const styles = {
     flexDirection: "column",
   },
   imageThumbnail: {
-    width: "50px",
-    height: "50px",
+    width: "5vw",
+    height: "auto",
     marginBottom: "10px",
     cursor: "pointer",
+    borderRadius: "0.2rem",
   },
   selectedImageContainer: {
     flex: 1,
@@ -96,5 +97,6 @@ const styles = {
   selectedImage: {
     width: "30vw",
     height: "auto",
+    borderRadius: "30px",
   },
 };

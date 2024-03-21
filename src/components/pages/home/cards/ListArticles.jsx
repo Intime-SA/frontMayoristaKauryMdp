@@ -82,7 +82,7 @@ const ListArticlesDesktop = () => {
             marginLeft: "3rem", // Espacio a la izquierda para centrar en versión de escritorio
           }}
         >
-          {isNarrowScreen || products.length <= 3 ? (
+          {isNarrowScreen || products.length <= 1 ? (
             // Mostrar las tarjetas individualmente si la pantalla es estrecha o si hay 3 o menos productos
             products.map((product) => (
               <CardArticles

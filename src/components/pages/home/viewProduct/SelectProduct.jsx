@@ -58,24 +58,43 @@ const SelectProduct = ({ article }) => {
   return (
     <Box
       sx={{
-        width: "20vw",
+        width: "25vw",
         padding: "20px",
         border: "1px solid #e0e0e0",
         borderRadius: "8px",
-        margin: "1rem",
+        margin: "1rem", // Aplicar la fuente
       }}
     >
-      <h3>Art {article.id}</h3>
+      <h4 style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
+        <span style={{ fontWeight: 700 }}> Art {article.id}</span>
+      </h4>
+      <h4
+        style={{
+          fontWeight: 900,
+          color: "#c4072c",
+          fontFamily: '"Roboto Condensed", sans-serif',
+          fontSize: "110%",
+        }}
+      >
+        $ {product.unit_price}
+      </h4>
+      <h6
+        style={{
+          fontFamily: '"Roboto Condensed", sans-serif',
+          marginBottom: "1rem",
+        }}
+      >
+        Compra minima $40.000
+      </h6>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">
-          Seleccionar Producto
-        </InputLabel>
+        <InputLabel id="demo-simple-select-label">Producto</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={product}
           label="Producto"
           onChange={handleChange}
+          style={{ fontFamily: '"Roboto Condensed", sans-serif' }} // Aplicar la fuente
         >
           {products.map((product, index) => (
             <MenuItem key={product.id} value={product}>
@@ -96,28 +115,33 @@ const SelectProduct = ({ article }) => {
               marginRight: "20px",
             }}
           />
-          <Box>
-            <Typography variant="h6" gutterBottom>
+          <Box style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
+            {" "}
+            {/* Aplicar la fuente */}
+            <Typography
+              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              variant="h6"
+              gutterBottom
+            >
               {article.id}
             </Typography>
             <Typography
-              variant="body1"
+              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
               gutterBottom
             >{`ID: #${product.idc}`}</Typography>
             <Typography
-              variant="body1"
+              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
               gutterBottom
             >{`Talle: ${product.talle}`}</Typography>
             <Typography
-              variant="body1"
               gutterBottom
-            >{`Precio: ${product.unit_price}`}</Typography>
+            >{`Precio: $${product.unit_price}`}</Typography>
             <Typography
-              variant="body1"
+              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
               gutterBottom
             >{`Color: ${product.color}`}</Typography>
             <Typography
-              variant="body1"
+              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
               gutterBottom
             >{`Stock: ${product.stock}`}</Typography>
           </Box>
@@ -128,9 +152,9 @@ const SelectProduct = ({ article }) => {
           marginTop: "20px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
-          width: "50%",
-          border: "1px solid black",
+          justifyContent: "center",
+          width: "35%",
+          border: "1px solid #e0e0e0",
           padding: "0.5rem",
           borderRadius: "10px",
         }}
@@ -171,8 +195,12 @@ const SelectProduct = ({ article }) => {
           onClick={add}
           variant="contained"
           fullWidth
-          style={{ borderRadius: "20px" }}
+          style={{
+            borderRadius: "20px",
+            fontFamily: "'Roboto Condensed', sans-serif;",
+          }} // Aplicar la fuente
           disabled={!product}
+          color="error"
         >
           AGREGAR AL CARRITO
         </Button>
