@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { menuItems } from "../../../router/navigation";
 import {
@@ -29,6 +29,7 @@ import Newsletter from "../../pages/home/newsletter/NewsLetter";
 import Contacto from "../../pages/home/contacto/Contacto";
 import Redes from "../../pages/home/redes/Redes";
 import Footer from "../../pages/home/footer/Footer";
+import { CartContext } from "../../context/CartContext";
 
 const drawerWidth = 200;
 
@@ -37,7 +38,8 @@ function Navbar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const [cartItemCount, setCartItemCount] = useState(0);
-  const [cart, setCart] = useState([]);
+
+  const { cart } = useContext(CartContext);
 
   const inputRef = useRef(null);
   useEffect(() => {
@@ -70,14 +72,12 @@ function Navbar(props) {
     }
   };
 
+  const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || [];
+
   const cerrarSesion = () => {
     logOut();
     navigate("/login");
   };
-
-  useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem("cart")) || []);
-  }, [cart]);
 
   useEffect(() => {
     setCartItemCount(cart.length);
@@ -144,6 +144,7 @@ function Navbar(props) {
             alignItems: "center",
             width: "100vw",
             height: "25vh",
+            maxHeight: "220px",
             background: "#DD0831",
             padding: "1rem",
           }}
@@ -169,7 +170,7 @@ function Navbar(props) {
             >
               <span
                 style={{ color: "white", fontWeight: 100, fontSize: "3rem" }}
-                class="material-symbols-outlined"
+                className="material-symbols-outlined"
               >
                 menu
               </span>
@@ -217,7 +218,7 @@ function Navbar(props) {
                   marginTop: "1rem",
                   marginRight: "50%",
                 }}
-                class="material-symbols-outlined"
+                className="material-symbols-outlined"
               >
                 shopping_cart
                 {cartItemCount > 0 && (
@@ -248,7 +249,7 @@ function Navbar(props) {
                       fontSize: "250%",
                       color: "#c4072c",
                     }}
-                    class="material-symbols-outlined"
+                    className="material-symbols-outlined"
                   >
                     search
                   </span>

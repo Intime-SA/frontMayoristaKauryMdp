@@ -10,6 +10,7 @@ const Redes = () => {
     <div
       style={{
         height: "25vh",
+        maxHeight: "400px",
         width: "100%",
         backgroundColor: "white",
         display: "flex",

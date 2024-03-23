@@ -32,6 +32,7 @@ const SelectProduct = ({ article }) => {
       quantity: count,
     };
     console.log(objeto);
+
     addToCart(objeto);
     navigate("/");
   };
@@ -164,7 +165,10 @@ const SelectProduct = ({ article }) => {
           variant="text"
           disabled={count <= 0}
         >
-          <span style={{ color: "black" }} class="material-symbols-outlined">
+          <span
+            style={{ color: "black" }}
+            className="material-symbols-outlined"
+          >
             horizontal_rule
           </span>
         </Button>
@@ -180,7 +184,10 @@ const SelectProduct = ({ article }) => {
           variant="text"
           disabled={product && count >= product.stock}
         >
-          <span style={{ color: "black" }} class="material-symbols-outlined">
+          <span
+            style={{ color: "black" }}
+            className="material-symbols-outlined"
+          >
             add
           </span>
         </Button>

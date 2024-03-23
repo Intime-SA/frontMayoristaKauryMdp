@@ -17,7 +17,8 @@ const Contacto = () => {
       const categoriasArray = [];
       querySnapshot.forEach((doc) => {
         const dataCategoria = doc.data();
-        categoriasArray.push(dataCategoria);
+        const id = doc.id; // Obtener el ID del documento
+        categoriasArray.push({ id, ...dataCategoria }); // Agregar el ID a los datos de la categoría
       });
       setCategory(categoriasArray);
     };
@@ -62,9 +63,9 @@ const Contacto = () => {
         <div>
           <ul style={{ listStyleType: "none", padding: 0 }}>
             {category.map((cat, index) => (
-              <li>
+              <li key={cat.id}>
                 <Link
-                  to="/products"
+                  to={`/listArticles/${cat.id}`}
                   variant="outlined"
                   style={{
                     margin: "0.5rem",
@@ -113,7 +114,7 @@ const Contacto = () => {
               style={{
                 fontSize: isNarrowScreen ? "130%" : "80%",
               }}
-              class="material-symbols-outlined"
+              className="material-symbols-outlined"
             >
               call
             </span>
@@ -139,7 +140,7 @@ const Contacto = () => {
               style={{
                 fontSize: isNarrowScreen ? "130%" : "80%",
               }}
-              class="material-symbols-outlined"
+              className="material-symbols-outlined"
             >
               mail
             </span>
@@ -164,7 +165,7 @@ const Contacto = () => {
             <div style={{ width: "80%" }}>
               <span
                 style={{ fontSize: isNarrowScreen ? "130%" : "80%" }}
-                class="material-symbols-outlined"
+                className="material-symbols-outlined"
               >
                 location_on
               </span>

@@ -119,7 +119,7 @@ export default function CardOfert({ product }) {
                 >
                   <span
                     style={{ fontSize: "150%" }}
-                    class="material-symbols-outlined"
+                    className="material-symbols-outlined"
                   >
                     visibility
                   </span>

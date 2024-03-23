@@ -35,7 +35,7 @@ const Footer = () => {
       >
         Desarrollos TECH
       </Typography>
-      <span class="material-symbols-outlined">language</span>
+      <span className="material-symbols-outlined">language</span>
       <Typography
         variant="p"
         gutterBottom

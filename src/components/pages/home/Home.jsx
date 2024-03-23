@@ -143,7 +143,7 @@ const Home = () => {
                   >
                     <span
                       style={{ fontSize: "120%" }}
-                      class="material-symbols-outlined"
+                      className="material-symbols-outlined"
                     >
                       credit_card
                     </span>
@@ -212,7 +212,7 @@ const Home = () => {
                   >
                     <span
                       style={{ fontSize: "120%" }}
-                      class="material-symbols-outlined"
+                      className="material-symbols-outlined"
                     >
                       local_shipping
                     </span>
@@ -280,7 +280,7 @@ const Home = () => {
                   >
                     <span
                       style={{ fontSize: "120%" }}
-                      class="material-symbols-outlined"
+                      className="material-symbols-outlined"
                     >
                       home
                     </span>

@@ -14,7 +14,6 @@ const Newsletter = () => {
 
   return (
     <div
-      maxWidth="sm"
       style={{
         marginTop: "4rem",
         textAlign: "center",
@@ -23,6 +22,7 @@ const Newsletter = () => {
         borderRadius: "8px",
         width: "100%",
         height: "60vh",
+        maxHeight: "400px",
         backgroundColor: "#DD0831",
         color: "white",
         display: "flex",

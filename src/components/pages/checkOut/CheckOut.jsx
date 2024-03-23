@@ -1,95 +1,126 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { Button, TextField } from "@mui/material";
-import axios from "axios";
-import { AuthContext } from "../../context/AuthContext";
-import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import { db } from "../../../firebaseConfig";
 import {
   addDoc,
-  collection,
-  doc,
   updateDoc,
   serverTimestamp,
+  getDocs,
+  collection,
+  doc,
+  getDoc,
 } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import CheckoutScreen from "./CheckoutScreen";
 
 function CheckOut() {
   const { cart, getTotalPrice, clearCart } = useContext(CartContext);
-  const { user } = useContext(AuthContext);
-  initMercadoPago("APP_USR-46e7a261-c953-4d8f-a8df-76016a3ce1cd", {
-    locale: "es-AR",
-  });
-  const [preferenceId, setPreferenceId] = useState(null);
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
   const [orderId, setOrderId] = useState(null);
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const paramsValue = queryParams.get("status");
+  const [clienteRef, setClienteRef] = useState();
+  const [nuevoId, setNuevoId] = useState(0);
+  const [orderItems, setOrderItems] = useState([]);
+  const [totalOrder, setTotalOrder] = useState();
+  const [userOrder, setUserOrder] = useState([]);
 
   useEffect(() => {
-    let order = JSON.parse(localStorage.getItem("order"));
-    if (paramsValue === "approved") {
-      let ordersCollection = collection(db, "orders");
-      addDoc(ordersCollection, { ...order, date: serverTimestamp() }).then(
-        (res) => {
-          setOrderId(res.id);
-        }
-      );
-
-      order.items.forEach((element) => {
-        updateDoc(doc(db, "products", element.id), {
-          stock: element.stock - element.quantity,
+    const getUser = async () => {
+      try {
+        const userOrdersCollection = collection(db, "users");
+        const snapShotOrders = await getDocs(userOrdersCollection);
+        snapShotOrders.forEach((user) => {
+          const userDataFromOrder = user.data();
+          if (userDataFromOrder.email === user.email) {
+            setUserData(userDataFromOrder);
+            const obtenerRutaCliente = (idCliente) => {
+              return `users/${idCliente}`;
+            };
+            const clienteRef = doc(db, obtenerRutaCliente(user.id));
+            setClienteRef(clienteRef);
+          }
         });
-      });
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
 
-      localStorage.removeItem("order");
-      clearCart();
-    }
-  }, [paramsValue]);
+    getUser();
+  }, []);
 
-  let total = getTotalPrice();
+  useEffect(() => {
+    const traerId = async () => {
+      try {
+        const refContador = doc(db, "contador", "contador");
+        const docContador = await getDoc(refContador);
 
-  const createPreference = async () => {
-    const newArray = cart.map((product) => {
+        const nuevoValor = docContador.data().autoincremental + 1;
+        setNuevoId(nuevoValor);
+
+        const nuevoValorObj = { autoincremental: nuevoValor };
+
+        await updateDoc(refContador, nuevoValorObj);
+      } catch (error) {
+        console.error("Error al obtener el nuevo ID:", error);
+      }
+    };
+    traerId();
+  }, []);
+
+  const orderItemsTransform = (cart) => {
+    let total = 0;
+    const orderItems = cart.map((item) => {
+      const subtotal = item.quantity * item.unit_price;
+      total += subtotal;
       return {
-        title: product.title,
-        unit_price: product.unit_price,
-        quantity: product.quantity,
+        color: item.color || "",
+        descuento: 0,
+        image: item.image || "",
+        name: item.name || "",
+        productId: item.idc || "",
+        quantity: item.quantity || "",
+        subtotal: subtotal,
+        talle: item.talle || "",
+        unit_price: item.unit_price || "",
       };
     });
-    try {
-      let res = await axios.post(
-        "https://backend-fercho.vercel.app/create_preference",
-        {
-          items: newArray,
-          shipment_cost: 10,
-        }
-      );
-
-      const { id } = res.data;
-      return id;
-    } catch (error) {
-      console.log(error);
-    }
+    setOrderItems(orderItems);
+    setTotalOrder(total);
+    return total;
   };
+
+  const handleSubmit = async () => {
+    if (!clienteRef) return; // Verificar si clienteRef está definido
+
+    let userOrder = {
+      canalVenta: "Usuario WEB",
+      client: clienteRef,
+      date: serverTimestamp(),
+      infoEntrega: [],
+      lastState: "nueva",
+      note: "",
+      numberOrder: nuevoId,
+      orderItems: orderItems,
+      status: "nueva",
+      total: totalOrder,
+    };
+    setUserOrder(userOrder);
+
+    // Aquí puedes realizar la lógica de almacenamiento de la orden en la base de datos
+  };
+
+  // handleSubmit(); // No llames a handleSubmit dentro del componente
 
   const handleBuy = async () => {
     let order = {
       cp: userData.cp,
       phone: userData.phone,
       items: cart,
-      total: total,
-      email: user.email,
+      total: totalOrder,
+      email: userData.email,
     };
-    localStorage.setItem("order", JSON.stringify(order));
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
-    }
+    // Aquí puedes agregar la lógica para el pago
   };
 
   const handleChange = (e) => {
@@ -107,6 +138,7 @@ function CheckOut() {
     >
       {!orderId ? (
         <>
+          <CheckoutScreen order={userOrder} />
           <TextField
             onChange={handleChange}
             name="cp"
@@ -125,12 +157,8 @@ function CheckOut() {
         <>
           <h4>Pago se realizo con exito</h4>
           <h4>orden de compra: {orderId}</h4>
-          <Link to="/shop">Volver a la tienda</Link>
+          <Link to="/">Volver a la tienda</Link>
         </>
-      )}
-
-      {preferenceId && (
-        <Wallet initialization={{ preferenceId, redirectMode: "self" }} />
       )}
     </div>
   );
