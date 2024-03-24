@@ -6,10 +6,10 @@ import StepLabel from "@mui/material/StepLabel";
 
 const steps = ["Carrito", "Entrega", "Pago"];
 
-const CustomStepper = () => {
+const CustomStepper = ({ step }) => {
   return (
     <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={0} alternativeLabel>
+      <Stepper activeStep={step} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

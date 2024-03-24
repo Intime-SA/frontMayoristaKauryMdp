@@ -42,8 +42,18 @@ export const onSingIn = async ({ email, password }) => {
 };
 
 export const logOut = () => {
-  signOut(auth);
-  console.log("Cerro Sesion");
+  // Cerrar sesión
+  signOut(auth)
+    .then(() => {
+      // Borrar información del usuario del localStorage
+      localStorage.removeItem("userInfo");
+      console.log(
+        "Cerró Sesión y se eliminó la información del usuario del localStorage."
+      );
+    })
+    .catch((error) => {
+      console.error("Error al cerrar sesión:", error.message);
+    });
 };
 
 let googleProvider = new GoogleAuthProvider();

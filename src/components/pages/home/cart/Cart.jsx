@@ -167,14 +167,15 @@ const Cart = () => {
     orderItemsTransform(cart);
   }, [cart]);
 
-  useEffect(() => {
-    handleSubmit();
-  }, []);
-
   const handleSubmit = async () => {
     // Verificar si clienteRef está definido
+    /*     if (!clienteRef) {
+      console.error("Error: clienteRef no está definido");
+      return;
+    } */
 
-    let userOrder = {
+    // Construir el objeto userOrder
+    const userOrder = {
       canalVenta: "Usuario WEB",
       client: clienteRef,
       date: serverTimestamp(),
@@ -185,11 +186,16 @@ const Cart = () => {
       orderItems: orderItems,
       status: "nueva",
       total: totalOrder,
+      tipoEnvio: selectedCheckbox,
+      sucursal: selectedLocal,
     };
-    setUserOrder(userOrder);
+
+    // Guardar userOrder en localStorage
+    localStorage.setItem("userOrder", JSON.stringify(userOrder));
 
     // Aquí puedes realizar la lógica de almacenamiento de la orden en la base de datos
   };
+
   const [expanded, setExpanded] = useState(false);
   const [fechaHora, setFechaHora] = useState(null);
 
@@ -257,7 +263,7 @@ const Cart = () => {
             marginTop: "2rem",
           }}
         >
-          <CustomStepper />
+          <CustomStepper step={0} />
           <div>
             {cart.map((producto, index) => (
               <Card
