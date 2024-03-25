@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const TipoEnvio = () => {
   const [tipoEnvio, setTipoEnvio] = useState(0);
+  const [local, setLocal] = useState(0);
 
   useEffect(() => {
     // Obtener el objeto userOrder del localStorage
@@ -12,6 +13,7 @@ const TipoEnvio = () => {
     if (userOrderJSON) {
       // Parsear la cadena JSON de vuelta a un objeto JavaScript
       const userOrder = JSON.parse(userOrderJSON);
+      setLocal(userOrder.sucursal);
 
       // Obtener el valor de tipoEnvio del objeto userOrder y establecerlo en el estado
       if (userOrder && userOrder.tipoEnvio) {
@@ -66,7 +68,7 @@ const TipoEnvio = () => {
             style={{
               fontFamily: '"Roboto Condensed", sans-serif',
               fontSize: "50%",
-              color: "#e0e0e0",
+              color: "grey",
               marginLeft: "1rem",
             }}
           >
@@ -77,7 +79,7 @@ const TipoEnvio = () => {
     </>
   );
 
-  const renderRetiroSucursal = () => (
+  const renderRetiroSucursal = (local) => (
     <>
       <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
         <span className="material-symbols-outlined">location_on</span>
@@ -97,7 +99,7 @@ const TipoEnvio = () => {
           color: "#D27611",
           display: "flex",
           alignItems: "stretch",
-          marginBottom: "1rem", // Alinear los elementos a lo largo de toda la altura
+          marginBottom: "1rem",
         }}
       >
         <div
@@ -106,7 +108,7 @@ const TipoEnvio = () => {
             flexBasis: "6%",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center", // Hacer que el primer div ocupe todo el espacio restante
+            alignItems: "center",
           }}
         ></div>
         <div style={{ flexGrow: 1 }}>
@@ -122,20 +124,23 @@ const TipoEnvio = () => {
             style={{
               fontFamily: '"Roboto Condensed", sans-serif',
               fontSize: "50%",
-              color: "#e0e0e0",
+              color: "grey",
               marginLeft: "1rem",
             }}
           >
-            Inmediato
+            {local === 1 && (
+              <>
+                Showroom - José Mármol 970 timbre 104. Atención de lunes a
+                sábados de 10 a 17hs. MAR DEL PLATA
+              </>
+            )}
+            {local === 2 && (
+              <>
+                Showroom 2 - Rivadavia 5931. Planta alta A. TIMBRE ¨KAURY¨. De
+                lunes a sabados de 10 a 17hs. MAR DEL PLATA
+              </>
+            )}
           </h6>
-          <h6
-            style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
-              fontSize: "50%",
-              color: "#e0e0e0",
-              marginLeft: "1rem",
-            }}
-          ></h6>
         </div>
       </div>
     </>
@@ -146,7 +151,7 @@ const TipoEnvio = () => {
       {tipoEnvio === 1 && renderEnvioDomicilio()}
 
       <Divider />
-      {tipoEnvio === 2 && renderRetiroSucursal()}
+      {tipoEnvio === 2 && renderRetiroSucursal(local)}
     </div>
   );
 };

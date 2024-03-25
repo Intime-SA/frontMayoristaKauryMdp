@@ -83,6 +83,11 @@ function Navbar(props) {
     setCartItemCount(cart.length);
   }, [cart]);
 
+  const handleAbrirCarrito = () => {
+    // Redirigir al usuario al carrito
+    window.scrollTo(0, 0); // Desplazar al principio de la página
+  };
+
   const drawer = (
     <div
       style={{
@@ -209,6 +214,7 @@ function Navbar(props) {
               edge="start"
               to="/cart"
               style={{ marginRight: "5%", padding: 0, marginTop: "1rem  " }}
+              onClick={handleAbrirCarrito}
             >
               <span
                 style={{

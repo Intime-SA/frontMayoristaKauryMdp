@@ -212,7 +212,7 @@ function CheckOut() {
                     }}
                   >
                     <Typography variant="h6" style={{ marginBottom: "10px" }}>
-                      Datos de Envío / Facturacion
+                      <strong>Datos de Envío / Facturacion</strong>
                     </Typography>
                     <Typography variant="body2">
                       <strong>Provincia:</strong>{" "}
@@ -476,6 +476,7 @@ function CheckOut() {
             style={{
               fontFamily: '"Roboto Condensed", sans-serif',
               marginLeft: "0.5rem",
+              fontWeight: "900",
             }}
             gutterBottom
             component="div"
@@ -487,6 +488,7 @@ function CheckOut() {
             variant="h6"
             style={{
               fontFamily: '"Roboto Condensed", sans-serif',
+              fontWeight: "900",
             }}
             gutterBottom
             component="div"

@@ -123,6 +123,7 @@ const ClientForm = ({
       console.error("Error al actualizar los datos:", error);
       setUpdateSuccess(false); // Actualización fallida
     }
+    window.scrollTo(0, 0); // Desplazar al principio de la página
   };
 
   useEffect(() => {

@@ -51,6 +51,18 @@ const SelectProduct = ({ article }) => {
           newArray.push(product.data());
         }
       });
+
+      // Ordenar newArray por color
+      newArray.sort((a, b) => {
+        if (a.talle < b.talle) {
+          return -1;
+        }
+        if (a.talle > b.talle) {
+          return 1;
+        }
+        return 0;
+      });
+
       setProducts(newArray);
     };
     fetchData();
@@ -88,7 +100,7 @@ const SelectProduct = ({ article }) => {
         Compra minima $40.000
       </h6>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Producto</InputLabel>
+        <InputLabel id="demo-simple-select-label">Disponible</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"

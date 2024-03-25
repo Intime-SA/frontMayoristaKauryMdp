@@ -188,6 +188,7 @@ const Cart = () => {
 
     // Guardar userOrder en localStorage
     localStorage.setItem("userOrder", JSON.stringify(userOrder));
+    window.scrollTo(0, 0); // Desplazar al principio de la página
 
     // Aquí puedes realizar la lógica de almacenamiento de la orden en la base de datos
   };
@@ -435,7 +436,7 @@ const Cart = () => {
                   style={{
                     fontFamily: '"Roboto Condensed", sans-serif',
                     fontSize: "50%",
-                    color: "#e0e0e0",
+                    color: "grey",
                     marginLeft: "1rem",
                   }}
                 >
@@ -497,7 +498,7 @@ const Cart = () => {
                   style={{
                     fontFamily: '"Roboto Condensed", sans-serif',
                     fontSize: "50%",
-                    color: "#e0e0e0",
+                    color: "grey",
                     marginLeft: "1rem",
                   }}
                 >

@@ -38,7 +38,7 @@ const Home = () => {
             <div
               style={{
                 background: "rgba(175, 155, 144, 0.21)",
-                height: "30vh",
+                height: "20vh",
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
@@ -105,7 +105,7 @@ const Home = () => {
             <div
               style={{
                 background: "rgba(175, 155, 144, 0.21)",
-                height: "30vh",
+                height: "20vh",
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
@@ -174,7 +174,7 @@ const Home = () => {
             <div
               style={{
                 background: "rgba(175, 155, 144, 0.21)",
-                height: "30vh",
+                height: "20vh",
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
@@ -242,7 +242,7 @@ const Home = () => {
             <div
               style={{
                 background: "rgba(175, 155, 144, 0.21)",
-                height: "30vh",
+                height: "20vh",
                 width: "100%",
                 display: "flex",
                 alignItems: "center",

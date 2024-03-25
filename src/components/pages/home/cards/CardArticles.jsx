@@ -57,7 +57,10 @@ export default function CardArticles({
             <Typography
               variant="body1"
               color="textSecondary"
-              style={{ marginBottom: "0.5rem" }}
+              style={{
+                marginBottom: "0.5rem",
+                fontFamily: '"Roboto Condensed", sans-serif',
+              }}
             >
               <strong>Art {product.name}</strong>
             </Typography>
@@ -66,7 +69,10 @@ export default function CardArticles({
               variant="h6"
               component="div"
               color="red"
-              style={{ fontWeight: "bold" }}
+              style={{
+                fontWeight: "900",
+                fontFamily: '"Roboto Condensed", sans-serif',
+              }}
             >
               $
               {" " +
@@ -74,21 +80,6 @@ export default function CardArticles({
                   minimumFractionDigits: 2,
                 })}
             </Typography>
-            {/*           <Typography
-            variant="body2"
-            color="textSecondary"
-            style={{ marginBottom: "0.5rem" }}
-          >
-            Talle: {product.talle}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            style={{ marginBottom: "1rem" }}
-          >
-            Color: {product.color}
-          </Typography> */}
-            {/* Agrega cualquier otra información sobre el producto aquí */}
             <div
               style={{
                 display: "flex",
