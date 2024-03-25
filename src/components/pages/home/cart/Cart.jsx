@@ -56,18 +56,14 @@ const ExpandMore = styled(({ expand, ...other }) => <IconButton {...other} />)(
 );
 
 const Cart = () => {
-  const { cart, deleteById, getTotalPrice, clearCart } =
-    useContext(CartContext);
+  const { cart, deleteById, getTotalPrice } = useContext(CartContext);
 
   let total = getTotalPrice();
 
-  const [estado, setEstado] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [clienteRef, setClienteRef] = useState();
   const [nuevoId, setNuevoId] = useState(0);
   const [orderItems, setOrderItems] = useState([]);
   const [totalOrder, setTotalOrder] = useState();
-  const [userOrder, setUserOrder] = useState([]);
   const [dataCliente, setDataCliente] = useState([]);
   const { user } = useContext(AuthContext);
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
@@ -638,16 +634,20 @@ const Cart = () => {
               {/*               <Button variant="contained" onClick={handleDelete}>
                 Vaciar Carrito
               </Button> */}
-              <Link to="/checkout">
-                <Button
-                  style={{ borderRadius: "20px" }}
-                  color="error"
-                  variant="contained"
-                  onClick={() => handleSubmit()}
-                >
-                  Iniciar Compra
-                </Button>
-              </Link>
+              {selectedCheckbox && (
+                <>
+                  <Link to="/checkout">
+                    <Button
+                      style={{ borderRadius: "20px" }}
+                      color="error"
+                      variant="contained"
+                      onClick={() => handleSubmit()}
+                    >
+                      Iniciar Compra
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
             <div
               style={{

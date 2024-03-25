@@ -6,7 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { DataObject } from "@mui/icons-material";
 
-const ClientForm = ({ customers, setOpenForm, setDataCliente }) => {
+const ClientForm = ({
+  customers,
+  setOpenForm,
+  setDataCliente,
+  andreaniCostoDomicilio,
+}) => {
   const [customerData, setCustomerData] = useState({});
   const [newDataEnvio, setNewDataEnvio] = useState({
     datosEnvio: {
@@ -87,6 +92,12 @@ const ClientForm = ({ customers, setOpenForm, setDataCliente }) => {
       setUpdateSuccess(true); // Actualización exitosa
       setOpenForm(false);
 
+      const obtenerRutaCliente = (idCliente) => {
+        return `users/${idCliente}`;
+      };
+
+      const clienteRef = doc(db, obtenerRutaCliente(customerData.id));
+      console.log(clienteRef);
       // Verificar si hay un objeto almacenado
       if (userOrderJSON) {
         // Parsear la cadena JSON de vuelta a un objeto JavaScript
@@ -94,9 +105,13 @@ const ClientForm = ({ customers, setOpenForm, setDataCliente }) => {
         console.log(userOrder);
 
         // Agregar propiedades adicionales al objeto userOrder
+        userOrder.client = clienteRef;
         userOrder.clienteId = customerData.id; // Usamos el ID del cliente
         userOrder.infoEntrega = newDataEnvioCorrected.datosEnvio;
         userOrder.telefono = telefono;
+
+        if (userOrder.tipoEnvio === 1)
+          userOrder.total = userOrder.total + andreaniCostoDomicilio;
 
         // Volver a convertir el objeto a una cadena JSON
         const userOrderActualizadoJSON = JSON.stringify(userOrder);
@@ -163,36 +178,50 @@ const ClientForm = ({ customers, setOpenForm, setDataCliente }) => {
                   marginBottom: "0.5rem",
                   backgroundColor: "rgba(255, 255, 255, 0.4)",
                   width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                <TextField
-                  name="email"
-                  variant="outlined"
-                  label="Correo electrónico"
-                  value={user.email}
-                  fullWidth
+                <h5
                   style={{
-                    marginBottom: "1rem",
-                    width: "100%",
-                    maxWidth: "400px",
+                    marginTop: "0rem",
+                    marginBottom: "2rem",
+                    marginLeft: "1rem",
                   }}
-                  InputLabelProps={{ shrink: true }}
-                  disabled
-                />
-                <TextField
-                  name="telefono"
-                  variant="outlined"
-                  label="Teléfono"
-                  value={telefono}
-                  onChange={(e) => setTelefono(e.target.value)}
-                  fullWidth
-                  style={{
-                    marginBottom: "1rem",
-                    width: "100%",
-                    maxWidth: "400px",
-                  }}
-                  InputLabelProps={{ shrink: true }}
-                />
+                >
+                  <strong>Datos de destinatario</strong>
+                </h5>
+                <div>
+                  <TextField
+                    name="email"
+                    variant="outlined"
+                    label="Correo electrónico"
+                    value={user.email}
+                    fullWidth
+                    style={{
+                      marginBottom: "1rem",
+                      width: "100%",
+                      maxWidth: "400px",
+                    }}
+                    InputLabelProps={{ shrink: true }}
+                    disabled
+                  />
+                  <TextField
+                    name="telefono"
+                    variant="outlined"
+                    label="Teléfono"
+                    value={telefono}
+                    onChange={(e) => setTelefono(e.target.value)}
+                    fullWidth
+                    style={{
+                      marginBottom: "1rem",
+                      width: "100%",
+                      maxWidth: "400px",
+                      marginLeft: "1rem",
+                    }}
+                    InputLabelProps={{ shrink: true }}
+                  />
+                </div>
               </div>
             )}
 
@@ -212,7 +241,7 @@ const ClientForm = ({ customers, setOpenForm, setDataCliente }) => {
                   marginLeft: "1rem",
                 }}
               >
-                Datos de Envío
+                <strong>Datos de Envío / Facturacion </strong>
               </h5>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                 <TextField

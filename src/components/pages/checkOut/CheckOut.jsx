@@ -21,11 +21,11 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
-import CheckoutScreen from "./CheckoutScreen";
 import CustomStepper from "../home/cart/CustomStepper";
 import CartItem from "./CartItem";
 import Divider from "@mui/material/Divider";
 import ClientForm from "./ClientForm";
+import TipoEnvio from "./TipoEnvio";
 
 function CheckOut() {
   const { cart, getTotalPrice, clearCart } = useContext(CartContext);
@@ -37,7 +37,7 @@ function CheckOut() {
   const [emailClient, setEmailCliente] = useState("");
   const [dataCliente, setDataCliente] = useState(null);
   const [customers, setCustomers] = useState([]);
-  const [tipoEnvio, setTipoEnvio] = useState(false);
+  const [tipoEnvio, setTipoEnvio] = useState(0);
 
   useEffect(() => {
     const getUser = async () => {
@@ -107,6 +107,9 @@ function CheckOut() {
   // Obtener userOrder desde localStorage
 
   const userOrderJSON = localStorage.getItem("userOrder");
+
+  const userOrderData = JSON.parse(userOrderJSON);
+
   let totalOrder = 0; // Inicializar el total en caso de que no haya ningún objeto userOrder en localStorage
 
   // Verificar si hay un objeto almacenado
@@ -124,6 +127,27 @@ function CheckOut() {
   } else {
     console.log("No se encontró ningún objeto userOrder en localStorage");
   }
+
+  // Parsear la cadena JSON de vuelta a un objeto JavaScript
+  // Parsear la cadena JSON de vuelta a un objeto JavaScript
+  try {
+    const userOrder2 = JSON.parse(userOrderJSON);
+    if (userOrder2 && typeof userOrder2.tipoEnvio !== "undefined") {
+      if (userOrder2.tipoEnvio === 1 && !tipoEnvio) {
+        // Añadimos una condición para evitar re-renderizados innecesarios
+        setTipoEnvio(true);
+      } else if (userOrder2.tipoEnvio !== 1 && tipoEnvio) {
+        setTipoEnvio(false);
+      }
+    } else {
+      console.log("tipoEnvio no está definido en el objeto JSON");
+    }
+  } catch (error) {
+    console.error("Error al analizar el JSON:", error);
+  }
+
+  let andreaniCostoDomicilio = 8550;
+  let sinEnvio = 0;
 
   // Verificar si hay un objeto almacenado
 
@@ -155,13 +179,18 @@ function CheckOut() {
                 margin: "1rem",
               }}
             >
-              Datos de destinatario
+              <div>
+                <strong>Entrega</strong>
+                <TipoEnvio />
+              </div>
+
               <ClientForm
                 handleChangeEmail={handleChangeEmail}
                 customers={customers}
                 setOpenForm={setOpenForm}
                 openForm={openForm}
                 setDataCliente={setDataCliente}
+                andreaniCostoDomicilio={andreaniCostoDomicilio}
               />
               {dataCliente && (
                 <>
@@ -183,7 +212,7 @@ function CheckOut() {
                     }}
                   >
                     <Typography variant="h6" style={{ marginBottom: "10px" }}>
-                      Datos de Envío
+                      Datos de Envío / Facturacion
                     </Typography>
                     <Typography variant="body2">
                       <strong>Provincia:</strong>{" "}
@@ -219,6 +248,25 @@ function CheckOut() {
                 </>
               )}
             </div>
+            {dataCliente && (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Link to="/pago">
+                  <Button
+                    variant="contained"
+                    color="error"
+                    style={{ borderRadius: "20px" }}
+                  >
+                    CONTINUAR PARA EL PAGO
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         ) : (
           <>
@@ -237,6 +285,7 @@ function CheckOut() {
           flexGrow: 3,
           flexDirection: "column",
           border: "1px solid #e0e0e0",
+          height: "auto",
         }}
       >
         {cart.map((product) => {
@@ -252,6 +301,7 @@ function CheckOut() {
                 margin: "1rem",
                 marginTop: "0.5rem",
                 marginBotton: "0",
+                height: "auto",
               }}
             >
               <Divider />
@@ -322,70 +372,99 @@ function CheckOut() {
             margin: "1rem",
           }}
         >
-          <Typography
-            variant="body2"
+          <div
             style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
-              fontSize: "50%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "space-around",
             }}
-            gutterBottom
-            component="div"
-            color="grey"
           >
-            Subtotal
-          </Typography>
-          <Typography
-            variant="body2"
+            <Typography
+              variant="body2"
+              style={{
+                fontFamily: '"Roboto Condensed", sans-serif',
+                fontSize: "50%",
+              }}
+              gutterBottom
+              component="div"
+              color="grey"
+            >
+              Subtotal
+            </Typography>
+            <Typography
+              variant="body2"
+              style={{
+                fontFamily: '"Roboto Condensed", sans-serif',
+                fontSize: "50%",
+              }}
+              gutterBottom
+              component="div"
+              color="grey"
+            >
+              {totalOrder.toLocaleString("es-ES", {
+                style: "currency",
+                currency: "ARS",
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </Typography>
+          </div>
+          <div
             style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
-              fontSize: "50%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "space-around",
             }}
-            gutterBottom
-            component="div"
-            color="grey"
           >
-            {totalOrder.toLocaleString("es-ES", {
-              style: "currency",
-              currency: "ARS",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </Typography>
-          <Typography
-            variant="body2"
-            style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
-              fontSize: "50%",
-            }}
-            gutterBottom
-            component="div"
-            color="grey"
-          >
-            Costo Envio
-          </Typography>
-          <Typography
-            variant="body2"
-            style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
-              fontSize: "50%",
-            }}
-            gutterBottom
-            component="div"
-            color="grey"
-          >
-            {totalOrder.toLocaleString("es-ES", {
-              style: "currency",
-              currency: "ARS",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </Typography>
+            <Typography
+              variant="body2"
+              style={{
+                fontFamily: '"Roboto Condensed", sans-serif',
+                fontSize: "50%",
+              }}
+              gutterBottom
+              component="div"
+              color="grey"
+            >
+              Costo Envio
+            </Typography>
+            <Typography
+              variant="body2"
+              style={{
+                fontFamily: '"Roboto Condensed", sans-serif',
+                fontSize: "50%",
+              }}
+              gutterBottom
+              component="div"
+              color="grey"
+            >
+              {tipoEnvio !== 0 && userOrderData.infoEntrega.length !== 0 ? (
+                <>
+                  {" " +
+                    andreaniCostoDomicilio.toLocaleString("es-ES", {
+                      style: "currency",
+                      currency: "ARS",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                </>
+              ) : (
+                sinEnvio.toLocaleString("es-ES", {
+                  style: "currency",
+                  currency: "ARS",
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+              )}
+            </Typography>
+          </div>
         </div>
         <Divider />
+
         <div
           style={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             alignItems: "center",
             width: "90%",
             margin: "1rem",
