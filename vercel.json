@@ -1,3 +1,28 @@
 {
-  "rewrites": [{ "source": "/", "destination": "/cart" }]
+  "routes": [
+    {
+      "src": "home",
+      "dest": "/"
+    },
+    {
+      "src": "cart",
+      "dest": "/"
+    },
+    {
+      "src": "checkout",
+      "dest": "/"
+    },
+    {
+      "src": "viewProduct",
+      "dest": "/v:id"
+    },
+    {
+      "src": "listArticles",
+      "dest": "/:id"
+    },
+    {
+      "src": "pago",
+      "dest": "/pago"
+    }
+  ]
 }
