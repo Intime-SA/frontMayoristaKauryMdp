@@ -1,28 +1,10 @@
 {
-  "routes": [
-    {
-      "src": "home",
-      "dest": "/"
-    },
-    {
-      "src": "cart",
-      "dest": "/"
-    },
-    {
-      "src": "checkout",
-      "dest": "/"
-    },
-    {
-      "src": "viewProduct",
-      "dest": "/v:id"
-    },
-    {
-      "src": "listArticles",
-      "dest": "/:id"
-    },
-    {
-      "src": "pago",
-      "dest": "/pago"
-    }
+  "rewrites": [
+    { "source": "/home", "destination": "/" },
+    { "source": "/cart", "destination": "/" },
+    { "source": "/checkout", "destination": "/" },
+    { "source": "/viewProduct/:id", "destination": "/viewProduct/:id" },
+    { "source": "/listArticles/:id", "destination": "/listArticles/:id" },
+    { "source": "/pago", "destination": "/pago" }
   ]
 }
