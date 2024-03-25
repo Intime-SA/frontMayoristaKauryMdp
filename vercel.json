@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "https://front-mayorista-kaury-mdp.vercel.app/cart",
+      "destination": "/cart"
+    }
+  ]
+}
