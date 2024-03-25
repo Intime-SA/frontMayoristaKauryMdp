@@ -212,7 +212,7 @@ function Navbar(props) {
               color="#FFFFFF"
               aria-label="open drawer"
               edge="start"
-              to="/cart"
+              to="https://front-mayorista-kaury-mdp.vercel.app/cart"
               style={{ marginRight: "5%", padding: 0, marginTop: "1rem  " }}
               onClick={handleAbrirCarrito}
             >
