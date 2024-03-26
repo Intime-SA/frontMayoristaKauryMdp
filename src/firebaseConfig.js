@@ -47,6 +47,7 @@ export const logOut = () => {
     .then(() => {
       // Borrar información del usuario del localStorage
       localStorage.removeItem("userInfo");
+      localStorage.removeItem("isLogged");
       console.log(
         "Cerró Sesión y se eliminó la información del usuario del localStorage."
       );
