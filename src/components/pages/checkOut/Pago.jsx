@@ -14,6 +14,7 @@ import DetalleCuenta from "./DetalleCuenta";
 import EmailModalOrder from "./EmailModalOrder";
 import emailjs from "emailjs-com";
 import { number } from "yup";
+import { Link, useNavigate } from "react-router-dom";
 
 const Pago = () => {
   const [userOrder, setUserOrder] = useState(null);
@@ -82,6 +83,11 @@ const Pago = () => {
       obtenerEmail();
     }
   }, [userOrder]);
+
+  const navigate = useNavigate();
+  const volver = () => {
+    navigate("/");
+  };
 
   // Función para realizar el pedido
   const realizarPedido = async () => {
@@ -214,21 +220,42 @@ const Pago = () => {
           </>
         )}
         {userOrder && (
-          <DetallesPedido
-            userOrder={userOrder}
-            setRenderOrder={setRenderOrder}
-          />
+          <div>
+            <DetallesPedido
+              userOrder={userOrder}
+              setRenderOrder={setRenderOrder}
+            />
+            {renderOrder && (
+              <Button onClick={() => volver()} variant="contained" color="info">
+                Volver al carrito
+              </Button>
+            )}
+          </div>
         )}
       </div>
       {!renderOrder && (
-        <Button
-          variant="contained"
-          color="error"
-          style={{ borderRadius: "50px" }}
-          onClick={realizarPedido}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: " center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          REALIZAR PEDIDO
-        </Button>
+          <Button
+            variant="contained"
+            color="error"
+            style={{ borderRadius: "50px" }}
+            onClick={realizarPedido}
+          >
+            REALIZAR PEDIDO
+          </Button>
+          <Link to="/checkout">
+            <Button variant="contained" color="info">
+              Volver
+            </Button>
+          </Link>
+        </div>
       )}
     </div>
   );

@@ -214,6 +214,7 @@ const ClientForm = ({
                     value={telefono}
                     onChange={(e) => setTelefono(e.target.value)}
                     fullWidth
+                    required
                     style={{
                       marginBottom: "1rem",
                       width: "100%",
@@ -259,6 +260,7 @@ const ClientForm = ({
                       },
                     })
                   }
+                  required
                   fullWidth
                   style={{
                     marginBottom: "1rem",
@@ -267,6 +269,7 @@ const ClientForm = ({
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
+
                 <TextField
                   name="datosEnvio.numero"
                   variant="outlined"
@@ -281,6 +284,7 @@ const ClientForm = ({
                       },
                     })
                   }
+                  required
                   fullWidth
                   style={{
                     marginBottom: "1rem",
@@ -325,6 +329,7 @@ const ClientForm = ({
                       },
                     })
                   }
+                  required
                   fullWidth
                   style={{
                     marginBottom: "1rem",
@@ -369,6 +374,7 @@ const ClientForm = ({
                       },
                     })
                   }
+                  required
                   fullWidth
                   style={{
                     marginBottom: "1rem",
@@ -391,6 +397,7 @@ const ClientForm = ({
                       },
                     })
                   }
+                  required
                   fullWidth
                   style={{
                     marginBottom: "1rem",
