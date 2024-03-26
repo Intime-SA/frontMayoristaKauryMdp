@@ -44,6 +44,7 @@ import Divider from "@mui/material/Divider";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import CustomStepper from "./CustomStepper";
+import EmptyCartMessage from "./EmptyCartMenssage";
 
 const ExpandMore = styled(({ expand, ...other }) => <IconButton {...other} />)(
   ({ theme, expand }) => ({
@@ -664,7 +665,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <h1>No hay elementos en el carrito</h1>
+        <EmptyCartMessage />
       )}
     </div>
   );

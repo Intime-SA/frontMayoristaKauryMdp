@@ -108,6 +108,7 @@ const Pago = () => {
     }
     setRenderOrder(true);
     sendEmail(numberOrder);
+    localStorage.removeItem("cart");
   };
 
   return (
