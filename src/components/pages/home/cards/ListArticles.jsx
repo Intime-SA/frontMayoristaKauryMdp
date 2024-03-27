@@ -34,7 +34,11 @@ const ListArticlesDesktop = () => {
       snapShotProducts.forEach((product) => {
         const name = product.data().name;
         const color = product.data().color;
-        if (name && !newArray.some((item) => item.name === name)) {
+        if (
+          name &&
+          color &&
+          !newArray.some((item) => item.name === name && item.color === color)
+        ) {
           newArray.push(product.data());
         }
       });
