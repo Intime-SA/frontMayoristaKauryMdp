@@ -1,9 +1,9 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Skeleton, Button, CardActionArea, CardActions } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function CardHome({
@@ -13,22 +13,33 @@ export default function CardHome({
   setOpenProducts,
   setSelectCategory,
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const handleClick = () => {
     setOpenProducts(true);
     setSelectCategory(categoryId);
     console.log(categoryId);
   };
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <Card sx={{ maxWidth: 400, borderRadius: "20px", margin: "1rem" }}>
       <CardActionArea onClick={() => handleClick()}>
         <Link to={`/listArticles/${categoryId}`}>
-          <CardMedia
-            component="img"
-            height="600"
-            image={categoryImage}
-            alt="green iguana"
-          />
+          {imageLoaded ? (
+            <CardMedia
+              component="img"
+              height="600"
+              image={categoryImage}
+              alt="green iguana"
+              onLoad={handleImageLoad}
+            />
+          ) : (
+            <Skeleton variant="rectangular" width="400px" height={600} />
+          )}
           <CardContent
             style={{
               backgroundColor: "#c4072c",
@@ -46,6 +57,12 @@ export default function CardHome({
           </CardContent>
         </Link>
       </CardActionArea>
+      <img
+        src={categoryImage || ""}
+        alt={categoryNombre}
+        style={{ display: "none" }}
+        onLoad={handleImageLoad}
+      />
     </Card>
   );
 }

@@ -3,10 +3,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import CardArticles from "./CardArticles";
 import ViewProduct from "../viewProduct/ViewProduct";
+import CircularProgressWithLabel from "./CircularProgressWithLabel"; // Importa tu componente CircularProgressWithLabel aquí
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
-import { Box, CircularProgress, Skeleton } from "@mui/material";
 
 const ListArticlesDesktop = () => {
   const category = useParams();
@@ -15,18 +15,17 @@ const ListArticlesDesktop = () => {
   const [products, setProducts] = useState([]);
   const [openProductView, setOpenProductView] = useState(false);
   const [article, setArticle] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true); // Estado para controlar si se están cargando los productos
   const containerRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       const productCollection = collection(db, "products");
       const q = query(
         productCollection,
         where("category", "==", category.id),
-        limit(10 * page) // Limitar la carga de productos por página
+        limit(10 * page)
       );
       const snapShotProducts = await getDocs(q);
       const newArray = [];
@@ -44,23 +43,20 @@ const ListArticlesDesktop = () => {
       });
 
       setProducts(newArray);
-      setLoading(false);
+      setLoading(false); // Cuando se completa la carga de productos, cambia el estado de loading a false
     };
 
     fetchData();
   }, [category, page]);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Desplazar al inicio de la página
+    window.scrollTo(0, 0);
   }, []);
 
-  // Función para cargar más productos cuando el usuario llegue al final de la página
   const handleScroll = () => {
     if (
       containerRef.current &&
-      window.innerHeight + window.scrollY >=
-        containerRef.current.offsetHeight &&
-      !loading
+      window.innerHeight + window.scrollY >= containerRef.current.offsetHeight
     ) {
       setPage((prevPage) => prevPage + 1);
     }
@@ -82,44 +78,31 @@ const ListArticlesDesktop = () => {
           ref={containerRef}
           style={{
             display: "flex",
-            flexDirection: isNarrowScreen ? "column" : "row", // Cambiar a column si es una pantalla estrecha
+            flexDirection: isNarrowScreen ? "column" : "row",
             alignItems: "center",
             justifyContent: "center",
-            maxWidth: "1500px", // Aumenta el ancho máximo del contenedor si es necesario
+            maxWidth: "1500px",
             marginLeft: "auto",
-            marginRight: "auto", // Centrar en la pantalla
-            flexWrap: "wrap", // Asegurar que las tarjetas se envuelvan correctamente
-            position: "relative", // Ajustar posición relativa para agregar el loading spinner
+            marginRight: "auto",
+            flexWrap: "wrap",
+            position: "relative",
           }}
         >
-          {loading
-            ? Array.from({ length: 10 }).map((_, index) => (
-                <Skeleton
-                  key={index}
-                  variant="rectangular"
-                  width={350}
-                  height={400}
-                  style={{ margin: "1rem" }}
-                />
-              ))
-            : products.map((product) => (
-                <div
-                  key={product.id}
-                  style={{
-                    padding: "1rem",
-                    width: isNarrowScreen ? "100%" : "350px", // Mostrar 4 tarjetas por fila en desktop
-                    boxSizing: "border-box", // Asegurar que el padding no aumente el tamaño de las tarjetas
-                  }}
-                >
-                  <CardArticles product={product} setArticle={setArticle} />
-                </div>
-              ))}
-          {loading && (
-            <Box
-              sx={{ display: "flex", justifyContent: "center", width: "100%" }}
-            >
-              <CircularProgress />
-            </Box>
+          {loading ? ( // Si se están cargando los productos, renderiza CircularProgressWithLabel
+            <CircularProgressWithLabel />
+          ) : (
+            products.map((product) => (
+              <div
+                key={product.id}
+                style={{
+                  padding: "1rem",
+                  width: isNarrowScreen ? "100%" : "350px",
+                  boxSizing: "border-box",
+                }}
+              >
+                <CardArticles product={product} setArticle={setArticle} />
+              </div>
+            ))
           )}
         </div>
       )}

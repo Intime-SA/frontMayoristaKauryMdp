@@ -192,7 +192,7 @@ const ClientForm = ({
                 >
                   <strong>Datos de destinatario</strong>
                 </h5>
-                <div style={{ gap: "1rem" }}>
+                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                   <TextField
                     name="email"
                     variant="outlined"

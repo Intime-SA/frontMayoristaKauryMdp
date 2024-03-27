@@ -153,7 +153,7 @@ function CheckOut() {
   let sinEnvio = 0;
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const containerWidth = isMobile ? "90vw" : "80vw";
+  const containerWidth = isMobile ? "100vw" : "90vw";
 
   // Verificar si hay un objeto almacenado
 
@@ -171,8 +171,8 @@ function CheckOut() {
           display: "flex",
           justifyContent: "flex-start",
           flexDirection: "column",
-          flexGrow: 7,
           marginRight: "1rem",
+          flexBasis: isMobile ? 440 : 1000,
         }}
       >
         <CustomStepper step={1} />
@@ -288,11 +288,10 @@ function CheckOut() {
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "flex-start",
-          marginTop: "2rem",
-          flexGrow: 3,
           flexDirection: "column",
           border: "1px solid #e0e0e0",
           height: "auto",
+          flexBasis: isMobile ? 440 : 800,
         }}
       >
         {cart.map((product) => {

@@ -30,13 +30,14 @@ const Contacto = () => {
     <div
       style={{
         backgroundColor: "rgba(175, 155, 144, 0.21)",
-        height: "60vh",
+        height: isNarrowScreen ? "80vh" : "60vh", // Cambiar el orden en dispositivos móviles
         width: "100%",
         margin: "0px",
         display: "flex",
-        justifyContent: "space-around",
-        alignItems: "flex-start",
+        justifyContent: isNarrowScreen ? "center" : "space-around",
+        alignItems: isNarrowScreen ? "center" : "flex-start",
         paddingTop: "3%",
+        flexDirection: isNarrowScreen ? "column" : "row", // Cambiar el orden en dispositivos móviles
       }}
     >
       <div
@@ -73,8 +74,7 @@ const Contacto = () => {
                     fontSize: isNarrowScreen ? "25%" : "50%",
                   }}
                 >
-                  {cat.name}{" "}
-                  {/* Suponiendo que el nombre de la categoría está almacenado en la propiedad "nombre" */}
+                  {cat.name}
                 </Link>
               </li>
             ))}
@@ -159,27 +159,27 @@ const Contacto = () => {
             variant="p"
             style={{
               color: "#c4072c",
-              fontSize: isNarrowScreen ? "20%" : "80%",
+              fontSize: isNarrowScreen ? "20%" : "60%",
             }}
           >
-            <div style={{ width: "80%" }}>
-              <span
-                style={{ fontSize: isNarrowScreen ? "130%" : "80%" }}
-                className="material-symbols-outlined"
-              >
-                location_on
-              </span>
-              <Typography
-                variant="p"
-                style={{
-                  color: "#c4072c",
-                  fontSize: isNarrowScreen ? "130%" : "60%",
-                  marginLeft: "1rem",
-                }}
-              >
-                Jose marmol 970 timbre 104 de 10 a 17hs, Mar del Plata
-              </Typography>
-            </div>
+            <span
+              style={{
+                fontSize: isNarrowScreen ? "130%" : "80%",
+              }}
+              className="material-symbols-outlined"
+            >
+              location_on
+            </span>
+            <Typography
+              variant="p"
+              style={{
+                color: "#c4072c",
+                fontSize: isNarrowScreen ? "130%" : "60%",
+                marginLeft: "1rem",
+              }}
+            >
+              Jose marmol 970 timbre 104 de 10 a 17hs, Mar del Plata
+            </Typography>
           </Typography>
         </div>
       </div>
