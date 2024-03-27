@@ -34,11 +34,7 @@ const ListArticlesDesktop = () => {
       snapShotProducts.forEach((product) => {
         const name = product.data().name;
         const color = product.data().color;
-        if (
-          name &&
-          color &&
-          !newArray.some((item) => item.name === name && item.color === color)
-        ) {
+        if (name && !newArray.some((item) => item.name === name)) {
           newArray.push(product.data());
         }
       });
@@ -85,7 +81,7 @@ const ListArticlesDesktop = () => {
             flexDirection: isNarrowScreen ? "column" : "row", // Cambiar a column si es una pantalla estrecha
             alignItems: "center",
             justifyContent: "center",
-            maxWidth: "1000px", // Aumenta el ancho máximo del contenedor si es necesario
+            maxWidth: "1500px", // Aumenta el ancho máximo del contenedor si es necesario
             marginLeft: "auto",
             marginRight: "auto", // Centrar en la pantalla
             flexWrap: "wrap", // Asegurar que las tarjetas se envuelvan correctamente
@@ -97,7 +93,7 @@ const ListArticlesDesktop = () => {
               key={product.id}
               style={{
                 padding: "1rem",
-                width: isNarrowScreen ? "100%" : "25%", // Mostrar 4 tarjetas por fila en desktop
+                width: isNarrowScreen ? "100%" : "350px", // Mostrar 4 tarjetas por fila en desktop
                 boxSizing: "border-box", // Asegurar que el padding no aumente el tamaño de las tarjetas
               }}
             >
