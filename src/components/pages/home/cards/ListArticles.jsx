@@ -70,7 +70,16 @@ const ListArticlesDesktop = () => {
   }, []);
 
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        margin: "0 auto",
+        marginLeft: "0.5rem", // Para centrar horizontalmente
+        padding: "0px",
+      }}
+    >
       {openProductView ? (
         <ViewProduct article={article} />
       ) : (
@@ -95,7 +104,6 @@ const ListArticlesDesktop = () => {
               <div
                 key={product.id}
                 style={{
-                  padding: "1rem",
                   width: isNarrowScreen ? "100%" : "350px",
                   boxSizing: "border-box",
                 }}

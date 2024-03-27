@@ -186,7 +186,7 @@ function Navbar(props) {
                   marginTop: "5rem",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "flex-end",
+                  justifyContent: "flex-start",
                   alignItems: "center",
                 }}
               >
