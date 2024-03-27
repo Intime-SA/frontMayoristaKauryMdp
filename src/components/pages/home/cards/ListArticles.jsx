@@ -6,7 +6,7 @@ import ViewProduct from "../viewProduct/ViewProduct";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Skeleton } from "@mui/material";
 
 const ListArticlesDesktop = () => {
   const category = useParams();
@@ -92,20 +92,32 @@ const ListArticlesDesktop = () => {
             position: "relative", // Ajustar posición relativa para agregar el loading spinner
           }}
         >
-          {products.map((product) => (
-            <div
-              key={product.id}
-              style={{
-                padding: "1rem",
-                width: isNarrowScreen ? "100%" : "350px", // Mostrar 4 tarjetas por fila en desktop
-                boxSizing: "border-box", // Asegurar que el padding no aumente el tamaño de las tarjetas
-              }}
-            >
-              <CardArticles product={product} setArticle={setArticle} />
-            </div>
-          ))}
+          {loading
+            ? Array.from({ length: 10 }).map((_, index) => (
+                <Skeleton
+                  key={index}
+                  variant="rectangular"
+                  width={350}
+                  height={400}
+                  style={{ margin: "1rem" }}
+                />
+              ))
+            : products.map((product) => (
+                <div
+                  key={product.id}
+                  style={{
+                    padding: "1rem",
+                    width: isNarrowScreen ? "100%" : "350px", // Mostrar 4 tarjetas por fila en desktop
+                    boxSizing: "border-box", // Asegurar que el padding no aumente el tamaño de las tarjetas
+                  }}
+                >
+                  <CardArticles product={product} setArticle={setArticle} />
+                </div>
+              ))}
           {loading && (
-            <Box sx={{ display: "flex" }}>
+            <Box
+              sx={{ display: "flex", justifyContent: "center", width: "100%" }}
+            >
               <CircularProgress />
             </Box>
           )}

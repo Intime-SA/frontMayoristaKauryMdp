@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
+import Skeleton from "@mui/material/Skeleton";
 
 const VerticalCarrusel = ({ article }) => {
   const [filteredArticules, setFilteredArticules] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-
-  console.log(article);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -18,9 +18,7 @@ const VerticalCarrusel = ({ article }) => {
       querySnapshot.forEach((doc) => {
         if (doc.data().name === article.id) {
           const color = doc.data().color;
-          // Verificar si el color ya está presente en filteredArticles
           if (color && !filteredArticles.some((item) => item.color === color)) {
-            // Si el color no está presente, agregamos el objeto con la imagen y el color
             filteredArticles.push({
               image: doc.data().image,
               color: color,
@@ -29,6 +27,7 @@ const VerticalCarrusel = ({ article }) => {
         }
       });
       setFilteredArticules(filteredArticles);
+      setImagesLoaded(true);
 
       if (filteredArticles.length > 0 && !selectedImage) {
         setSelectedImage(filteredArticles[0].image);
@@ -38,17 +37,57 @@ const VerticalCarrusel = ({ article }) => {
     fetchArticle();
   }, [article]);
 
-  console.log(filteredArticules);
-
   const handleImageClick = (image) => {
-    console.log(image);
     setSelectedImage(image);
   };
-  console.log(filteredArticules);
 
   return (
     <div style={styles.verticalCarousel}>
       <div style={styles.imageList}>
+        {!imagesLoaded && (
+          <div>
+            <Skeleton
+              sx={{
+                bgcolor: "grey.400",
+                marginBottom: "1rem",
+                borderRadius: "0.2rem",
+              }}
+              variant="rectangular"
+              width={210}
+              height={118}
+            />
+            <Skeleton
+              x={{
+                bgcolor: "grey.400",
+                marginBottom: "1rem",
+                borderRadius: "0.2rem",
+              }}
+              variant="rectangular"
+              width={210}
+              height={118}
+            />
+            <Skeleton
+              x={{
+                bgcolor: "grey.400",
+                marginBottom: "1rem",
+                borderRadius: "0.2rem",
+              }}
+              variant="rectangular"
+              width={210}
+              height={118}
+            />
+            <Skeleton
+              x={{
+                bgcolor: "grey.400",
+                marginBottom: "1rem",
+                borderRadius: "0.2rem",
+              }}
+              variant="rectangular"
+              width={210}
+              height={118}
+            />
+          </div>
+        )}
         {filteredArticules.map((item, index) => (
           <img
             key={index}
@@ -56,6 +95,7 @@ const VerticalCarrusel = ({ article }) => {
             alt={`Article ${index + 1}`}
             style={styles.imageThumbnail}
             onClick={() => handleImageClick(item.image)}
+            onLoad={() => setImagesLoaded(true)} // Marca la imagen como cargada
           />
         ))}
       </div>
@@ -66,6 +106,20 @@ const VerticalCarrusel = ({ article }) => {
             alt="Selected Image"
             style={styles.selectedImage}
           />
+        )}
+        {!imagesLoaded && (
+          <div>
+            <Skeleton
+              sx={{
+                bgcolor: "grey.400",
+                marginBottom: "1rem",
+                borderRadius: "30px",
+              }}
+              variant="rectangular"
+              width="40vw"
+              height={"65vh"}
+            />
+          </div>
         )}
       </div>
     </div>

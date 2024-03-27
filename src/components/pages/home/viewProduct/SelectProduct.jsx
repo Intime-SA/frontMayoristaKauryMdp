@@ -20,6 +20,7 @@ const SelectProduct = ({ article }) => {
   const { id } = useParams();
   const { user, addToCart, getQuantityById } = useContext(CartContext);
   let quantity = getQuantityById(id);
+  const [priceDefaultArticle, setPriceDefaultArticle] = useState(false);
 
   const handleChange = (event) => {
     setProduct(event.target.value);
@@ -54,6 +55,8 @@ const SelectProduct = ({ article }) => {
         }
       });
 
+      setPriceDefaultArticle(newArray[0].unit_price);
+
       // Ordenar newArray por color
       newArray.sort((a, b) => {
         if (a.talle < b.talle) {
@@ -84,7 +87,7 @@ const SelectProduct = ({ article }) => {
         Art {article.id}
       </Typography>
       <Typography variant="h4" fontWeight={900} color="#c4072c" fontSize="110%">
-        $ {product.unit_price}
+        $ {product.unit_price ? product.unit_price : priceDefaultArticle}
       </Typography>
       <Typography variant="h6" marginBottom="1rem">
         Compra mínima $40.000
