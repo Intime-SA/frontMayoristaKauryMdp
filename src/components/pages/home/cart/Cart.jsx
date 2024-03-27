@@ -10,6 +10,8 @@ import {
   Table,
   TableHead,
   TableBody,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -45,6 +47,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import CustomStepper from "./CustomStepper";
 import EmptyCartMessage from "./EmptyCartMenssage";
+import { createTheme } from "@mui/material/styles";
 
 const ExpandMore = styled(({ expand, ...other }) => <IconButton {...other} />)(
   ({ theme, expand }) => ({
@@ -70,6 +73,20 @@ const Cart = () => {
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedLocal, setSelectedLocal] = useState([]);
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleCheckboxChange = (event, localId) => {
     if (selectedLocal === localId) {
@@ -532,7 +549,8 @@ const Cart = () => {
                   justifyContent: "center",
                   alignItems: "flex-start",
                   flexDirection: "column",
-                  width: "500px",
+                  maxWidth: isSmallScreen ? "100%" : "600px", // Cambia el ancho máximo en pantallas pequeñas
+                  width: "100%", // Asegura que ocupe todo el ancho disponible
                 }}
               >
                 <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
