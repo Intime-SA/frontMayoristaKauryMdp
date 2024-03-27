@@ -413,7 +413,7 @@ const ClientForm = ({
               type="submit"
               variant="contained"
               color="primary"
-              style={{ marginBottom: "1rem", width: "50%", maxWidth: "200px" }}
+              style={{ marginBottom: "1rem", width: "100%", maxWidth: "700px" }}
             >
               Confirmar Datos
             </Button>

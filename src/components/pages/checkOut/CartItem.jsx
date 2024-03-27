@@ -10,15 +10,15 @@ import { Link } from "react-router-dom";
 
 function CartItem({ product }) {
   return (
-    <Card sx={{ maxWidth: 150, borderRadius: "20px", width: "auto" }}>
+    <Card sx={{ maxWidth: 150, borderRadius: "20px", width: "75px" }}>
       <CardActionArea>
         <Link to="/">
           <CardMedia
             component="img"
-            height="100" // Estableciendo el ancho fijo
+            height="75" // Estableciendo el ancho fijo
             src={product.image}
             alt={product.name}
-            sx={{ objectFit: "contain", maxHeight: "100px" }} // Establecer estilos para la imagen
+            sx={{ objectFit: "cover", maxHeight: "100px" }} // Establecer estilos para la imagen
           />
         </Link>
       </CardActionArea>

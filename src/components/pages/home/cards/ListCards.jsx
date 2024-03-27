@@ -5,10 +5,13 @@ import CardHome from "./CardHome";
 import { db } from "../../../../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import ListArticles from "./ListArticles";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const ListCards = () => {
   const theme = useTheme();
-  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm")); // Verificar si el ancho de la pantalla es menor que 'sm' (600px)
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [categories, setCategories] = useState([]);
   const [openProducts, setOpenProducts] = useState(false);
   const [selectCategory, setSelectCategory] = useState([]);
@@ -34,7 +37,7 @@ const ListCards = () => {
     };
 
     fetchCategories();
-  }, [categories]);
+  }, []);
 
   return (
     <div
@@ -50,25 +53,41 @@ const ListCards = () => {
       {openProducts ? (
         <ListArticles category={selectCategory} />
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: isNarrowScreen ? "column" : "row", // Si es una pantalla estrecha, centrar los elementos, de lo contrario, espacio alrededor
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "space-around",
-          }}
-        >
-          {categories.map((category) => (
-            <CardHome
-              key={category.id}
-              categoryNombre={category.name}
-              categoryImage={category.image}
-              categoryId={category.id}
-              setOpenProducts={setOpenProducts}
-              setSelectCategory={setSelectCategory}
-            />
-          ))}
+        <div style={{ width: "100%" }}>
+          {categories.length > 4 ? (
+            <Slider
+              dots={false}
+              infinite={true}
+              speed={500}
+              slidesToShow={isNarrowScreen ? 1 : 4}
+              slidesToScroll={1}
+              autoplay={true}
+              autoplaySpeed={3000}
+            >
+              {categories.map((category) => (
+                <div key={category.id}>
+                  <CardHome
+                    categoryNombre={category.name}
+                    categoryImage={category.image}
+                    categoryId={category.id}
+                    setOpenProducts={setOpenProducts}
+                    setSelectCategory={setSelectCategory}
+                  />
+                </div>
+              ))}
+            </Slider>
+          ) : (
+            categories.map((category) => (
+              <CardHome
+                key={category.id}
+                categoryNombre={category.name}
+                categoryImage={category.image}
+                categoryId={category.id}
+                setOpenProducts={setOpenProducts}
+                setSelectCategory={setSelectCategory}
+              />
+            ))
+          )}
         </div>
       )}
     </div>

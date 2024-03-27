@@ -158,254 +158,361 @@ function CheckOut() {
   // Verificar si hay un objeto almacenado
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: isMobile ? "center" : "space-between",
-        width: containerWidth,
-        flexDirection: isMobile ? "column" : "row",
-      }}
-    >
+    <div>
+      {!isMobile ? <div></div> : <CustomStepper step={1} />}
+
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-start",
-          flexDirection: "column",
-          marginRight: "1rem",
-          flexBasis: isMobile ? 440 : 1000,
+          justifyContent: isMobile ? "center" : "space-between",
+          width: containerWidth,
+          flexDirection: isMobile ? "column-reverse" : "row",
         }}
       >
-        <CustomStepper step={1} />
-        {!orderId ? (
-          <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                flexDirection: "column",
-                margin: "1rem",
-              }}
-            >
-              <div>
-                <strong>Entrega</strong>
-                <TipoEnvio />
-              </div>
-
-              <ClientForm
-                handleChangeEmail={handleChangeEmail}
-                customers={customers}
-                setOpenForm={setOpenForm}
-                openForm={openForm}
-                setDataCliente={setDataCliente}
-                andreaniCostoDomicilio={andreaniCostoDomicilio}
-              />
-              {dataCliente && (
-                <>
-                  <Typography variant="body2">
-                    <strong>Nombre:</strong> {dataCliente.name}{" "}
-                    {dataCliente.apellido}
-                  </Typography>
-                  <Typography variant="body2">
-                    <strong>Correo electrónico:</strong> {dataCliente.email}
-                  </Typography>
-                  <Typography variant="body2">
-                    <strong>Teléfono:</strong> {dataCliente.telefono}
-                  </Typography>
-                  <div
-                    style={{
-                      marginTop: "10px",
-                      borderTop: "1px solid #ccc",
-                      paddingTop: "10px",
-                    }}
-                  >
-                    <Typography variant="h6" style={{ marginBottom: "10px" }}>
-                      <strong>Datos de Envío / Facturacion</strong>
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Provincia:</strong>{" "}
-                      {dataCliente.datosEnvio.provincia}
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Ciudad:</strong> {dataCliente.datosEnvio.ciudad}
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Código Postal:</strong>{" "}
-                      {dataCliente.datosEnvio.codigoPostal}
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Calle:</strong> {dataCliente.datosEnvio.calle}
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Número:</strong> {dataCliente.datosEnvio.numero}
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Piso/Dpto:</strong>{" "}
-                      {dataCliente.datosEnvio.pisoDpto}
-                    </Typography>
-                    <Typography variant="body2">
-                      <strong>Barrio:</strong> {dataCliente.datosEnvio.barrio}
-                    </Typography>
-                  </div>
-                  <Typography variant="body2" style={{ marginTop: "20px" }}>
-                    Fecha de inicio:{" "}
-                    {new Date(
-                      dataCliente.fechaInicio.seconds * 1000
-                    ).toLocaleDateString()}
-                  </Typography>
-                </>
-              )}
-            </div>
-            {dataCliente && (
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Link to="/pago">
-                  <Button
-                    variant="contained"
-                    color="error"
-                    style={{ borderRadius: "20px" }}
-                  >
-                    CONTINUAR PARA EL PAGO
-                  </Button>
-                </Link>
-              </div>
-            )}
-          </div>
-        ) : (
-          <>
-            <h4>Pago se realizo con exito</h4>
-            <h4>orden de compra: {orderId}</h4>
-            <Link to="/">Volver a la tienda</Link>
-          </>
-        )}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          flexDirection: "column",
-          border: "1px solid #e0e0e0",
-          height: "auto",
-          flexBasis: isMobile ? 440 : 800,
-        }}
-      >
-        {cart.map((product) => {
-          return (
-            <div
-              style={{
-                display: "flex",
-                width: "90%",
-                minWidth: "300px",
-                border: "1px solid #e0e0e0",
-                padding: "1rem",
-                borderRadius: "5px",
-                margin: "1rem",
-                marginTop: "0.5rem",
-                marginBotton: "0",
-                height: "auto",
-              }}
-            >
-              <Divider />
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "stretch", // Ajusta la altura para llenar el contenedor principal
-                  flexGrow: 2,
-                  margin: "0px",
-                  padding: "0px",
-                  width: "auto",
-                }}
-              >
-                <Divider />
-                <CartItem product={product} />
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexGrow: 8,
-                  margin: "0px",
-                  padding: "0px",
-                }}
-              >
-                <Typography
-                  variant="body2"
-                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
-                  gutterBottom
-                  component="div"
-                  color="black"
-                >
-                  {product.name} ( {product.talle}, {product.color} ) x{" "}
-                  {product.quantity}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
-                  gutterBottom
-                  component="div"
-                  color="black"
-                >
-                  $
-                  {(product.quantity * product.unit_price).toLocaleString(
-                    "es-ES",
-                    {
-                      style: "currency",
-                      currency: "ARS",
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    }
-                  )}
-                </Typography>
-              </div>
-            </div>
-          );
-        })}
         <div
           style={{
             display: "flex",
-            justifyContent: "space-around",
-            alignItems: "space-around",
+            justifyContent: "flex-start",
             flexDirection: "column",
-            width: "90%",
-            margin: "1rem",
+            marginRight: "1rem",
+            flexBasis: isMobile ? 440 : 1000,
           }}
         >
+          {isMobile ? <div></div> : <CustomStepper step={1} />}
+
+          {!orderId ? (
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  flexDirection: "column",
+                  margin: "1rem",
+                }}
+              >
+                <div>
+                  <strong>Entrega</strong>
+                  <TipoEnvio />
+                </div>
+
+                <ClientForm
+                  handleChangeEmail={handleChangeEmail}
+                  customers={customers}
+                  setOpenForm={setOpenForm}
+                  openForm={openForm}
+                  setDataCliente={setDataCliente}
+                  andreaniCostoDomicilio={andreaniCostoDomicilio}
+                />
+                {dataCliente && (
+                  <>
+                    <Typography variant="body2">
+                      <strong>Nombre:</strong> {dataCliente.name}{" "}
+                      {dataCliente.apellido}
+                    </Typography>
+                    <Typography variant="body2">
+                      <strong>Correo electrónico:</strong> {dataCliente.email}
+                    </Typography>
+                    <Typography variant="body2">
+                      <strong>Teléfono:</strong> {dataCliente.telefono}
+                    </Typography>
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        borderTop: "1px solid #ccc",
+                        paddingTop: "10px",
+                      }}
+                    >
+                      <Typography variant="h6" style={{ marginBottom: "10px" }}>
+                        <strong>Datos de Envío / Facturacion</strong>
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Provincia:</strong>{" "}
+                        {dataCliente.datosEnvio.provincia}
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Ciudad:</strong> {dataCliente.datosEnvio.ciudad}
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Código Postal:</strong>{" "}
+                        {dataCliente.datosEnvio.codigoPostal}
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Calle:</strong> {dataCliente.datosEnvio.calle}
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Número:</strong> {dataCliente.datosEnvio.numero}
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Piso/Dpto:</strong>{" "}
+                        {dataCliente.datosEnvio.pisoDpto}
+                      </Typography>
+                      <Typography variant="body2">
+                        <strong>Barrio:</strong> {dataCliente.datosEnvio.barrio}
+                      </Typography>
+                    </div>
+                    <Typography variant="body2" style={{ marginTop: "20px" }}>
+                      Fecha de inicio:{" "}
+                      {new Date(
+                        dataCliente.fechaInicio.seconds * 1000
+                      ).toLocaleDateString()}
+                    </Typography>
+                  </>
+                )}
+              </div>
+              {dataCliente && (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Link to="/pago">
+                    <Button
+                      variant="contained"
+                      color="error"
+                      style={{
+                        borderRadius: "20px",
+                        margin: "1rem",
+                        width: "100%",
+                      }}
+                    >
+                      CONTINUAR PARA EL PAGO
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <h4>Pago se realizo con exito</h4>
+              <h4>orden de compra: {orderId}</h4>
+              <Link to="/">Volver a la tienda</Link>
+            </>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            flexDirection: "column",
+            border: "1px solid #e0e0e0",
+            borderRadius: "10px",
+            maxHeight: "50vh", // Establecer una altura mínima
+            flexBasis: isMobile ? 440 : 800,
+            overflow: "auto", // Añadir overflow:auto para manejar el desbordamiento de contenido
+          }}
+        >
+          {cart.map((product) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  width: "90%",
+                  minWidth: "300px",
+                  border: "1px solid #e0e0e0",
+                  borderRight: "0px",
+                  borderTop: "0px",
+                  borderLeft: "0px",
+                  padding: "1rem",
+                  margin: "1rem",
+                  marginTop: "0.5rem",
+                  marginBotton: "0",
+                }}
+              >
+                <Divider />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "stretch", // Ajusta la altura para llenar el contenedor principal
+                    flexGrow: 2,
+                    margin: "0px",
+                    padding: "0px",
+                    width: "auto",
+                  }}
+                >
+                  <Divider />
+                  <CartItem product={product} />
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexGrow: 10,
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    style={{
+                      fontFamily: '"Roboto Condensed", sans-serif',
+                      margin: "1rem",
+                    }}
+                    gutterBottom
+                    component="div"
+                    color="black"
+                  >
+                    {product.name} ( {product.talle}, {product.color} ) x{" "}
+                    {product.quantity}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                    gutterBottom
+                    component="div"
+                    color="black"
+                  >
+                    $
+                    {(product.quantity * product.unit_price).toLocaleString(
+                      "es-ES",
+                      {
+                        style: "currency",
+                        currency: "ARS",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }
+                    )}
+                  </Typography>
+                </div>
+              </div>
+            );
+          })}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "space-around",
+              flexDirection: "column",
+              width: "90%",
+              margin: "1rem",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "space-around",
+              }}
+            >
+              <Typography
+                variant="body2"
+                style={{
+                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontSize: "50%",
+                }}
+                gutterBottom
+                component="div"
+                color="grey"
+              >
+                Subtotal
+              </Typography>
+              <Typography
+                variant="body2"
+                style={{
+                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontSize: "50%",
+                }}
+                gutterBottom
+                component="div"
+                color="grey"
+              >
+                {totalOrder.toLocaleString("es-ES", {
+                  style: "currency",
+                  currency: "ARS",
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </Typography>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "space-around",
+              }}
+            >
+              <Typography
+                variant="body2"
+                style={{
+                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontSize: "50%",
+                }}
+                gutterBottom
+                component="div"
+                color="grey"
+              >
+                Costo Envio
+              </Typography>
+              <Typography
+                variant="body2"
+                style={{
+                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontSize: "50%",
+                }}
+                gutterBottom
+                component="div"
+                color="grey"
+              >
+                {tipoEnvio !== 0 && userOrderData.infoEntrega.length !== 0 ? (
+                  <>
+                    {" " +
+                      andreaniCostoDomicilio.toLocaleString("es-ES", {
+                        style: "currency",
+                        currency: "ARS",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                  </>
+                ) : (
+                  sinEnvio.toLocaleString("es-ES", {
+                    style: "currency",
+                    currency: "ARS",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                )}
+              </Typography>
+            </div>
+          </div>
+          <Divider />
+
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "space-around",
+              alignItems: "center",
+              width: "90%",
+              margin: "1rem",
+              marginTop: 0,
             }}
           >
             <Typography
-              variant="body2"
+              variant="h6"
               style={{
                 fontFamily: '"Roboto Condensed", sans-serif',
-                fontSize: "50%",
+                marginLeft: "0.5rem",
+                fontWeight: "900",
               }}
               gutterBottom
               component="div"
-              color="grey"
+              color="#c4072c"
             >
-              Subtotal
+              TOTAL
             </Typography>
             <Typography
-              variant="body2"
+              variant="h6"
               style={{
                 fontFamily: '"Roboto Condensed", sans-serif',
-                fontSize: "50%",
+                fontWeight: "900",
               }}
               gutterBottom
               component="div"
-              color="grey"
+              color="#c4072c"
             >
               {totalOrder.toLocaleString("es-ES", {
                 style: "currency",
@@ -415,98 +522,6 @@ function CheckOut() {
               })}
             </Typography>
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "space-around",
-            }}
-          >
-            <Typography
-              variant="body2"
-              style={{
-                fontFamily: '"Roboto Condensed", sans-serif',
-                fontSize: "50%",
-              }}
-              gutterBottom
-              component="div"
-              color="grey"
-            >
-              Costo Envio
-            </Typography>
-            <Typography
-              variant="body2"
-              style={{
-                fontFamily: '"Roboto Condensed", sans-serif',
-                fontSize: "50%",
-              }}
-              gutterBottom
-              component="div"
-              color="grey"
-            >
-              {tipoEnvio !== 0 && userOrderData.infoEntrega.length !== 0 ? (
-                <>
-                  {" " +
-                    andreaniCostoDomicilio.toLocaleString("es-ES", {
-                      style: "currency",
-                      currency: "ARS",
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                </>
-              ) : (
-                sinEnvio.toLocaleString("es-ES", {
-                  style: "currency",
-                  currency: "ARS",
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })
-              )}
-            </Typography>
-          </div>
-        </div>
-        <Divider />
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "90%",
-            margin: "1rem",
-            marginTop: 0,
-          }}
-        >
-          <Typography
-            variant="h6"
-            style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
-              marginLeft: "0.5rem",
-              fontWeight: "900",
-            }}
-            gutterBottom
-            component="div"
-            color="#c4072c"
-          >
-            TOTAL
-          </Typography>
-          <Typography
-            variant="h6"
-            style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
-              fontWeight: "900",
-            }}
-            gutterBottom
-            component="div"
-            color="#c4072c"
-          >
-            {totalOrder.toLocaleString("es-ES", {
-              style: "currency",
-              currency: "ARS",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </Typography>
         </div>
       </div>
     </div>

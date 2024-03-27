@@ -178,7 +178,7 @@ const Pago = () => {
         </div>
       )}
 
-      <div style={{ width: "80%" }}>
+      <div style={{ width: "100%" }}>
         {renderOrder && (
           <>
             <div>
