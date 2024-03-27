@@ -54,12 +54,12 @@ const ListCards = () => {
         <ListArticles category={selectCategory} />
       ) : (
         <div style={{ width: "100%" }}>
-          {categories.length > 4 ? (
+          {!isNarrowScreen && categories.length > 4 ? (
             <Slider
               dots={false}
               infinite={true}
               speed={500}
-              slidesToShow={isNarrowScreen ? 1 : 4}
+              slidesToShow={4}
               slidesToScroll={1}
               autoplay={true}
               autoplaySpeed={3000}
