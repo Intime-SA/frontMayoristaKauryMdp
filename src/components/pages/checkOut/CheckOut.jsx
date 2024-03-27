@@ -26,6 +26,8 @@ import CartItem from "./CartItem";
 import Divider from "@mui/material/Divider";
 import ClientForm from "./ClientForm";
 import TipoEnvio from "./TipoEnvio";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 function CheckOut() {
   const { cart, getTotalPrice, clearCart } = useContext(CartContext);
@@ -38,6 +40,7 @@ function CheckOut() {
   const [dataCliente, setDataCliente] = useState(null);
   const [customers, setCustomers] = useState([]);
   const [tipoEnvio, setTipoEnvio] = useState(0);
+  const theme = useTheme();
 
   useEffect(() => {
     const getUser = async () => {
@@ -149,14 +152,18 @@ function CheckOut() {
   let andreaniCostoDomicilio = 8550;
   let sinEnvio = 0;
 
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const containerWidth = isMobile ? "90vw" : "80vw";
+
   // Verificar si hay un objeto almacenado
 
   return (
     <div
       style={{
         display: "flex",
-        justifyContent: "space-between",
-        width: "80vw",
+        justifyContent: isMobile ? "center" : "space-between",
+        width: containerWidth,
+        flexDirection: isMobile ? "column" : "row",
       }}
     >
       <div
@@ -294,7 +301,7 @@ function CheckOut() {
               style={{
                 display: "flex",
                 width: "90%",
-                minWidth: "440px",
+                minWidth: "300px",
                 border: "1px solid #e0e0e0",
                 padding: "1rem",
                 borderRadius: "5px",

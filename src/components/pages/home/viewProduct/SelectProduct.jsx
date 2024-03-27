@@ -9,11 +9,13 @@ import Select from "@mui/material/Select";
 import { Button, Typography } from "@mui/material";
 import { CartContext } from "../../../context/CartContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 
 const SelectProduct = ({ article }) => {
   const [product, setProduct] = useState("");
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(1);
+  const isMobile = useMediaQuery("(max-width:760px)");
   const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
   const { user, addToCart, getQuantityById } = useContext(CartContext);
@@ -71,34 +73,22 @@ const SelectProduct = ({ article }) => {
   return (
     <Box
       sx={{
-        width: "25vw",
+        width: isMobile ? "90%" : "25vw",
         padding: "20px",
         border: "1px solid #e0e0e0",
         borderRadius: "8px",
-        margin: "1rem", // Aplicar la fuente
+        margin: "1rem",
       }}
     >
-      <h4 style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
-        <span style={{ fontWeight: 700 }}> Art {article.id}</span>
-      </h4>
-      <h4
-        style={{
-          fontWeight: 900,
-          color: "#c4072c",
-          fontFamily: '"Roboto Condensed", sans-serif',
-          fontSize: "110%",
-        }}
-      >
+      <Typography variant="h4" fontWeight={700}>
+        Art {article.id}
+      </Typography>
+      <Typography variant="h4" fontWeight={900} color="#c4072c" fontSize="110%">
         $ {product.unit_price}
-      </h4>
-      <h6
-        style={{
-          fontFamily: '"Roboto Condensed", sans-serif',
-          marginBottom: "1rem",
-        }}
-      >
-        Compra minima $40.000
-      </h6>
+      </Typography>
+      <Typography variant="h6" marginBottom="1rem">
+        Compra mínima $40.000
+      </Typography>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Disponible</InputLabel>
         <Select
@@ -107,7 +97,6 @@ const SelectProduct = ({ article }) => {
           value={product}
           label="Producto"
           onChange={handleChange}
-          style={{ fontFamily: '"Roboto Condensed", sans-serif' }} // Aplicar la fuente
         >
           {products.map((product, index) => (
             <MenuItem key={product.id} value={product}>
@@ -128,35 +117,15 @@ const SelectProduct = ({ article }) => {
               marginRight: "20px",
             }}
           />
-          <Box style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
-            {" "}
-            {/* Aplicar la fuente */}
-            <Typography
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
-              variant="h6"
-              gutterBottom
-            >
-              {article.id}
-            </Typography>
-            <Typography
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
-              gutterBottom
-            >{`ID: #${product.idc}`}</Typography>
-            <Typography
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
-              gutterBottom
-            >{`Talle: ${product.talle}`}</Typography>
+          <Box>
+            <Typography variant="h6">{article.id}</Typography>
+            <Typography gutterBottom>{`ID: #${product.idc}`}</Typography>
+            <Typography gutterBottom>{`Talle: ${product.talle}`}</Typography>
             <Typography
               gutterBottom
             >{`Precio: $${product.unit_price}`}</Typography>
-            <Typography
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
-              gutterBottom
-            >{`Color: ${product.color}`}</Typography>
-            <Typography
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
-              gutterBottom
-            >{`Stock: ${product.stock}`}</Typography>
+            <Typography gutterBottom>{`Color: ${product.color}`}</Typography>
+            <Typography gutterBottom>{`Stock: ${product.stock}`}</Typography>
           </Box>
         </Box>
       )}
@@ -166,7 +135,7 @@ const SelectProduct = ({ article }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "35%",
+          width: isMobile ? "100%" : "35%",
           border: "1px solid #e0e0e0",
           padding: "0.5rem",
           borderRadius: "10px",
@@ -177,12 +146,7 @@ const SelectProduct = ({ article }) => {
           variant="text"
           disabled={count <= 0}
         >
-          <span
-            style={{ color: "black" }}
-            className="material-symbols-outlined"
-          >
-            horizontal_rule
-          </span>
+          -
         </Button>
         <Typography variant="h6">{count}</Typography>
         <Button
@@ -196,12 +160,7 @@ const SelectProduct = ({ article }) => {
           variant="text"
           disabled={product && count >= product.stock}
         >
-          <span
-            style={{ color: "black" }}
-            className="material-symbols-outlined"
-          >
-            add
-          </span>
+          +
         </Button>
       </Box>
       {errorMessage && (
@@ -214,10 +173,7 @@ const SelectProduct = ({ article }) => {
           onClick={add}
           variant="contained"
           fullWidth
-          style={{
-            borderRadius: "20px",
-            fontFamily: "'Roboto Condensed', sans-serif;",
-          }} // Aplicar la fuente
+          style={{ borderRadius: "20px" }}
           disabled={!product}
           color="error"
         >

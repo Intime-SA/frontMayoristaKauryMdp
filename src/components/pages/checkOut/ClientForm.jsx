@@ -192,7 +192,7 @@ const ClientForm = ({
                 >
                   <strong>Datos de destinatario</strong>
                 </h5>
-                <div>
+                <div style={{ gap: "1rem" }}>
                   <TextField
                     name="email"
                     variant="outlined"
@@ -219,7 +219,6 @@ const ClientForm = ({
                       marginBottom: "1rem",
                       width: "100%",
                       maxWidth: "400px",
-                      marginLeft: "1rem",
                     }}
                     InputLabelProps={{ shrink: true }}
                   />

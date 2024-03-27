@@ -1,30 +1,41 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { db } from "../../../../firebaseConfig";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import React, { useEffect } from "react";
+import { useMediaQuery } from "@mui/material";
+import VerticalCarrusel from "./VerticalCarrusel";
 import SelectProduct from "./SelectProduct";
 import { useParams } from "react-router-dom";
-import VerticalCarrusel from "./VerticalCarrusel";
+import HorizontalCarrusel from "./HorizontalCarrusel";
 
 const ViewProduct = () => {
   const article = useParams();
+  const isMobile = useMediaQuery("(max-width:760px)");
 
   useEffect(() => {
     window.scrollTo(0, 0); // Desplazar al inicio de la página
   }, []);
 
   return (
-    <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-      <div>
-        <VerticalCarrusel article={article} />
-      </div>
-      <div>
-        <SelectProduct article={article} />
-      </div>
+    <div style={{ width: "100%", justifyContent: "center" }}>
+      {isMobile ? (
+        // Mostrar componentes uno encima del otro en dispositivos móviles
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <HorizontalCarrusel article={article} />
+          <SelectProduct article={article} />
+        </div>
+      ) : (
+        // Mostrar componentes uno al lado del otro en pantallas más grandes
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <VerticalCarrusel article={article} />
+          <SelectProduct article={article} />
+        </div>
+      )}
     </div>
   );
 };

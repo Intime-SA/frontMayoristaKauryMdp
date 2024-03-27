@@ -16,6 +16,7 @@ import emailjs from "emailjs-com";
 import { number } from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Pago = () => {
   const [userOrder, setUserOrder] = useState(null);
@@ -27,6 +28,7 @@ const Pago = () => {
 
   const { clearCart } = useContext(CartContext);
 
+  const isMobile = useMediaQuery("(max-width:760px)");
   const sendEmail = (subject) => {
     const asunto = `¡Confirmacion de Compra! - Numero de Orden: #${subject}`;
 
@@ -127,7 +129,7 @@ const Pago = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        width: "60vw",
+        width: isMobile ? "90vw" : "60vw",
       }}
     >
       {!renderOrder && (

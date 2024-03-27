@@ -1,6 +1,7 @@
 import { Button, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const Redes = () => {
   const theme = useTheme();
@@ -54,7 +55,7 @@ const Redes = () => {
             fontSize: isNarrowScreen ? "20%" : "40%",
           }}
         >
-          SEGUINOS
+          <Link to="https://www.instagram.com/kaurymdp">SEGUINOS</Link>
         </Button>
       </div>
     </div>
