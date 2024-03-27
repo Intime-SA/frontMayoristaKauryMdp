@@ -5,6 +5,7 @@
     { "source": "/checkout", "destination": "/" },
     { "source": "/viewProduct/:id", "destination": "/viewProduct/:id" },
     { "source": "/listArticles/:id", "destination": "/listArticles/:id" },
-    { "source": "/pago", "destination": "/pago" }
+    { "source": "/pago", "destination": "/pago" },
+    { "source": "/login", "destination": "/login" }
   ]
 }
