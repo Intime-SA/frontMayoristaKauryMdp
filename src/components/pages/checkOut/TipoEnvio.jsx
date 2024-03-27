@@ -111,7 +111,7 @@ const TipoEnvio = () => {
             alignItems: "center",
           }}
         ></div>
-        <div style={{ flexGrow: 1 }}>
+        <div style={{ maxWidth: "300px", flexGrow: 1 }}>
           <h6
             style={{
               margin: "1rem",
