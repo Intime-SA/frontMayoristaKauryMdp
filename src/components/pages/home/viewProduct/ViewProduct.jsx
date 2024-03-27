@@ -13,6 +13,10 @@ import VerticalCarrusel from "./VerticalCarrusel";
 const ViewProduct = () => {
   const article = useParams();
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazar al inicio de la página
+  }, []);
+
   return (
     <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
       <div>

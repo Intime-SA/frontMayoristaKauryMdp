@@ -27,7 +27,7 @@ export default function CardArticles({
   return (
     <Card
       sx={{
-        maxWidth: 300,
+        maxWidth: isNarrowScreen ? 350 : 250, // Reducir el maxWidth en pantallas estrechas
         borderRadius: "20px",
         margin: "1rem",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
@@ -38,15 +38,19 @@ export default function CardArticles({
         <CardActionArea onClick={() => handleClick(product.name)}>
           <CardMedia
             component="img"
-            height="300"
-            image={product.image}
+            height={product.image ? "auto" : "350px"} // Si hay una imagen, usa altura automática, de lo contrario, establece la altura mínima en 350px
+            image={
+              product.image
+                ? product.image
+                : "https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/Mayorista%20Mar%20del%20Plata%20(2).png?alt=media&token=87bdf689-8eb7-49b1-9317-f6a52a9a0781"
+            }
             alt={product.name}
-            style={{ borderRadius: "20px 20px 0 0" }}
+            style={{ borderRadius: "20px 20px 0 0", minHeight: "350px" }} // Altura mínima de 350px
           />
           <CardContent
             style={{
               backgroundColor: "#f7f7f7",
-              padding: "1rem",
+              padding: "0.5rem", // Reducir el relleno
               borderRadius: "0 0 20px 20px",
               display: "flex",
               justifyContent: "center",
@@ -86,49 +90,7 @@ export default function CardArticles({
                 justifyContent: "space-around",
                 width: "60vw",
               }}
-            >
-              <Button
-                style={{ borderRadius: "40px" }}
-                variant="contained"
-                color="error"
-              >
-                Comprar
-              </Button>
-              <div>
-                <Button
-                  style={{
-                    border: "0px",
-                    textDecoration: "none",
-                    borderRadius: "100px",
-                    color: "inherit",
-                    padding: "0px",
-                    width: "1rem",
-                    height: "5vh",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                  variant="outlined"
-                >
-                  <div
-                    style={{
-                      border: "1px solid black",
-                      padding: "0.5rem",
-                      borderRadius: "50px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <span
-                      style={{ fontSize: "150%" }}
-                      className="material-symbols-outlined"
-                    >
-                      visibility
-                    </span>
-                  </div>
-                </Button>
-              </div>
-            </div>
+            ></div>
           </CardContent>
         </CardActionArea>
       </Link>

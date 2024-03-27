@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CustomStepper from "../home/cart/CustomStepper";
 import {
   addDoc,
@@ -15,6 +15,7 @@ import EmailModalOrder from "./EmailModalOrder";
 import emailjs from "emailjs-com";
 import { number } from "yup";
 import { Link, useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const Pago = () => {
   const [userOrder, setUserOrder] = useState(null);
@@ -23,6 +24,8 @@ const Pago = () => {
   const [renderOrder, setRenderOrder] = useState(false);
   const [email, setEmail] = useState("");
   const [toname, setToname] = useState("");
+
+  const { clearCart } = useContext(CartContext);
 
   const sendEmail = (subject) => {
     const asunto = `¡Confirmacion de Compra! - Numero de Orden: #${subject}`;
@@ -114,7 +117,7 @@ const Pago = () => {
     }
     setRenderOrder(true);
     sendEmail(numberOrder);
-    localStorage.removeItem("cart");
+    clearCart();
   };
 
   return (
@@ -227,7 +230,7 @@ const Pago = () => {
             />
             {renderOrder && (
               <Button onClick={() => volver()} variant="contained" color="info">
-                Volver al carrito
+                Volver
               </Button>
             )}
           </div>
