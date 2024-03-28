@@ -58,7 +58,7 @@ const HorizontalCarrusel = ({ article }) => {
             <img
               src={item.image}
               alt={`Article img`}
-              style={{ width: "100%", height: "600px", objectFit: "cover" }}
+              style={{ width: "100%", height: "600px", objectFit: "contain" }}
             />
           </div>
         ))}

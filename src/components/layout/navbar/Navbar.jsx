@@ -55,6 +55,8 @@ function Navbar(props) {
 
   const { cart } = useContext(CartContext);
 
+  const inputRef2 = useRef(null);
+
   const inputRef = useRef(null);
   useEffect(() => {
     // Accede al elemento input después de que el componente se haya montado
@@ -94,8 +96,16 @@ function Navbar(props) {
 
   const [searching, setSearching] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.target.blur(); // Destildar el input
+    }
+  };
 
   const handleProductSelect = async (event, value) => {
+    setInputValue(event.target.value);
     if (value) {
       setSearching(true); // Comienza la búsqueda
       setModalOpen(true); // Abre el modal
@@ -111,12 +121,13 @@ function Navbar(props) {
         setSearching(false); // Finaliza la búsqueda
         setModalOpen(false); // Cierra el modal
 
-        navigate(`/viewProduct/${selectedProduct.name}`);
-      }
+        // Acceder al elemento input y quitar el foco
+        if (value) {
+          // Ocultar el teclado en dispositivos móviles
+          inputRef2.current.blur();
+        }
 
-      if (value) {
-        setSearchText(""); // Limpiar el texto de búsqueda cuando se selecciona un producto
-        // Tu lógica de manejo de producto seleccionado aquí
+        navigate(`/viewProduct/${selectedProduct.name}`);
       }
     }
   };
@@ -375,11 +386,21 @@ function Navbar(props) {
               getOptionLabel={(option) => "ART " + option.name} // Define cómo obtener el nombre de la opción
               renderInput={(params) => (
                 <TextField
+                  inputRef={inputRef2} // Utiliza la misma referencia aquí
+                  label="Productos"
+                  value={searchText}
                   onChange={(event) => setSearchText(event.target.value)}
-                  style={{
-                    fontFamily: '"Roboto Condensed", sans-serif',
-                    fontWeight: "900",
-                    fontSize: "50%",
+                  InputProps={{
+                    style: {
+                      fontFamily: '"Roboto Condensed", sans-serif',
+                      fontWeight: "900",
+                      fontSize: "50%",
+                    },
+                    onKeyPress: (event) => {
+                      if (event.key === "Enter") {
+                        inputRef2.current.blur(); // Destildar el input
+                      }
+                    },
                   }}
                   {...params}
                 />
