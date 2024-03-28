@@ -7,6 +7,7 @@ const VerticalCarrusel = ({ article }) => {
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -28,81 +29,64 @@ const VerticalCarrusel = ({ article }) => {
       });
 
       setFilteredArticles(filteredArticles);
-      setImagesLoaded(false); // Reiniciar el estado de carga de imágenes
 
       if (filteredArticles.length > 0) {
         setSelectedImage(filteredArticles[0].image); // Seleccionar la primera imagen
       }
     };
 
-    fetchArticle();
+    fetchArticle().then(() => {
+      setLoading(false); // Marcar como cargado después de obtener los datos
+    });
   }, [article]);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
+    setImagesLoaded(false); // Reiniciar el estado de carga de imágenes
   };
 
   useEffect(() => {
-    setImagesLoaded(true); // Marcar las imágenes como cargadas al actualizar el artículo
+    if (selectedImage) {
+      const image = new Image();
+      image.src = selectedImage;
+      image.onload = () => {
+        setImagesLoaded(true); // Marcar la imagen seleccionada como cargada
+      };
+    }
   }, [selectedImage]);
 
   return (
     <div style={styles.verticalCarousel}>
       <div style={styles.imageList}>
-        {!imagesLoaded && (
-          <div>
-            <Skeleton
-              sx={{
-                bgcolor: "grey.400",
-                marginBottom: "1rem",
-                borderRadius: "0.2rem",
-              }}
-              variant="rectangular"
-              width={210}
-              height={118}
+        {!loading &&
+          filteredArticles.map((item, index) => (
+            <img
+              key={index}
+              src={item.image}
+              alt={`Article ${index + 1}`}
+              style={styles.imageThumbnail}
+              onClick={() => handleImageClick(item.image)}
+              onLoad={() => setImagesLoaded(true)} // Marca la imagen como cargada
             />
-            <Skeleton
-              sx={{
-                bgcolor: "grey.400",
-                marginBottom: "1rem",
-                borderRadius: "0.2rem",
-              }}
-              variant="rectangular"
-              width={210}
-              height={118}
-            />
-            <Skeleton
-              sx={{
-                bgcolor: "grey.400",
-                marginBottom: "1rem",
-                borderRadius: "0.2rem",
-              }}
-              variant="rectangular"
-              width={210}
-              height={118}
-            />
-            <Skeleton
-              sx={{
-                bgcolor: "grey.400",
-                marginBottom: "1rem",
-                borderRadius: "0.2rem",
-              }}
-              variant="rectangular"
-              width={210}
-              height={118}
-            />
-          </div>
-        )}
-        {filteredArticles.map((item, index) => (
-          <img
-            key={index}
-            src={item.image}
-            alt={`Article ${index + 1}`}
-            style={styles.imageThumbnail}
-            onClick={() => handleImageClick(item.image)}
-            onLoad={() => setImagesLoaded(true)} // Marca la imagen como cargada
-          />
-        ))}
+          ))}
+        {!imagesLoaded &&
+          loading && ( // Mostrar Skeleton solo durante la carga inicial
+            <div>
+              {Array.from({ length: 4 }).map((_, index) => (
+                <Skeleton
+                  key={index}
+                  sx={{
+                    bgcolor: "grey.400",
+                    marginBottom: "1rem",
+                    borderRadius: "0.2rem",
+                  }}
+                  variant="rectangular"
+                  width={210}
+                  height={118}
+                />
+              ))}
+            </div>
+          )}
       </div>
       <div style={styles.selectedImageContainer}>
         {selectedImage && (
@@ -112,7 +96,7 @@ const VerticalCarrusel = ({ article }) => {
             style={styles.selectedImage}
           />
         )}
-        {!imagesLoaded && (
+        {!imagesLoaded && ( // Mostrar Skeleton al cambiar de imagen
           <div>
             <Skeleton
               sx={{

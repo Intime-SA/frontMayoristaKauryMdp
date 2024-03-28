@@ -32,7 +32,13 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
-import { Autocomplete, Button, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  CircularProgress,
+  Modal,
+  TextField,
+} from "@mui/material";
 import Newsletter from "../../pages/home/newsletter/NewsLetter";
 import Contacto from "../../pages/home/contacto/Contacto";
 import Redes from "../../pages/home/redes/Redes";
@@ -86,12 +92,25 @@ function Navbar(props) {
     }
   };
 
-  const handleProductSelect = (event, value) => {
+  const [searching, setSearching] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleProductSelect = async (event, value) => {
     if (value) {
+      setSearching(true); // Comienza la búsqueda
+      setModalOpen(true); // Abre el modal
+
       const selectedProduct = searchResults.find(
         (product) => product.name === value.name
       ); // Encuentra el producto seleccionado por su nombre
+
       if (selectedProduct) {
+        // Simula una demora en la búsqueda (puedes reemplazar esto con tu lógica real de búsqueda)
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
+        setSearching(false); // Finaliza la búsqueda
+        setModalOpen(false); // Cierra el modal
+
         navigate(`/viewProduct/${selectedProduct.name}`);
       }
     }
@@ -302,6 +321,23 @@ function Navbar(props) {
                 )}
               </span>
             </Link>
+          </div>
+          <div>
+            {/* Modal que cubre toda la pantalla */}
+            <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+              <div
+                style={{
+                  width: "100vw",
+                  height: "100vh",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CircularProgress />
+              </div>
+            </Modal>
           </div>
           <div
             style={{

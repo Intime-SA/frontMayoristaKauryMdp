@@ -60,13 +60,16 @@ const Contacto = () => {
           {category.map((cat, index) => (
             <li
               key={cat.id}
-              style={{ textAlign: isNarrowScreen ? "center" : "left" }}
+              style={{
+                textAlign: isNarrowScreen ? "center" : "left",
+                margin: isNarrowScreen ? "0.5rem" : "1rem",
+              }}
             >
               <Link
                 to={`/listArticles/${cat.id}`}
                 variant="outlined"
                 style={{
-                  margin: "0.5rem",
+                  marginTop: "0.5rem",
                   fontSize: isNarrowScreen ? "1rem" : "1.5rem",
                   color: "#c4072c",
                   textAlign: isNarrowScreen ? "center" : "left",
@@ -89,39 +92,47 @@ const Contacto = () => {
             marginTop: "3rem",
           }}
         >
-          <Typography
-            variant="body1"
+          <Link
+            variant="outlined"
             style={{
-              marginBottom: "1rem",
-              textAlign: isNarrowScreen ? "left" : "center",
+              margin: isNarrowScreen ? "0.5rem" : "1rem",
               fontSize: isNarrowScreen ? "1rem" : "1.5rem",
+              color: "#c4072c",
+              textAlign: isNarrowScreen ? "center" : "left",
             }}
           >
             <span className="material-symbols-outlined">call</span> +54 (223)
             348-5438
-          </Typography>
-          <Typography
-            variant="body1"
+          </Link>
+
+          <Link
+            variant="outlined"
             style={{
-              marginBottom: "1rem",
-              textAlign: isNarrowScreen ? "left" : "center",
+              margin: isNarrowScreen ? "0.5rem" : "1rem",
               fontSize: isNarrowScreen ? "1rem" : "1.5rem",
+              color: "#c4072c",
+              textAlign: isNarrowScreen ? "center" : "left",
             }}
           >
             <span className="material-symbols-outlined">mail</span>{" "}
             kaurymdp.store@gmail.com
-          </Typography>
-          <Typography
-            variant="body1"
+          </Link>
+
+          <Link
+            to="https://maps.app.goo.gl/v5xmxXnhAXRHyeAc8"
+            variant="outlined"
             style={{
-              marginBottom: "1rem",
-              textAlign: isNarrowScreen ? "left" : "center",
+              margin: "0.5rem",
               fontSize: isNarrowScreen ? "1rem" : "1.5rem",
+              color: "#c4072c",
+              textAlign: isNarrowScreen ? "center" : "left",
+              maxWidth: isNarrowScreen ? "375px" : "100%",
+              margin: isNarrowScreen ? "0.5rem" : "1rem",
             }}
           >
             <span className="material-symbols-outlined">location_on</span> Jose
             Mármol 970, timbre 104 de 10 a 17hs, Mar del Plata
-          </Typography>
+          </Link>
         </div>
       </div>
     </div>
