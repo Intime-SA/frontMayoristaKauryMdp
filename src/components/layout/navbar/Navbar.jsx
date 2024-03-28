@@ -113,6 +113,11 @@ function Navbar(props) {
 
         navigate(`/viewProduct/${selectedProduct.name}`);
       }
+
+      if (value) {
+        setSearchText(""); // Limpiar el texto de búsqueda cuando se selecciona un producto
+        // Tu lógica de manejo de producto seleccionado aquí
+      }
     }
   };
 
@@ -199,6 +204,8 @@ function Navbar(props) {
       border: "1px solid blue", // Cambia el color del borde cuando el mouse pasa por encima
     },
   };
+
+  const [searchText, setSearchText] = useState("");
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -368,6 +375,7 @@ function Navbar(props) {
               getOptionLabel={(option) => "ART " + option.name} // Define cómo obtener el nombre de la opción
               renderInput={(params) => (
                 <TextField
+                  onChange={(event) => setSearchText(event.target.value)}
                   style={{
                     fontFamily: '"Roboto Condensed", sans-serif',
                     fontWeight: "900",

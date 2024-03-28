@@ -46,7 +46,7 @@ const SelectProduct = ({ article }) => {
     // Simular una carga durante 3 segundos
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -82,6 +82,11 @@ const SelectProduct = ({ article }) => {
     };
     fetchData();
   }, [article]);
+
+  useEffect(() => {
+    // Actualizar priceDefaultArticle cuando cambie el id
+    setPriceDefaultArticle(false); // Reiniciar el valor
+  }, [id]);
 
   return (
     <Box
@@ -138,12 +143,25 @@ const SelectProduct = ({ article }) => {
                 currency: "ARS",
                 minimumFractionDigits: 2,
               })}
-            {!product.unit_price &&
+            {priceDefaultArticle === null ||
+            priceDefaultArticle === false ||
+            priceDefaultArticle === "" ? (
+              <Skeleton
+                sx={{
+                  bgcolor: "grey.400",
+                  display: "inline-block",
+                  width: "100px", // Ajusta el ancho según sea necesario
+                  height: "50px", // Ajusta la altura según sea necesario
+                }}
+                variant="text"
+              />
+            ) : (
               priceDefaultArticle.toLocaleString("es-AR", {
                 style: "currency",
                 currency: "ARS",
                 minimumFractionDigits: 2,
-              })}
+              })
+            )}
           </Typography>
           <SelectProductMessage />
           <FormControl
