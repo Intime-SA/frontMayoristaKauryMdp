@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useMediaQuery } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -14,6 +14,7 @@ import AddIcon from "@mui/icons-material/Add";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import Divider from "@mui/material/Divider";
 import { db } from "../../../../firebaseConfig";
+import { CartContext } from "../../../context/CartContext";
 
 const SelectProduct = ({ article }) => {
   const [loading, setLoading] = useState(true);
@@ -26,6 +27,7 @@ const SelectProduct = ({ article }) => {
   const isMobile = useMediaQuery("(max-width:760px)");
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useContext(CartContext);
 
   const handleChange = (event) => {
     setProduct(event.target.value);
@@ -38,7 +40,7 @@ const SelectProduct = ({ article }) => {
     };
     console.log(objeto);
 
-    // addToCart(objeto);
+    addToCart(objeto);
     navigate(`/listArticles/${category}`);
   };
 
