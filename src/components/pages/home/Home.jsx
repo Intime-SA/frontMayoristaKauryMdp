@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,6 +13,10 @@ import Footer from "./footer/Footer";
 import ViewProduct from "./viewProduct/ViewProduct";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Hace scroll al tope de la página
+  }, []);
+
   const Carousel = () => {
     const settings = {
       dots: true,

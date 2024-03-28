@@ -13,7 +13,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -48,6 +48,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import CustomStepper from "./CustomStepper";
 import EmptyCartMessage from "./EmptyCartMenssage";
 import { createTheme } from "@mui/material/styles";
+import { useNavigation } from "react-router-dom";
 
 const ExpandMore = styled(({ expand, ...other }) => <IconButton {...other} />)(
   ({ theme, expand }) => ({
@@ -61,6 +62,7 @@ const ExpandMore = styled(({ expand, ...other }) => <IconButton {...other} />)(
 
 const Cart = () => {
   const { cart, deleteById, getTotalPrice } = useContext(CartContext);
+  const navigate = useNavigate();
 
   let total = getTotalPrice();
 
@@ -73,6 +75,7 @@ const Cart = () => {
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedLocal, setSelectedLocal] = useState([]);
+  const [estadoError, setEstadoError] = useState(false);
 
   const theme = createTheme({
     breakpoints: {
@@ -182,6 +185,14 @@ const Cart = () => {
   }, [cart]);
 
   const handleSubmit = async () => {
+    const total = await getTotalPrice();
+
+    if (total <= 40000) {
+      setEstadoError(true);
+      console.log(total);
+      return;
+    }
+
     // Verificar si clienteRef está definido
     /*     if (!clienteRef) {
       console.error("Error: clienteRef no está definido");
@@ -207,6 +218,7 @@ const Cart = () => {
     // Guardar userOrder en localStorage
     localStorage.setItem("userOrder", JSON.stringify(userOrder));
     window.scrollTo(0, 0); // Desplazar al principio de la página
+    navigate("/checkout");
 
     // Aquí puedes realizar la lógica de almacenamiento de la orden en la base de datos
   };
@@ -656,17 +668,39 @@ const Cart = () => {
               </Button> */}
               {selectedCheckbox && (
                 <>
-                  <Link to="/checkout">
-                    <Button
-                      style={{ borderRadius: "20px" }}
-                      color="error"
-                      variant="contained"
-                      onClick={() => handleSubmit()}
-                    >
-                      Iniciar Compra
-                    </Button>
-                  </Link>
+                  <Button
+                    style={{ borderRadius: "20px" }}
+                    color="error"
+                    variant="contained"
+                    onClick={() => handleSubmit()}
+                  >
+                    Iniciar Compra
+                  </Button>
                 </>
+              )}
+            </div>
+
+            <div>
+              {estadoError && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "1rem",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    style={{
+                      fontWeight: 100,
+                      fontFamily: '"Roboto Condensed", sans-serif',
+                      color: "#c4072c",
+                    }}
+                  >
+                    La compra minima en el sitio mayorista es de $40.000,00
+                  </Typography>
+                </div>
               )}
             </div>
             <div
