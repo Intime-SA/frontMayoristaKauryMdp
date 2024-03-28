@@ -111,6 +111,8 @@ const ListArticlesDesktop = () => {
       style={{
         width: "100%",
         display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
         justifyContent: "center",
         margin: "0 auto",
         marginLeft: "0.5rem",
