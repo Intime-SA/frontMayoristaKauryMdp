@@ -265,22 +265,38 @@ function Navbar(props) {
               aria-label="open drawer"
               edge="start"
               to="/cart"
-              style={{ marginRight: "5%", padding: 0, marginTop: "1rem  " }}
+              style={{ marginRight: "5%", padding: 0, marginTop: "1rem" }}
               onClick={handleAbrirCarrito}
             >
               <span
                 style={{
                   color: "white",
                   fontWeight: 100,
-                  fontSize: "3rem",
-                  marginTop: "1rem",
-                  marginRight: "50%",
+                  fontSize: "2rem",
+                  position: "relative",
                 }}
                 className="material-symbols-outlined"
               >
                 shopping_cart
                 {cartItemCount > 0 && (
-                  <span style={{ fontSize: "14px", marginLeft: "5px" }}>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      marginLeft: "5px",
+                      position: "absolute",
+                      top: "-10px",
+                      right: "-10px",
+                      background: "white",
+                      borderRadius: "50%",
+                      width: "20px",
+                      height: "20px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      zIndex: "1",
+                      color: "#c4072c", // Asegura que el contador esté por encima del ícono
+                    }}
+                  >
                     {cartItemCount}
                   </span>
                 )}

@@ -88,12 +88,29 @@ const SelectProduct = ({ article }) => {
         borderRadius: "8px",
         margin: "1rem",
         fontFamily: '"Roboto Condensed", sans-serif',
+        borderTop: "0px",
+        borderTopLeftRadius: "0px",
+        borderTopRightRadius: "0px",
       }}
     >
-      <Typography variant="h5" fontWeight={700}>
+      <Typography
+        style={{
+          fontFamily: "Poppins, sans-serif",
+          fontWeight: 600,
+          fontStyle: "normal",
+        }}
+      >
         Art {article.id}
       </Typography>
-      <Typography variant="h6" fontWeight={900} color="#c4072c" fontSize="110%">
+      <Typography
+        style={{
+          fontFamily: "Poppins, sans-serif",
+          fontWeight: 900,
+          fontStyle: "normal",
+          color: "#c4072c",
+          fontSize: "110%",
+        }}
+      >
         {" "}
         {product.unit_price
           ? product.unit_price.toLocaleString("es-AR", {
@@ -163,6 +180,16 @@ const SelectProduct = ({ article }) => {
           </h6>
         </div>
         <Divider />
+        <Typography
+          sx={{
+            fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+            color: "#c4072c", // Color especificado
+            margin: "0 10px", // Margen horizontal para separar el contador
+          }}
+          gutterBottom
+        >
+          {product.description}
+        </Typography>
       </FormControl>
       {product && (
         <Box sx={{ marginTop: "20px", display: "flex", alignItems: "center" }}>
@@ -177,15 +204,15 @@ const SelectProduct = ({ article }) => {
             }}
           />
           <Box>
-            <Typography variant="h6">{article.id}</Typography>
-            <Typography variant="body2" gutterBottom>
-              {`ID: #${product.idc}`}
-            </Typography>
             <Typography variant="body2" gutterBottom>
               {`Talle: ${product.talle}`}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              {`Precio: $${product.unit_price}`}
+              {`Precio: ${product.unit_price.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS",
+                minimumFractionDigits: 2,
+              })}`}
             </Typography>
             <Typography variant="body2" gutterBottom>
               {`Color: ${product.color}`}

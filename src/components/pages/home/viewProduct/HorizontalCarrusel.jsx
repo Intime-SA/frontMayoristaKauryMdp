@@ -39,6 +39,7 @@ const HorizontalCarrusel = ({ article }) => {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
+        marginBottom: " 1rem",
       }}
     >
       <Slider
@@ -53,11 +54,11 @@ const HorizontalCarrusel = ({ article }) => {
         adaptiveHeight={true} // Ajusta la altura del contenedor al contenido
       >
         {filteredArticles.map((item, index) => (
-          <div key={index}>
+          <div key={index} style={{ height: "600px" }}>
             <img
               src={item.image}
               alt={`Article img`}
-              style={{ width: "100%" }}
+              style={{ width: "100%", height: "600px", objectFit: "cover" }}
             />
           </div>
         ))}
