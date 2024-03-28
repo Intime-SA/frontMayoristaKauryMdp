@@ -137,12 +137,6 @@ const SelectProduct = ({ article }) => {
             }}
           >
             {" "}
-            {product.unit_price &&
-              product.unit_price.toLocaleString("es-AR", {
-                style: "currency",
-                currency: "ARS",
-                minimumFractionDigits: 2,
-              })}
             {priceDefaultArticle === null ||
             priceDefaultArticle === false ||
             priceDefaultArticle === "" ? (
