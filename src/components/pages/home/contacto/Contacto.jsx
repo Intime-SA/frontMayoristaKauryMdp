@@ -50,17 +50,6 @@ const Contacto = () => {
           width: "50%",
         }}
       >
-        <Typography
-          variant="h5"
-          gutterBottom
-          style={{
-            marginBottom: "0.5rem",
-            fontWeight: 600,
-            textAlign: isNarrowScreen ? "left" : "center",
-          }}
-        >
-          Categorías
-        </Typography>
         <ul
           style={{
             listStyleType: "none",
@@ -100,17 +89,6 @@ const Contacto = () => {
             marginTop: "3rem",
           }}
         >
-          <Typography
-            variant="h5"
-            gutterBottom
-            style={{
-              fontWeight: 600,
-              textAlign: isNarrowScreen ? "left" : "center",
-              marginBottom: "1rem",
-            }}
-          >
-            Contáctanos
-          </Typography>
           <Typography
             variant="body1"
             style={{
