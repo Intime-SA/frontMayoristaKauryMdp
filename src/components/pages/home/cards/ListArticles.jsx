@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import CardArticles from "./CardArticles";
 import ViewProduct from "../viewProduct/ViewProduct";
-import CircularProgressWithLabel from "./CircularProgressWithLabel"; // Importa tu componente CircularProgressWithLabel aquí
+import CircularProgressWithLabel from "./CircularProgressWithLabel";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
@@ -17,7 +17,7 @@ const ListArticlesDesktop = () => {
   const [openProductView, setOpenProductView] = useState(false);
   const [article, setArticle] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true); // Estado para controlar si se están cargando los productos
+  const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
   const [categoriaName, setCategoriaName] = useState(null);
 
@@ -45,7 +45,7 @@ const ListArticlesDesktop = () => {
       });
 
       setProducts(newArray);
-      setLoading(false); // Cuando se completa la carga de productos, cambia el estado de loading a false
+      setLoading(false);
     };
 
     fetchData();
@@ -57,9 +57,7 @@ const ListArticlesDesktop = () => {
       const querySnapshot = await getDocs(categoryCollection);
 
       querySnapshot.forEach((doc) => {
-        // Aquí comparamos el id del documento con el id deseado
         if (doc.id === category.id) {
-          // Si el id coincide, establecemos el nombre de la categoría
           setCategoriaName(doc.data().name);
         }
       });
@@ -69,55 +67,53 @@ const ListArticlesDesktop = () => {
   }, [category.id]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        containerRef.current &&
-        window.innerHeight + window.scrollY >= containerRef.current.offsetHeight
-      ) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    };
+    const storedPage = localStorage.getItem("page");
+    if (storedPage) {
+      setPage(parseInt(storedPage));
+    }
+  }, []);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      window.scrollTo(0, localStorage.getItem("scrollPosition") || 0);
+    }, 2000); // 2000 milisegundos = 2 segundos
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const handleScroll = () => {
+    if (
+      containerRef.current &&
+      window.innerHeight + window.scrollY >= containerRef.current.offsetHeight
+    ) {
+      setPage((prevPage) => {
+        localStorage.setItem("page", prevPage + 1);
+        localStorage.setItem("scrollPosition", window.scrollY);
+        return prevPage + 1;
+      });
+    }
+  };
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  useEffect(() => {
-    const savedPosition = localStorage.getItem("scrollPosition");
-    if (savedPosition) {
-      window.scrollTo(0, parseInt(savedPosition));
-    }
+  const setArticleWithScrollPosition = useCallback((article) => {
+    setArticle(article);
+    localStorage.setItem("scrollPosition", window.scrollY);
   }, []);
-
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      localStorage.setItem("scrollPosition", window.scrollY.toString());
-      localStorage.setItem("currentPage", page.toString() * 2);
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [page]);
-
-  const handleCardClick = (selectedArticle) => {
-    setArticle(selectedArticle);
-    setOpenProductView(true);
-  };
 
   return (
     <div
       style={{
         width: "100%",
         display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         justifyContent: "center",
         margin: "0 auto",
-        marginLeft: "0.5rem", // Para centrar horizontalmente
+        marginLeft: "0.5rem",
         padding: "0px",
       }}
     >
@@ -143,7 +139,7 @@ const ListArticlesDesktop = () => {
             position: "relative",
           }}
         >
-          {loading ? ( // Si se están cargando los productos, renderiza CircularProgressWithLabel
+          {loading ? (
             <CircularProgressWithLabel />
           ) : (
             products.map((product) => (
@@ -153,11 +149,11 @@ const ListArticlesDesktop = () => {
                   width: isNarrowScreen ? "100%" : "350px",
                   boxSizing: "border-box",
                 }}
-                onClick={() => {
-                  handleCardClick;
-                }}
               >
-                <CardArticles product={product} setArticle={setArticle} />
+                <CardArticles
+                  product={product}
+                  setArticle={setArticleWithScrollPosition}
+                />
               </div>
             ))
           )}
