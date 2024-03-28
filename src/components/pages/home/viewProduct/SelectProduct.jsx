@@ -25,6 +25,7 @@ const SelectProduct = ({ article }) => {
   const { user, addToCart, getQuantityById } = useContext(CartContext);
   let quantity = getQuantityById(id);
   const [priceDefaultArticle, setPriceDefaultArticle] = useState(false);
+  const [category, setCategory] = useState("");
 
   const handleChange = (event) => {
     setProduct(event.target.value);
@@ -41,7 +42,7 @@ const SelectProduct = ({ article }) => {
     console.log(objeto);
 
     addToCart(objeto);
-    navigate("/");
+    navigate(`/listArticles/${category}`);
   };
 
   useEffect(() => {}, [errorMessage]);
@@ -60,6 +61,7 @@ const SelectProduct = ({ article }) => {
       });
 
       setPriceDefaultArticle(newArray[0].unit_price);
+      setCategory(newArray[0].category);
 
       // Ordenar newArray por color
       newArray.sort((a, b) => {

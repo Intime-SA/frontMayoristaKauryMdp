@@ -7,6 +7,7 @@ import CircularProgressWithLabel from "./CircularProgressWithLabel"; // Importa 
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
+import { Typography } from "@mui/material";
 
 const ListArticlesDesktop = () => {
   const category = useParams();
@@ -18,6 +19,7 @@ const ListArticlesDesktop = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true); // Estado para controlar si se están cargando los productos
   const containerRef = useRef(null);
+  const [categoriaName, setCategoriaName] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,6 +52,23 @@ const ListArticlesDesktop = () => {
   }, [category, page]);
 
   useEffect(() => {
+    const fetchCategory = async () => {
+      const categoryCollection = collection(db, "categorys");
+      const querySnapshot = await getDocs(categoryCollection);
+
+      querySnapshot.forEach((doc) => {
+        // Aquí comparamos el id del documento con el id deseado
+        if (doc.id === category.id) {
+          // Si el id coincide, establecemos el nombre de la categoría
+          setCategoriaName(doc.data().name);
+        }
+      });
+    };
+
+    fetchCategory();
+  }, [category.id]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -74,12 +93,19 @@ const ListArticlesDesktop = () => {
       style={{
         width: "100%",
         display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         justifyContent: "center",
         margin: "0 auto",
         marginLeft: "0.5rem", // Para centrar horizontalmente
         padding: "0px",
       }}
     >
+      <div>
+        <Typography variant="body2" sx={{ marginTop: "1rem", color: "grey" }}>
+          Inicio > {categoriaName}
+        </Typography>
+      </div>
       {openProductView ? (
         <ViewProduct article={article} />
       ) : (

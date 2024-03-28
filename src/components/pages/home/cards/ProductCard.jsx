@@ -34,13 +34,13 @@ const ProductCard = ({ product, handleClick }) => {
           {imageLoaded ? (
             <CardMedia
               component="img"
-              height={product.image ? "auto" : "350px"}
+              height={product.image ? "400" : "350px"}
               image={
                 product.image ||
                 "https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/Mayorista%20Mar%20del%20Plata%20(2).png?alt=media&token=87bdf689-8eb7-49b1-9317-f6a52a9a0781"
               }
               alt={product.name}
-              style={{ borderRadius: "20px 20px 0 0", minHeight: "400px" }}
+              style={{ borderRadius: "20px 20px 0 0", maxHeight: "400px" }}
             />
           ) : (
             <Skeleton

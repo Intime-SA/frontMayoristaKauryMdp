@@ -23,8 +23,16 @@ import {
   onSingIn,
 } from "../../../firebaseConfig";
 import { AuthContext } from "../../context/AuthContext";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
-import { Button, TextField } from "@mui/material";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { Autocomplete, Button, TextField } from "@mui/material";
 import Newsletter from "../../pages/home/newsletter/NewsLetter";
 import Contacto from "../../pages/home/contacto/Contacto";
 import Redes from "../../pages/home/redes/Redes";
@@ -58,6 +66,36 @@ function Navbar(props) {
       // Puedes agregar más estilos aquí según sea necesario para eliminar otras propiedades visuales
     }
   }, []);
+
+  const [searchResults, setSearchResults] = useState([]);
+  const fetchData = async (productName) => {
+    console.log(productName);
+    if (productName) {
+      const productCollection = collection(db, "products");
+      const q = query(productCollection, where("name", "==", productName));
+      const querySnapshot = await getDocs(q);
+
+      const results = [];
+      querySnapshot.forEach((doc) => {
+        results.push(doc.data());
+      });
+
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  const handleProductSelect = (event, value) => {
+    if (value) {
+      const selectedProduct = searchResults.find(
+        (product) => product.name === value.name
+      ); // Encuentra el producto seleccionado por su nombre
+      if (selectedProduct) {
+        navigate(`/viewProduct/${selectedProduct.name}`);
+      }
+    }
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -128,6 +166,20 @@ function Navbar(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
+  const autocompleteStyle = {
+    width: "90vw",
+    maxWidth: "1000px",
+    height: "3rem",
+    borderRadius: "15px",
+    display: "inline-grid",
+    border: "none",
+    padding: "0px",
+    margin: "0px",
+    "&:hover": {
+      border: "1px solid blue", // Cambia el color del borde cuando el mouse pasa por encima
+    },
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -237,40 +289,44 @@ function Navbar(props) {
           </div>
           <div
             style={{
-              width: "90%",
-              marginBottom: "3rem",
-              height: "1vh",
+              height: "auto",
+              width: "90vw",
+              backgroundColor: "white",
               display: "flex",
               justifyContent: "center",
+              borderRadius: "5px",
             }}
           >
-            <TextField
-              inputRef={inputRef}
-              variant="standard"
-              InputProps={{
-                startAdornment: (
-                  <span
-                    style={{
-                      fontWeight: 300,
-                      fontSize: "250%",
-                      color: "#c4072c",
-                    }}
-                    className="material-symbols-outlined"
-                  >
-                    search
-                  </span>
-                ),
-                style: { paddingRight: "0" }, // Elimina el espacio del icono
-              }}
-              style={{
-                width: "100%",
-                height: "3rem",
-                borderRadius: "15px",
-                backgroundColor: "white",
-                paddingLeft: "1rem",
-                paddingRight: "1rem",
-                display: "inline-grid",
-              }}
+            <Autocomplete
+              disablePortal
+              id="search"
+              style={{ width: "100%" }}
+              options={
+                searchResults.length > 0
+                  ? [
+                      {
+                        id: searchResults[0].id,
+                        name: searchResults[0].name,
+                        unit_price: searchResults[0].unit_price,
+                        image: searchResults[0].image,
+                      },
+                    ]
+                  : []
+              } // Mapea solo la primera opción si hay resultados
+              getOptionLabel={(option) => "ART " + option.name} // Define cómo obtener el nombre de la opción
+              renderInput={(params) => (
+                <TextField
+                  style={{
+                    fontFamily: '"Roboto Condensed", sans-serif',
+                    fontWeight: "900",
+                    fontSize: "50%",
+                  }}
+                  {...params}
+                />
+              )}
+              onChange={handleProductSelect}
+              onInputChange={(event, newValue) => fetchData(newValue)}
+              noOptionsText="Busque por nombre de articulo"
             />
           </div>
         </Toolbar>

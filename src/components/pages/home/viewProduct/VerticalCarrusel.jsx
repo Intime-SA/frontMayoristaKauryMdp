@@ -4,7 +4,7 @@ import { db } from "../../../../firebaseConfig";
 import Skeleton from "@mui/material/Skeleton";
 
 const VerticalCarrusel = ({ article }) => {
-  const [filteredArticules, setFilteredArticules] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
@@ -26,11 +26,12 @@ const VerticalCarrusel = ({ article }) => {
           }
         }
       });
-      setFilteredArticules(filteredArticles);
-      setImagesLoaded(true);
 
-      if (filteredArticles.length > 0 && !selectedImage) {
-        setSelectedImage(filteredArticles[0].image);
+      setFilteredArticles(filteredArticles);
+      setImagesLoaded(false); // Reiniciar el estado de carga de imágenes
+
+      if (filteredArticles.length > 0) {
+        setSelectedImage(filteredArticles[0].image); // Seleccionar la primera imagen
       }
     };
 
@@ -40,6 +41,10 @@ const VerticalCarrusel = ({ article }) => {
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
+
+  useEffect(() => {
+    setImagesLoaded(true); // Marcar las imágenes como cargadas al actualizar el artículo
+  }, [selectedImage]);
 
   return (
     <div style={styles.verticalCarousel}>
@@ -57,7 +62,7 @@ const VerticalCarrusel = ({ article }) => {
               height={118}
             />
             <Skeleton
-              x={{
+              sx={{
                 bgcolor: "grey.400",
                 marginBottom: "1rem",
                 borderRadius: "0.2rem",
@@ -67,7 +72,7 @@ const VerticalCarrusel = ({ article }) => {
               height={118}
             />
             <Skeleton
-              x={{
+              sx={{
                 bgcolor: "grey.400",
                 marginBottom: "1rem",
                 borderRadius: "0.2rem",
@@ -77,7 +82,7 @@ const VerticalCarrusel = ({ article }) => {
               height={118}
             />
             <Skeleton
-              x={{
+              sx={{
                 bgcolor: "grey.400",
                 marginBottom: "1rem",
                 borderRadius: "0.2rem",
@@ -88,7 +93,7 @@ const VerticalCarrusel = ({ article }) => {
             />
           </div>
         )}
-        {filteredArticules.map((item, index) => (
+        {filteredArticles.map((item, index) => (
           <img
             key={index}
             src={item.image}

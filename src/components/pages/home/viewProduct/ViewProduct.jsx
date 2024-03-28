@@ -11,7 +11,7 @@ const ViewProduct = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0); // Desplazar al inicio de la página
-  }, []);
+  }, [article]);
 
   return (
     <div style={{ width: "100%", justifyContent: "center" }}>
