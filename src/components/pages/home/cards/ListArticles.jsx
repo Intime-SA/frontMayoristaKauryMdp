@@ -69,24 +69,44 @@ const ListArticlesDesktop = () => {
   }, [category.id]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const handleScroll = () => {
+      if (
+        containerRef.current &&
+        window.innerHeight + window.scrollY >= containerRef.current.offsetHeight
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
 
-  const handleScroll = () => {
-    if (
-      containerRef.current &&
-      window.innerHeight + window.scrollY >= containerRef.current.offsetHeight
-    ) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const savedPosition = localStorage.getItem("scrollPosition");
+    if (savedPosition) {
+      window.scrollTo(0, parseInt(savedPosition));
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.setItem("scrollPosition", window.scrollY.toString());
+      localStorage.setItem("currentPage", page.toString() * 2);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [page]);
+
+  const handleCardClick = (selectedArticle) => {
+    setArticle(selectedArticle);
+    setOpenProductView(true);
+  };
 
   return (
     <div
@@ -132,6 +152,9 @@ const ListArticlesDesktop = () => {
                 style={{
                   width: isNarrowScreen ? "100%" : "350px",
                   boxSizing: "border-box",
+                }}
+                onClick={() => {
+                  handleCardClick;
                 }}
               >
                 <CardArticles product={product} setArticle={setArticle} />
