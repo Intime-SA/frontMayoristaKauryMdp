@@ -25,7 +25,7 @@ const ListArticlesDesktop = () => {
       const q = query(
         productCollection,
         where("category", "==", category.id),
-        limit(10 * page)
+        limit(1 * page)
       );
       const snapShotProducts = await getDocs(q);
       const newArray = [];

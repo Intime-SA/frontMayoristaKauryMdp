@@ -25,6 +25,8 @@ const ProductCard = ({ product, handleClick }) => {
         margin: "1rem",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         marginLeft: isNarrowScreen ? "0rem" : "0",
+        transition: "opacity 0.5s ease-in-out", // Animación de aparición
+        opacity: imageLoaded ? 1 : 0, // Se establece la opacidad según el estado de carga de la imagen
       }}
     >
       <Link to={`/viewProduct/${product.name}`}>

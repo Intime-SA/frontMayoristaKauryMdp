@@ -10,6 +10,10 @@ import { Button, Typography } from "@mui/material";
 import { CartContext } from "../../../context/CartContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
+import SelectProductMessage from "./SelectProductMenssage";
+import AddIcon from "@mui/icons-material/Add";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+import Divider from "@mui/material/Divider";
 
 const SelectProduct = ({ article }) => {
   const [product, setProduct] = useState("");
@@ -81,25 +85,45 @@ const SelectProduct = ({ article }) => {
         border: "1px solid #e0e0e0",
         borderRadius: "8px",
         margin: "1rem",
+        fontFamily: '"Roboto Condensed", sans-serif',
       }}
     >
-      <Typography variant="h4" fontWeight={700}>
+      <Typography variant="h5" fontWeight={700}>
         Art {article.id}
       </Typography>
-      <Typography variant="h4" fontWeight={900} color="#c4072c" fontSize="110%">
-        $ {product.unit_price ? product.unit_price : priceDefaultArticle}
+      <Typography variant="h6" fontWeight={900} color="#c4072c" fontSize="110%">
+        {" "}
+        {product.unit_price
+          ? product.unit_price.toLocaleString("es-AR", {
+              style: "currency",
+              currency: "ARS",
+              minimumFractionDigits: 2,
+            })
+          : priceDefaultArticle.toLocaleString("es-AR", {
+              style: "currency",
+              currency: "ARS",
+              minimumFractionDigits: 2,
+            })}
       </Typography>
-      <Typography variant="h6" marginBottom="1rem">
-        Compra mínima $40.000
-      </Typography>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Disponible</InputLabel>
+      <SelectProductMessage />
+      <FormControl
+        style={{ display: "flex", justifyContent: "center" }}
+        fullWidth
+      >
+        <InputLabel sx={{ height: "1rem" }} id="demo-simple-select-label">
+          <p style={{ fontSize: "60%" }}>Disponible</p>
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={product}
           label="Producto"
           onChange={handleChange}
+          sx={{
+            fontSize: "small",
+            height: "45px",
+            padding: "1rem",
+          }} // Ajustes de tamaño de fuente y altura
         >
           {products.map((product, index) => (
             <MenuItem key={product.id} value={product}>
@@ -107,6 +131,36 @@ const SelectProduct = ({ article }) => {
             </MenuItem>
           ))}
         </Select>
+        <div
+          style={{
+            borderRadius: "10px",
+            border: "1px solid #D27611",
+            padding: "0.5rem",
+            marginTop: "0.5rem",
+            marginBottom: "0.5rem",
+            color: "#D27611",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <h6
+            style={{
+              textAlign: "center",
+              fontFamily: '"Roboto Condensed", sans-serif',
+              fontSize: "40%",
+            }}
+          >
+            <span
+              style={{ color: "#D27611", fontSize: "100%" }}
+              className="material-symbols-outlined"
+            >
+              warning
+            </span>{" "}
+            Por cualquier consulta que tengas no dudes en escribirnos por
+            WhatsApp 2233485438
+          </h6>
+        </div>
+        <Divider />
       </FormControl>
       {product && (
         <Box sx={{ marginTop: "20px", display: "flex", alignItems: "center" }}>
@@ -122,13 +176,21 @@ const SelectProduct = ({ article }) => {
           />
           <Box>
             <Typography variant="h6">{article.id}</Typography>
-            <Typography gutterBottom>{`ID: #${product.idc}`}</Typography>
-            <Typography gutterBottom>{`Talle: ${product.talle}`}</Typography>
-            <Typography
-              gutterBottom
-            >{`Precio: $${product.unit_price}`}</Typography>
-            <Typography gutterBottom>{`Color: ${product.color}`}</Typography>
-            <Typography gutterBottom>{`Stock: ${product.stock}`}</Typography>
+            <Typography variant="body2" gutterBottom>
+              {`ID: #${product.idc}`}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {`Talle: ${product.talle}`}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {`Precio: $${product.unit_price}`}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {`Color: ${product.color}`}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {`Stock: ${product.stock}`}
+            </Typography>
           </Box>
         </Box>
       )}
@@ -138,7 +200,7 @@ const SelectProduct = ({ article }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: isMobile ? "100%" : "35%",
+          width: isMobile ? "100%" : "45%",
           border: "1px solid #e0e0e0",
           padding: "0.5rem",
           borderRadius: "10px",
@@ -148,10 +210,23 @@ const SelectProduct = ({ article }) => {
           onClick={() => setCount(count - 1)}
           variant="text"
           disabled={count <= 0}
+          sx={{
+            color: "#c4072c", // Color especificado
+            fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+          }}
         >
-          -
+          <HorizontalRuleIcon />
         </Button>
-        <Typography variant="h6">{count}</Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+            color: "#c4072c", // Color especificado
+            margin: "0 10px", // Margen horizontal para separar el contador
+          }}
+        >
+          {count}
+        </Typography>
         <Button
           onClick={() => {
             if (count + 1 <= product.stock) {
@@ -162,15 +237,30 @@ const SelectProduct = ({ article }) => {
           }}
           variant="text"
           disabled={product && count >= product.stock}
+          sx={{
+            color: "#c4072c", // Color especificado
+            fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+          }}
         >
-          +
+          <AddIcon />
         </Button>
       </Box>
+
       {errorMessage && (
         <Typography variant="body2" color="error" sx={{ marginTop: "10px" }}>
           {errorMessage}
         </Typography>
       )}
+      <div
+        style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}
+      >
+        <Typography variant="body2" sx={{ marginTop: "1rem", color: "grey" }}>
+          <span style={{ fontSize: "100%" }} class="material-symbols-outlined">
+            production_quantity_limits
+          </span>{" "}
+          La compra mínima de un carrito es de $40.000,00 ARS.
+        </Typography>
+      </div>
       <Box sx={{ marginTop: "20px" }}>
         <Button
           onClick={add}
