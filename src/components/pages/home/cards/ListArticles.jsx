@@ -27,7 +27,7 @@ const ListArticlesDesktop = () => {
       const q = query(
         productCollection,
         where("category", "==", category.id),
-        limit(1 * page)
+        limit(1 + page)
       );
       const snapShotProducts = await getDocs(q);
       const newArray = [];
@@ -81,29 +81,24 @@ const ListArticlesDesktop = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const handleScroll = () => {
-    if (
-      containerRef.current &&
-      window.innerHeight + window.scrollY >= containerRef.current.offsetHeight
-    ) {
-      setPage((prevPage) => {
-        localStorage.setItem("page", prevPage + 1);
-        localStorage.setItem("scrollPosition", window.scrollY);
-        return prevPage + 1;
-      });
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      if (
+        containerRef.current &&
+        window.innerHeight + window.scrollY >= containerRef.current.offsetHeight
+      ) {
+        setPage((prevPage) => {
+          localStorage.setItem("page", prevPage + 1);
+          localStorage.setItem("scrollPosition", window.scrollY);
+          return prevPage + 1;
+        });
+      }
     };
   }, []);
 
   const setArticleWithScrollPosition = useCallback((article) => {
-    setArticle(article);
     localStorage.setItem("scrollPosition", window.scrollY);
+    setArticle(article);
   }, []);
 
   return (
