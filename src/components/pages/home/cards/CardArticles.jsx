@@ -9,6 +9,7 @@ export default function CardArticles({
   product,
   setOpenProductView,
   setArticle,
+  oferta,
 }) {
   const theme = useTheme();
   const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -34,7 +35,11 @@ export default function CardArticles({
       {transitions((styles, item) =>
         item ? (
           <animated.div style={styles}>
-            <ProductCard product={product} handleClick={handleClick} />
+            <ProductCard
+              product={product}
+              handleClick={handleClick}
+              oferta={oferta}
+            />
           </animated.div>
         ) : (
           <ProductCardSkeleton product={product} handleClick={handleClick} />

@@ -20,6 +20,7 @@ const ListArticlesDesktop = () => {
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
   const [categoriaName, setCategoriaName] = useState(null);
+  const [oferta, setOferta] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +56,10 @@ const ListArticlesDesktop = () => {
     const fetchCategory = async () => {
       const categoryCollection = collection(db, "categorys");
       const querySnapshot = await getDocs(categoryCollection);
+
+      if (category.id === "oferta") {
+        setOferta(true);
+      }
 
       querySnapshot.forEach((doc) => {
         if (doc.id === category.id) {
@@ -168,6 +173,7 @@ const ListArticlesDesktop = () => {
                 <CardArticles
                   product={product}
                   setArticle={setArticleWithScrollPosition}
+                  oferta={oferta}
                 />
               </div>
             ))

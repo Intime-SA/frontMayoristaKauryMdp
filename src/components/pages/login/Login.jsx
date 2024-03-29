@@ -10,6 +10,7 @@ import {
   TextField,
   Tooltip,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { db, loginGoogle, onSingIn } from "../../../firebaseConfig";
@@ -26,11 +27,14 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useContext, useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
@@ -122,7 +126,7 @@ const Login = () => {
   return (
     <Box
       sx={{
-        width: "100",
+        width: "100%",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -132,7 +136,33 @@ const Login = () => {
         // backgroundColor: theme.palette.secondary.main,
       }}
     >
-      <img src="https://www.kaury.com/img/kaury_logo_19.svg" alt="logo" />
+      <img
+        src="https://www.kaury.com/img/kaury_logo_19.svg"
+        alt="logo"
+        style={{ width: isNarrowScreen ? "50%" : "auto" }}
+      />
+      <h1
+        style={{
+          color: "#c4072c",
+          marginTop: "1%",
+          fontSize: "100%",
+          color: "#c4072c",
+          fontWeight: 250,
+        }}
+      >
+        Mayorista
+      </h1>
+      <h2
+        style={{
+          color: "#c4072c",
+          marginTop: "1%",
+          fontSize: "100%",
+          color: "#c4072c",
+          fontWeight: 250,
+        }}
+      >
+        Mar del Plata
+      </h2>
       <form onSubmit={handleSubmit}>
         <Grid
           container

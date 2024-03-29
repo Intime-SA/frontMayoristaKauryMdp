@@ -8,7 +8,7 @@ import { Skeleton, useMediaQuery } from "@mui/material";
 import { CardActionArea } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product, handleClick }) => {
+const ProductCard = ({ product, handleClick, oferta }) => {
   const theme = useTheme();
   const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -79,14 +79,34 @@ const ProductCard = ({ product, handleClick }) => {
               style={{
                 fontWeight: "900",
                 fontFamily: '"Roboto Condensed", sans-serif',
+                textDecoration: oferta ? "line-through" : "none",
+                display: oferta ? "flex" : "none", // Aplicar tachado si oferta es true
               }}
             >
-              $
-              {" " +
-                product.unit_price.toLocaleString("es-AR", {
+              {"$" +
+                (
+                  (product.unit_price * 15) / 100 +
+                  product.unit_price
+                ).toLocaleString("es-AR", {
                   minimumFractionDigits: 2,
                 })}
             </Typography>
+
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              color="red"
+              style={{
+                fontWeight: "900",
+                fontFamily: '"Roboto Condensed", sans-serif', // Aplicar tachado si oferta es true
+              }}
+            >
+              {product.unit_price.toLocaleString("es-AR", {
+                minimumFractionDigits: 2,
+              })}
+            </Typography>
+
             <div
               style={{
                 display: "flex",

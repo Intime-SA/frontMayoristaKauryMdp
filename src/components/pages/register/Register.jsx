@@ -9,12 +9,14 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { signUp, db } from "../../../firebaseConfig";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
+import { useTheme } from "@mui/material/styles";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,6 +30,9 @@ const Register = () => {
     numeroTelefono: "",
   });
   const [passwordError, setPasswordError] = useState(false);
+
+  const theme = useTheme();
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
@@ -77,6 +82,33 @@ const Register = () => {
         flexDirection: "column",
       }}
     >
+      <img
+        src="https://www.kaury.com/img/kaury_logo_19.svg"
+        alt="logo"
+        style={{ width: isNarrowScreen ? "50%" : "auto" }}
+      />
+      <h1
+        style={{
+          color: "#c4072c",
+          marginTop: "1%",
+          fontSize: "100%",
+          color: "#c4072c",
+          fontWeight: 250,
+        }}
+      >
+        Mayorista
+      </h1>
+      <h2
+        style={{
+          color: "#c4072c",
+          marginTop: "1%",
+          fontSize: "100%",
+          color: "#c4072c",
+          fontWeight: 250,
+        }}
+      >
+        Mar del Plata
+      </h2>
       <form onSubmit={handleSubmit}>
         <Grid container rowSpacing={2} justifyContent="center">
           <Grid item xs={10} md={12}>
@@ -178,6 +210,7 @@ const Register = () => {
             <Grid item xs={10} md={7}>
               <Button
                 variant="contained"
+                color="success"
                 fullWidth
                 type="submit"
                 sx={{
@@ -186,7 +219,7 @@ const Register = () => {
                   textShadow: "2px 2px 2px grey",
                 }}
               >
-                Registrarme
+                REGISTRAR
               </Button>
             </Grid>
             <Grid item xs={10} md={7}>
@@ -196,7 +229,7 @@ const Register = () => {
                 onClick={() => navigate("/login")}
                 type="button"
               >
-                Regresar
+                REGRESAR
               </Button>
             </Grid>
           </Grid>

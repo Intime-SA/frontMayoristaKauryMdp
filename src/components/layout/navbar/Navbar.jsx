@@ -8,13 +8,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { menuItems } from "../../../router/navigation";
+import CategoryIcon from "@mui/icons-material/Category";
 import {
   logOut,
   signUp,
@@ -38,13 +38,15 @@ import {
   CircularProgress,
   Modal,
   TextField,
+  Typography,
+  useMediaQuery,
 } from "@mui/material";
 import Newsletter from "../../pages/home/newsletter/NewsLetter";
 import Contacto from "../../pages/home/contacto/Contacto";
 import Redes from "../../pages/home/redes/Redes";
 import Footer from "../../pages/home/footer/Footer";
 import { CartContext } from "../../context/CartContext";
-
+import { useTheme } from "@mui/material/styles";
 const drawerWidth = 200;
 
 function Navbar(props) {
@@ -52,6 +54,26 @@ function Navbar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const [cartItemCount, setCartItemCount] = useState(0);
+  const theme = useTheme();
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const categorias = collection(db, "categorys");
+      const querySnapshot = await getDocs(categorias);
+      const categoriasArray = [];
+      querySnapshot.forEach((doc) => {
+        const dataCategoria = doc.data();
+        const id = doc.id; // Obtener el ID del documento
+        categoriasArray.push({ id, ...dataCategoria }); // Agregar el ID a los datos de la categoría
+      });
+      setCategory(categoriasArray);
+    };
+
+    fetchData();
+  }, []);
 
   const { cart } = useContext(CartContext);
 
@@ -161,6 +183,13 @@ function Navbar(props) {
     window.scrollTo(0, 0); // Desplazar al principio de la página
   };
 
+  const [showCategories, setShowCategories] = useState(false);
+
+  // Función para alternar la visualización de las categorías
+  const toggleCategories = () => {
+    setShowCategories(!showCategories);
+  };
+
   const drawer = (
     <div
       style={{
@@ -171,21 +200,55 @@ function Navbar(props) {
     >
       <Toolbar />
 
+      {/* Lista de elementos del menú */}
       <List>
-        {menuItems.map(({ id, path, title, Icon }) => {
-          return (
-            <Link key={id} to={path}>
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <Icon sx={{ color: "#c4072c" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={title} sx={{ color: "#c4072c" }} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          );
-        })}
+        {menuItems.map(({ id, path, title, Icon }) => (
+          <Link key={id} to={path}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Icon sx={{ color: "#c4072c" }} />
+                </ListItemIcon>
+                <ListItemText primary={title} sx={{ color: "#c4072c" }} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        ))}
+
+        <ListItem disablePadding>
+          <ListItemButton onClick={toggleCategories}>
+            <ListItemIcon>
+              <CategoryIcon sx={{ color: "#c4072c" }} />
+            </ListItemIcon>
+            <ListItemText primary={"Categorías"} sx={{ color: "#c4072c" }} />
+          </ListItemButton>
+        </ListItem>
+
+        {/* Renderizado de las categorías si showCategories es verdadero */}
+        {showCategories &&
+          category.map((cat) => (
+            <ListItem disablePadding key={cat.id}>
+              <Link
+                to={`/listArticles/${cat.id}`}
+                style={{
+                  width: "100%",
+                  textDecoration: "none", // Agregamos para eliminar subrayado
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  style={{
+                    padding: "12px 16px", // Mismo padding que en los otros elementos del menú
+                    fontSize: isNarrowScreen ? "0.8rem" : "1rem",
+                    color: "#c4072c",
+                    textAlign: "left",
+                  }}
+                >
+                  {cat.name}
+                </Typography>
+              </Link>
+            </ListItem>
+          ))}
 
         <ListItem disablePadding>
           <ListItemButton onClick={cerrarSesion}>
@@ -230,14 +293,13 @@ function Navbar(props) {
       >
         <Toolbar
           sx={{
-            gap: "20px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
             backgroundColor: "white",
             alignItems: "center",
             width: "100vw",
-            height: "25vh",
+            height: "auto",
             maxHeight: "220px",
             background: "#DD0831",
             padding: "1rem",
@@ -248,11 +310,10 @@ function Navbar(props) {
               display: "flex",
               justifyContent: "space-between",
               backgroundColor: "white",
-              alignItems: "flex-end",
+              alignItems: "center",
               width: "100%",
               height: "auto",
               background: "#DD0831",
-              paddingTop: "3rem",
             }}
           >
             <IconButton
@@ -272,7 +333,6 @@ function Navbar(props) {
             <Link to="/" style={{ color: "#c4072c" }}>
               <div
                 style={{
-                  marginTop: "5rem",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-start",
@@ -280,7 +340,10 @@ function Navbar(props) {
                 }}
               >
                 <img
-                  style={{ width: "10vw", color: "white", marginTop: "5rem" }}
+                  style={{
+                    width: isNarrowScreen ? "10vw" : "8vw", // Establece el tamaño según el dispositivo
+                    color: "white",
+                  }}
                   src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo-927322684-1687738908-786eafccc1dcfd968724c4c5cba6acf61687738908-320-0.jpg?alt=media&token=4415c358-8994-40b2-bee0-9fe378428bea"
                   alt="kaury"
                 />
