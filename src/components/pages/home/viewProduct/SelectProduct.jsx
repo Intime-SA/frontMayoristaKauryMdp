@@ -33,7 +33,18 @@ const SelectProduct = ({ article }) => {
     setProduct(event.target.value);
   };
 
+  let newCount = count; // Variable para almacenar el nuevo valor de count
+
+  // Verificar si la categoría cumple con las condiciones para limitar count a 10
+  if (category === "PACK OFERTA X3" || category === "PACK X2 SURTIDO OFERTA") {
+    // Limitar count a un máximo de 10
+    newCount = Math.min(count, 10);
+  }
+
   const add = () => {
+    if (category == "PACK OFERTA X3" || category == "PACK X2 SURTIDO OFERTA") {
+    }
+
     let objeto = {
       ...product,
       quantity: count,
@@ -299,10 +310,20 @@ const SelectProduct = ({ article }) => {
             </Typography>
             <Button
               onClick={() => {
-                if (count + 1 <= product.stock) {
-                  setCount(count + 1);
+                if (
+                  (product.name === "PACK OFERTA X3" ||
+                    product.name === "PACK X2 SURTIDO OFERTA") &&
+                  count + 1 > 10
+                ) {
+                  setErrorMessage(
+                    "No puedes seleccionar más de 10 productos en este pack"
+                  );
                 } else {
-                  setErrorMessage("No hay suficiente stock disponible");
+                  if (count + 1 <= product.stock) {
+                    setCount(count + 1);
+                  } else {
+                    setErrorMessage("No hay suficiente stock disponible");
+                  }
                 }
               }}
               variant="text"
