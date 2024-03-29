@@ -91,6 +91,7 @@ const ListOferta = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          marginLeft: "1rem",
         }}
       >
         {products.map((product) => (
