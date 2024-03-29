@@ -3,8 +3,8 @@
     { "source": "/home", "destination": "/" },
     { "source": "/cart", "destination": "/" },
     { "source": "/checkout", "destination": "/" },
-    { "source": "/viewProduct/:id", "destination": "/viewProduct/:id" },
-    { "source": "/listArticles/:id", "destination": "/listArticles/:id" },
+    { "source": "/viewProduct/:id", "destination": "/" },
+    { "source": "/listArticles/:id", "destination": "/" },
     { "source": "/pago", "destination": "/" },
     { "source": "/login", "destination": "/" }
   ]

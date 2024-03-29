@@ -74,14 +74,6 @@ const ListArticlesDesktop = () => {
   }, []);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      window.scrollTo(0, localStorage.getItem("scrollPosition") || 0);
-    }, 2000); // 2000 milisegundos = 2 segundos
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
       if (
         containerRef.current &&
@@ -94,6 +86,21 @@ const ListArticlesDesktop = () => {
         });
       }
     };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const storedScrollPosition = localStorage.getItem("scrollPosition");
+    if (storedScrollPosition) {
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(storedScrollPosition));
+      }, 2000); // Retraso de 2 segundos
+    }
   }, []);
 
   const setArticleWithScrollPosition = useCallback((article) => {
@@ -138,7 +145,7 @@ const ListArticlesDesktop = () => {
         >
           {loading ? (
             <CircularProgressWithLabel />
-          ) : (
+          ) : products.length > 0 ? (
             products.map((product) => (
               <div
                 key={product.id}
@@ -153,6 +160,8 @@ const ListArticlesDesktop = () => {
                 />
               </div>
             ))
+          ) : (
+            <Typography>No hay productos disponibles.</Typography>
           )}
         </div>
       )}
