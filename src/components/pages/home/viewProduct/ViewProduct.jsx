@@ -31,7 +31,14 @@ const ViewProduct = () => {
         </div>
       ) : (
         // Mostrar componentes uno al lado del otro en pantallas más grandes
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "0px",
+            paddingTop: "0px",
+          }}
+        >
           <VerticalCarrusel article={article} />
           <SelectProduct article={article} />
         </div>

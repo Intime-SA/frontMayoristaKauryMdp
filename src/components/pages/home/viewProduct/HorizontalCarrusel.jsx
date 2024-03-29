@@ -36,6 +36,7 @@ const HorizontalCarrusel = ({ article }) => {
   return (
     <div
       style={{
+        marginTop: "-5rem",
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
