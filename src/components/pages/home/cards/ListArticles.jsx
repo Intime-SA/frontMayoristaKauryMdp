@@ -81,7 +81,7 @@ const ListArticlesDesktop = () => {
       ) {
         setPage((prevPage) => {
           localStorage.setItem("page", prevPage + 1);
-          localStorage.setItem("scrollPosition", window.scrollY);
+
           return prevPage + 1;
         });
       }
@@ -95,13 +95,24 @@ const ListArticlesDesktop = () => {
   }, []);
 
   useEffect(() => {
+    const prevCategory = localStorage.getItem("category");
+    if (prevCategory !== category.id) {
+      localStorage.removeItem("scrollPosition");
+      localStorage.setItem("category", category.id);
+    }
+
     const storedScrollPosition = localStorage.getItem("scrollPosition");
-    if (storedScrollPosition) {
+    if (storedScrollPosition !== null) {
       setTimeout(() => {
         window.scrollTo(0, parseInt(storedScrollPosition));
-      }, 2000); // Retraso de 2 segundos
+      }, 1000); // Retraso de 1 segundo
+    } else {
+      // Si no hay nada en scrollPosition, llevar al usuario al top de la página
+      window.scrollTo(0, 0);
     }
-  }, []);
+
+    // Verificar si el category ha cambiado
+  }, [category.id]);
 
   const setArticleWithScrollPosition = useCallback((article) => {
     localStorage.setItem("scrollPosition", window.scrollY);
