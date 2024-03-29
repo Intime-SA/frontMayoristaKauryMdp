@@ -30,7 +30,9 @@ const Contacto = () => {
     <div
       style={{
         backgroundColor: "rgba(175, 155, 144, 0.21)",
-        height: "100vh",
+        height: "auto",
+        paddingBottom: "1rem",
+        paddingTop: "1rem",
         width: "100%",
         display: "flex",
         justifyContent: "center",
@@ -70,7 +72,7 @@ const Contacto = () => {
                 variant="outlined"
                 style={{
                   marginTop: "0.5rem",
-                  fontSize: isNarrowScreen ? "1rem" : "1.5rem",
+                  fontSize: isNarrowScreen ? "0.8rem" : "1rem",
                   color: "#c4072c",
                   textAlign: isNarrowScreen ? "center" : "left",
                 }}
@@ -96,7 +98,7 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontSize: isNarrowScreen ? "1rem" : "1.5rem",
+              fontSize: isNarrowScreen ? "1rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
             }}
@@ -109,7 +111,7 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontSize: isNarrowScreen ? "1rem" : "1.5rem",
+              fontSize: isNarrowScreen ? "1rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
             }}
@@ -123,7 +125,7 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: "0.5rem",
-              fontSize: isNarrowScreen ? "1rem" : "1.5rem",
+              fontSize: isNarrowScreen ? "1rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
               maxWidth: isNarrowScreen ? "375px" : "100%",
@@ -132,6 +134,21 @@ const Contacto = () => {
           >
             <span className="material-symbols-outlined">location_on</span> Jose
             Mármol 970, timbre 104 de 10 a 17hs, Mar del Plata
+          </Link>
+          <Link
+            to="https://maps.app.goo.gl/v5xmxXnhAXRHyeAc8"
+            variant="outlined"
+            style={{
+              margin: "0.5rem",
+              fontSize: isNarrowScreen ? "1rem" : "1rem",
+              color: "#c4072c",
+              textAlign: isNarrowScreen ? "center" : "left",
+              maxWidth: isNarrowScreen ? "375px" : "100%",
+              margin: isNarrowScreen ? "0.5rem" : "1rem",
+            }}
+          >
+            <span className="material-symbols-outlined">location_on</span> Jose
+            Rivadavia 5931, planta alta A de 10 a 17hs, Mar del Plata
           </Link>
         </div>
       </div>

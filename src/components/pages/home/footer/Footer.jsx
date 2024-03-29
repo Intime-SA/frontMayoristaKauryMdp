@@ -21,7 +21,9 @@ const Footer = () => {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
-        height: "15vh",
+        height: "auto",
+        paddingBottom: "1rem",
+        paddingTop: "1rem",
       }}
     >
       <Typography
