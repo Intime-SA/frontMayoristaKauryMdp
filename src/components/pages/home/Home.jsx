@@ -6,11 +6,6 @@ import "./home.css";
 import ListCards from "./cards/ListCards";
 import ListOferta from "./cards/ListOferta";
 import { Typography } from "@mui/material";
-import Newsletter from "./newsletter/NewsLetter";
-import Redes from "./redes/Redes";
-import Contacto from "./contacto/Contacto";
-import Footer from "./footer/Footer";
-import ViewProduct from "./viewProduct/ViewProduct";
 
 const Home = () => {
   useEffect(() => {

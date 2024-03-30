@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Typography,
-  TextField,
-  Button,
-  Container,
-  useMediaQuery,
-} from "@mui/material";
+import { Typography, Button, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 const Newsletter = () => {

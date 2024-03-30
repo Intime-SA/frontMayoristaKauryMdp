@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Divider, Typography } from "@mui/material";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../firebaseConfig";
 
 const DetalleCuenta = () => {
   const renderDatosBancarios = () => {

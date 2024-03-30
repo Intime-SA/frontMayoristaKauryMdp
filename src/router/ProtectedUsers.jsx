@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const ProtectedUsers = () => {
   const { isLogged } = useContext(AuthContext);
 
-  return <>{isLogged ? <Outlet /> : <Navigate to="/login" />}</>;
+  return <>{isLogged ? <Outlet /> : <Navigate to="/" />}</>;
 };
 
 export default ProtectedUsers;

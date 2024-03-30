@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { db } from "../../../firebaseConfig";
 import { updateDoc, doc, getDoc } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { DataObject } from "@mui/icons-material";
 
 const ClientForm = ({
   customers,

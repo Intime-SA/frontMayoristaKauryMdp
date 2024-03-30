@@ -15,26 +15,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { menuItems } from "../../../router/navigation";
 import CategoryIcon from "@mui/icons-material/Category";
-import {
-  logOut,
-  signUp,
-  db,
-  loginGoogle,
-  onSingIn,
-} from "../../../firebaseConfig";
-import { AuthContext } from "../../context/AuthContext";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+
+import { logOut, db } from "../../../firebaseConfig";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import {
   Autocomplete,
-  Button,
   CircularProgress,
   Modal,
   TextField,
@@ -116,20 +101,10 @@ function Navbar(props) {
     }
   };
 
-  const [searching, setSearching] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      event.target.blur(); // Destildar el input
-    }
-  };
 
   const handleProductSelect = async (event, value) => {
-    setInputValue(event.target.value);
     if (value) {
-      setSearching(true); // Comienza la búsqueda
       setModalOpen(true); // Abre el modal
 
       const selectedProduct = searchResults.find(
@@ -140,7 +115,6 @@ function Navbar(props) {
         // Simula una demora en la búsqueda (puedes reemplazar esto con tu lógica real de búsqueda)
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
-        setSearching(false); // Finaliza la búsqueda
         setModalOpen(false); // Cierra el modal
 
         // Acceder al elemento input y quitar el foco
@@ -157,17 +131,6 @@ function Navbar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const welcomeUser = () => {
-    const userData = JSON.parse(localStorage.getItem("userInfo"));
-    if (userData) {
-      return `Usuario: ${userData.email} - Rol: ${userData.rol}`;
-    } else {
-      return ""; // Si no hay datos de usuario en el localStorage, devuelve una cadena vacía
-    }
-  };
-
-  const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || [];
 
   const cerrarSesion = () => {
     logOut();

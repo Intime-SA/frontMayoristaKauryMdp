@@ -1,23 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Checkbox,
-  FormControlLabel,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { db } from "../../../firebaseConfig";
 import {
-  addDoc,
   updateDoc,
-  serverTimestamp,
   getDocs,
   collection,
   doc,
@@ -32,11 +20,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
 function CheckOut() {
-  const { cart, getTotalPrice, clearCart } = useContext(CartContext);
-  const [userData, setUserData] = useState({});
-  const [orderId, setOrderId] = useState(null);
-  const [clienteRef, setClienteRef] = useState();
-  const [nuevoId, setNuevoId] = useState(0);
+  const { cart } = useContext(CartContext);
+
+  const orderId = null;
   const [openForm, setOpenForm] = useState(false);
   const [emailClient, setEmailCliente] = useState("");
   const [dataCliente, setDataCliente] = useState(null);
@@ -53,12 +39,10 @@ function CheckOut() {
         snapShotOrders.forEach((user) => {
           const userDataFromOrder = user.data();
           if (userDataFromOrder.email === user.email) {
-            setUserData(userDataFromOrder);
             const obtenerRutaCliente = (idCliente) => {
               return `users/${idCliente}`;
             };
             const clienteRef = doc(db, obtenerRutaCliente(user.id));
-            setClienteRef(clienteRef);
           }
         });
       } catch (error) {
@@ -76,7 +60,6 @@ function CheckOut() {
         const docContador = await getDoc(refContador);
 
         const nuevoValor = docContador.data().autoincremental + 1;
-        setNuevoId(nuevoValor);
 
         const nuevoValorObj = { autoincremental: nuevoValor };
 

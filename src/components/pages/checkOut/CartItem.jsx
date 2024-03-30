@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+import { Card, CardActionArea, CardMedia } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function CartItem({ product }) {

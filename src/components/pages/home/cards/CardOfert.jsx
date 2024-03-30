@@ -4,12 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  useMediaQuery,
-} from "@mui/material";
+import { Button, CardActionArea, useMediaQuery } from "@mui/material";
 
 export default function CardOfert({ product }) {
   const theme = useTheme();
@@ -63,21 +58,6 @@ export default function CardOfert({ product }) {
                 minimumFractionDigits: 2,
               })}
           </Typography>
-          {/*           <Typography
-            variant="body2"
-            color="textSecondary"
-            style={{ marginBottom: "0.5rem" }}
-          >
-            Talle: {product.talle}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            style={{ marginBottom: "1rem" }}
-          >
-            Color: {product.color}
-          </Typography> */}
-          {/* Agrega cualquier otra información sobre el producto aquí */}
           <div
             style={{
               display: "flex",

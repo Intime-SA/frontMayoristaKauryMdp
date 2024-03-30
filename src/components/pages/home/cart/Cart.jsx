@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { CartContext } from "../../../context/CartContext";
 import {
   Button,
-  Modal,
   Box,
   Checkbox,
   TableRow,
@@ -10,28 +9,16 @@ import {
   Table,
   TableHead,
   TableBody,
-  useTheme,
   useMediaQuery,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import {
   collection,
   doc,
@@ -48,34 +35,22 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import CustomStepper from "./CustomStepper";
 import EmptyCartMessage from "./EmptyCartMenssage";
 import { createTheme } from "@mui/material/styles";
-import { useNavigation } from "react-router-dom";
-
-const ExpandMore = styled(({ expand, ...other }) => <IconButton {...other} />)(
-  ({ theme, expand }) => ({
-    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  })
-);
 
 const Cart = () => {
   const { cart, deleteById, getTotalPrice } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  let total = getTotalPrice();
 
   const [clienteRef, setClienteRef] = useState();
   const [nuevoId, setNuevoId] = useState(0);
   const [orderItems, setOrderItems] = useState([]);
   const [totalOrder, setTotalOrder] = useState();
-  const [dataCliente, setDataCliente] = useState([]);
-  const { user } = useContext(AuthContext);
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedLocal, setSelectedLocal] = useState([]);
   const [estadoError, setEstadoError] = useState(false);
+
+  let total = getTotalPrice();
 
   const theme = createTheme({
     breakpoints: {
@@ -88,7 +63,6 @@ const Cart = () => {
       },
     },
   });
-
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleCheckboxChange = (event, localId) => {
@@ -128,7 +102,6 @@ const Cart = () => {
             };
             const clienteRef = doc(db, obtenerRutaCliente(userArray.id));
             setClienteRef(clienteRef);
-            setDataCliente(userDataFromOrder);
           }
         });
       } catch (error) {
@@ -220,24 +193,7 @@ const Cart = () => {
     // Aquí puedes realizar la lógica de almacenamiento de la orden en la base de datos
   };
 
-  const [expanded, setExpanded] = useState(false);
-  const [fechaHora, setFechaHora] = useState(null);
-
-  const obtenerFechaHoraActual = () => {
-    const fechaActual = new Date();
-    const horaActual = fechaActual.toLocaleTimeString();
-    const fechaActualTexto = fechaActual.toLocaleDateString();
-
-    const fechaHoraActual = `${fechaActualTexto} ${horaActual}`;
-    setFechaHora(fechaHoraActual);
-  };
-
-  const handleExpandClick = () => {
-    obtenerFechaHoraActual();
-    setExpanded(!expanded);
-  };
   const userInfoString = localStorage.getItem("userInfo");
-  const emailUser = userInfoString ? JSON.parse(userInfoString).email : null;
 
   let precioTotalCarrito = 0; // Inicializa el precio total del carrito
 
@@ -659,9 +615,6 @@ const Cart = () => {
             <Divider />
 
             <div style={{ display: "flex", justifyContent: "center" }}>
-              {/*               <Button variant="contained" onClick={handleDelete}>
-                Vaciar Carrito
-              </Button> */}
               {selectedCheckbox && (
                 <>
                   <Button

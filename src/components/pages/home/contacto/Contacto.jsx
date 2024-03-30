@@ -1,4 +1,4 @@
-import { Button, Typography, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { collection, getDocs } from "firebase/firestore";
