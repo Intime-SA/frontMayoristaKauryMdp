@@ -78,7 +78,7 @@ const Pago = () => {
         );
     } else if (
       userOrder.tipoDePago.pagoEfectivo === true &&
-      userOrder.tipoEnvio === 1
+      userOrder.tipoEnvio === 2
     ) {
       emailjs
         .send(
