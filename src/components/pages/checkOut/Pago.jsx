@@ -34,7 +34,7 @@ const Pago = () => {
 
     emailjs
       .send(
-        "service_h6a5dzf",
+        "service_trtdi6v",
         "template_nnhw8ep",
         {
           from_email: email,
