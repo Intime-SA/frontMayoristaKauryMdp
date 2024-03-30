@@ -187,13 +187,6 @@ const Cart = () => {
     orderItemsTransform(cart);
   }, [cart]);
 
-  useEffect(() => {
-    if (selectedCheckbox === 1) {
-      let totalWithDiscount = total + (total * 15) / 100;
-      setTotalOrder(totalWithDiscount);
-    }
-  }, [selectedCheckbox]);
-
   const handleSubmit = async () => {
     let total = await getTotalPrice();
 

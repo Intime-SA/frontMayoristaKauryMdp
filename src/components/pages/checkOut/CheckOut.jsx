@@ -7,6 +7,8 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Checkbox,
+  FormControlLabel,
   TextField,
   Typography,
 } from "@mui/material";
@@ -41,6 +43,7 @@ function CheckOut() {
   const [customers, setCustomers] = useState([]);
   const [tipoEnvio, setTipoEnvio] = useState(0);
   const theme = useTheme();
+  const [totalOrderPago, setTotalOrderPago] = useState(0);
 
   useEffect(() => {
     const getUser = async () => {
@@ -155,6 +158,54 @@ function CheckOut() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const containerWidth = isMobile ? "100vw" : "90vw";
 
+  const [tipoDePago, setTipoDePago] = useState({
+    pagoTransferencia: false,
+    pagoEfectivo: false,
+  });
+
+  const [tipoDePagoAnterior, setTipoDePagoAnterior] = useState({
+    pagoTransferencia: false,
+    pagoEfectivo: false,
+  });
+
+  const handleChange = (event) => {
+    const { name, checked } = event.target;
+
+    // Almacenar el estado anterior antes de actualizar
+    setTipoDePagoAnterior({ ...tipoDePago });
+
+    setTipoDePago({
+      ...tipoDePago,
+      [name]: checked,
+      [name === "pagoTransferencia"
+        ? "pagoEfectivo"
+        : "pagoTransferencia"]: false,
+    });
+  };
+
+  useEffect(() => {
+    // Lógica para aplicar o quitar el descuento del 15% según el método de pago seleccionado
+    let newTotalOrder = totalOrder;
+
+    if (tipoDePago.pagoTransferencia) {
+      newTotalOrder += (totalOrder * 15) / 100; // Se añade el 15% al total
+    } else if (
+      tipoDePagoAnterior.pagoTransferencia &&
+      tipoDePago.pagoEfectivo
+    ) {
+      newTotalOrder -= (totalOrder * 15) / 100; // Se quita el 15% al total
+    }
+
+    setTotalOrderPago(newTotalOrder);
+
+    // Actualizamos el objeto userOrder en localStorage
+    const updatedUserOrder = {
+      ...userOrderData,
+      total: newTotalOrder,
+      tipoDePago: tipoDePago,
+    };
+    localStorage.setItem("userOrder", JSON.stringify(updatedUserOrder));
+  }, [tipoDePago.pagoTransferencia, tipoDePago.pagoEfectivo]);
   // Verificar si hay un objeto almacenado
 
   return (
@@ -193,6 +244,30 @@ function CheckOut() {
                 <div>
                   <strong>Entrega</strong>
                   <TipoEnvio />
+                  {userOrderData.tipoEnvio === 2 && (
+                    <div>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={tipoDePago.pagoTransferencia}
+                            onChange={handleChange}
+                            name="pagoTransferencia"
+                          />
+                        }
+                        label="Pago Transferencia"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={tipoDePago.pagoEfectivo}
+                            onChange={handleChange}
+                            name="pagoEfectivo"
+                          />
+                        }
+                        label="Pago Efectivo"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <ClientForm
@@ -514,7 +589,7 @@ function CheckOut() {
               component="div"
               color="#c4072c"
             >
-              {totalOrder.toLocaleString("es-ES", {
+              {totalOrderPago.toLocaleString("es-ES", {
                 style: "currency",
                 currency: "ARS",
                 minimumFractionDigits: 2,
