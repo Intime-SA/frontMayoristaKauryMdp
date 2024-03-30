@@ -164,6 +164,8 @@ const Cart = () => {
       const orderItems = cart.map((item) => {
         const subtotal = item.quantity * item.unit_price;
         total += subtotal;
+        console.log(selectedCheckbox);
+
         return {
           color: item.color || "",
           descuento: 0,
@@ -176,6 +178,7 @@ const Cart = () => {
           unit_price: item.unit_price || "",
         };
       });
+
       setOrderItems(orderItems);
       setTotalOrder(total);
       return total;
@@ -184,20 +187,21 @@ const Cart = () => {
     orderItemsTransform(cart);
   }, [cart]);
 
+  useEffect(() => {
+    if (selectedCheckbox === 1) {
+      let totalWithDiscount = total + (total * 15) / 100;
+      setTotalOrder(totalWithDiscount);
+    }
+  }, [selectedCheckbox]);
+
   const handleSubmit = async () => {
-    const total = await getTotalPrice();
+    let total = await getTotalPrice();
 
     if (total <= 40000) {
       setEstadoError(true);
       console.log(total);
       return;
     }
-
-    // Verificar si clienteRef está definido
-    /*     if (!clienteRef) {
-      console.error("Error: clienteRef no está definido");
-      return;
-    } */
 
     // Construir el objeto userOrder
     const userOrder = {

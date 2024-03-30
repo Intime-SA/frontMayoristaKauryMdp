@@ -26,6 +26,10 @@ const Pago = () => {
   const [email, setEmail] = useState("");
   const [toname, setToname] = useState("");
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Hace scroll al tope de la página
+  }, []);
+
   const { clearCart } = useContext(CartContext);
 
   const isMobile = useMediaQuery("(max-width:760px)");
@@ -221,11 +225,18 @@ const Pago = () => {
             >
               Numero de Orden #{numberOrder}
             </Typography>
-            <DetalleCuenta />
+            {userOrder.tipoEnvio === 1 && <DetalleCuenta />}
           </>
         )}
         {userOrder && (
-          <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: " center",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <DetallesPedido
               userOrder={userOrder}
               setRenderOrder={setRenderOrder}

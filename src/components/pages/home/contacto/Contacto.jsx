@@ -147,7 +147,7 @@ const Contacto = () => {
               margin: isNarrowScreen ? "0.5rem" : "1rem",
             }}
           >
-            <span className="material-symbols-outlined">location_on</span> Jose
+            <span className="material-symbols-outlined">location_on</span>
             Rivadavia 5931, planta alta A de 10 a 17hs, Mar del Plata
           </Link>
         </div>
