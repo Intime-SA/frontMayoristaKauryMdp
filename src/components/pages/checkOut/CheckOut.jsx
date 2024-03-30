@@ -530,12 +530,19 @@ function CheckOut() {
                 component="div"
                 color="grey"
               >
-                {totalOrder.toLocaleString("es-ES", {
-                  style: "currency",
-                  currency: "ARS",
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+                {userOrderData.tipoEnvio === 1
+                  ? totalOrderOriginal.toLocaleString("es-ES", {
+                      style: "currency",
+                      currency: "ARS",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })
+                  : totalOrder.toLocaleString("es-ES", {
+                      style: "currency",
+                      currency: "ARS",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
               </Typography>
             </div>
             <div
