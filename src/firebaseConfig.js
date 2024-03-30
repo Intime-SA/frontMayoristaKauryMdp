@@ -11,13 +11,7 @@ import {
 } from "firebase/auth";
 
 import { getFirestore } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,
   authDomain: import.meta.env.VITE_AUTHDOMAIN,
@@ -63,14 +57,12 @@ export const loginGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     return res;
-    console.log(res);
   } catch (error) {}
 };
 
 export const signUp = async ({ email, password }) => {
   try {
     let res = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(res);
     return res;
   } catch (error) {
     console.log(error);

@@ -15,7 +15,6 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import { db, loginGoogle, onSingIn } from "../../../firebaseConfig";
 import {
-  Timestamp,
   collection,
   doc,
   getDoc,
@@ -137,9 +136,13 @@ const Login = () => {
       }}
     >
       <img
-        src="https://www.kaury.com/img/kaury_logo_19.svg"
+        src={
+          isNarrowScreen
+            ? "https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo%2Fjpeg-optimizer_Copia%20de%20Mayorista%20Mar%20del%20Plata.jpg?alt=media&token=6394ee96-ee66-4d27-a194-f537c4fa17aa"
+            : "https://www.kaury.com/img/kaury_logo_19.svg"
+        }
         alt="logo"
-        style={{ width: isNarrowScreen ? "50%" : "auto", height: "100%" }}
+        style={{ width: isNarrowScreen ? "100%" : "auto", height: "100%" }}
       />
       <h1
         style={{
