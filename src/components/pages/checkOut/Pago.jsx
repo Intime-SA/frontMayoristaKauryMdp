@@ -58,7 +58,11 @@ const Pago = () => {
     Alias a transferir: KAURYMAYORISTA
     CBU: 0000003100037054721391
     Titular de cuenta: RODOLFO GUILLERMO OTERO
-    Recorda enviar el comprobante de pago + número de orden al WhatsApp (223) 348-5438  `;
+    Recorda enviar el comprobante de pago + número de orden al WhatsApp (223) 348-5438  
+    
+    Te esperamos en el showroom para retirar tu pedido.
+    
+    `;
 
     if (userOrder.tipoEnvio === 1) {
       emailjs
