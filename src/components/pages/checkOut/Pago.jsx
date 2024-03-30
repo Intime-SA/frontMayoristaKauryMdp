@@ -36,26 +36,97 @@ const Pago = () => {
   const sendEmail = (subject) => {
     const asunto = `¡Confirmacion de Compra! - Numero de Orden: #${subject}`;
 
-    emailjs
-      .send(
-        "service_trtdi6v",
-        "template_nnhw8ep",
-        {
-          from_email: email,
-          subject: asunto,
-          message: "Tu consulta no molesta! Estamos a disposición",
-          to_name: toname,
-        },
-        "uAivPuB-RJ_3LBVlN"
-      )
-      .then(
-        (response) => {
-          console.log("Correo electrónico enviado con éxito:", response);
-        },
-        (error) => {
-          console.error("Error al enviar el correo electrónico:", error);
-        }
-      );
+    console.log(userOrder.tipoDePago.pagoEfectivo);
+
+    // Datos bancarios
+    const datosBancarios = `
+      Alias a transferir: KAURYMAYORISTA
+      CBU: 0000003100037054721391
+      Titular de cuenta: RODOLFO GUILLERMO OTERO
+      Recorda enviar el comprobante de pago + número de orden al WhatsApp (223) 348-5438
+  
+      Datos de envio:
+      Calle: ${userOrder.infoEntrega.calle} ${" "} ${
+      userOrder.infoEntrega.numero
+    }
+      Ciudad: ${userOrder.infoEntrega.ciudad}
+      Codigo Postal: ${userOrder.infoEntrega.codigoPostal}
+      Provincia: ${userOrder.infoEntrega.provincia}
+
+    `;
+
+    if (userOrder.tipoEnvio === 1) {
+      emailjs
+        .send(
+          "service_trtdi6v",
+          "template_nnhw8ep",
+          {
+            from_email: email,
+            subject: asunto,
+            message: datosBancarios,
+            to_name: toname,
+          },
+          "uAivPuB-RJ_3LBVlN"
+        )
+        .then(
+          (response) => {
+            console.log("Correo electrónico enviado con éxito:", response);
+          },
+          (error) => {
+            console.error("Error al enviar el correo electrónico:", error);
+          }
+        );
+    } else if (
+      userOrder.tipoDePago.pagoEfectivo === true &&
+      userOrder.tipoEnvio === 1
+    ) {
+      emailjs
+        .send(
+          "service_trtdi6v",
+          "template_nnhw8ep",
+          {
+            from_email: email,
+            subject: asunto,
+            message: `Modalidad de pago: SOLAMENTE EFECTIVO. \n Transferencia con recargo 15%`,
+            to_name: toname,
+          },
+          "uAivPuB-RJ_3LBVlN"
+        )
+        .then(
+          (response) => {
+            console.log("Correo electrónico enviado con éxito:", response);
+          },
+          (error) => {
+            console.error("Error al enviar el correo electrónico:", error);
+          }
+        );
+    } else if (
+      userOrder.tipoEnvio === 2 &&
+      userOrder.tipoDePago.pagoEfectivo === false
+    ) {
+      emailjs
+        .send(
+          "service_trtdi6v",
+          "template_nnhw8ep",
+          {
+            from_email: email,
+            subject: asunto,
+            message: datosBancarios,
+            to_name: toname,
+          },
+          "uAivPuB-RJ_3LBVlN"
+        )
+        .then(
+          (response) => {
+            console.log("Correo electrónico enviado con éxito:", response);
+          },
+          (error) => {
+            console.error("Error al enviar el correo electrónico:", error);
+          }
+        );
+    } else {
+      console.log("no se pudo enviar correo");
+    }
   };
 
   // Obtener el pedido del localStorage al cargar el componente

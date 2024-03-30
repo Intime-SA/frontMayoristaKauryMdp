@@ -284,7 +284,6 @@ const Cart = () => {
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
-            marginTop: "2rem",
           }}
         >
           <CustomStepper step={0} />

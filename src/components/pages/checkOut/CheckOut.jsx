@@ -288,7 +288,7 @@ function CheckOut() {
                             name="pagoTransferencia"
                           />
                         }
-                        label="Pago Transferencia"
+                        label="Transferencia"
                       />
                       <FormControlLabel
                         control={
@@ -298,7 +298,7 @@ function CheckOut() {
                             name="pagoEfectivo"
                           />
                         }
-                        label="Pago Efectivo"
+                        label="Efectivo"
                       />
                     </div>
                   )}
