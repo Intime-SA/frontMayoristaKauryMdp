@@ -139,7 +139,7 @@ const Login = () => {
       <img
         src="https://www.kaury.com/img/kaury_logo_19.svg"
         alt="logo"
-        style={{ width: isNarrowScreen ? "50%" : "auto" }}
+        style={{ width: isNarrowScreen ? "50%" : "auto", height: "100%" }}
       />
       <h1
         style={{
