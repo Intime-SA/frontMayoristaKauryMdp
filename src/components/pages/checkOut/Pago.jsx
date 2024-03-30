@@ -229,6 +229,12 @@ const Pago = () => {
           </>
         )}
         {userOrder && (
+          <DetallesPedido
+            userOrder={userOrder}
+            setRenderOrder={setRenderOrder}
+          />
+        )}
+        {userOrder && (
           <div
             style={{
               display: "flex",
@@ -237,10 +243,6 @@ const Pago = () => {
               alignItems: "center",
             }}
           >
-            <DetallesPedido
-              userOrder={userOrder}
-              setRenderOrder={setRenderOrder}
-            />
             {renderOrder && (
               <Button onClick={() => volver()} variant="contained" color="info">
                 Volver

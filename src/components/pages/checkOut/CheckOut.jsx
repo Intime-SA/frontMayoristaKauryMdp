@@ -116,6 +116,23 @@ function CheckOut() {
 
   const userOrderData = JSON.parse(userOrderJSON);
 
+  const [totalOrderOriginal, setTotalOrderOriginal] = useState(0);
+
+  useEffect(() => {
+    const userOrderJSON = localStorage.getItem("userOrder");
+    if (userOrderJSON) {
+      const userOrderData = JSON.parse(userOrderJSON);
+      if (userOrderData.total) {
+        setTotalOrderOriginal(userOrderData.total);
+        localStorage.setItem("totalCarrito", userOrderData.total.toString());
+      }
+    } else {
+      console.log("No se encontró ningún objeto userOrder en localStorage");
+    }
+  }, []);
+
+  console.log(totalOrderOriginal);
+
   let totalOrder = 0; // Inicializar el total en caso de que no haya ningún objeto userOrder en localStorage
 
   // Verificar si hay un objeto almacenado
@@ -160,7 +177,7 @@ function CheckOut() {
 
   const [tipoDePago, setTipoDePago] = useState({
     pagoTransferencia: false,
-    pagoEfectivo: false,
+    pagoEfectivo: true,
   });
 
   const [tipoDePagoAnterior, setTipoDePagoAnterior] = useState({
@@ -173,6 +190,23 @@ function CheckOut() {
 
     // Almacenar el estado anterior antes de actualizar
     setTipoDePagoAnterior({ ...tipoDePago });
+
+    // Si se desmarca la opción de transferencia, se establece pago en efectivo
+    if (name === "pagoTransferencia" && !checked) {
+      // Verificar si aún hay algún checkbox seleccionado
+      const otroCheckboxSeleccionado = tipoDePago.pagoEfectivo;
+      if (!otroCheckboxSeleccionado) {
+        // Si no hay otro checkbox seleccionado, no se permite desmarcar el actual
+        return;
+      }
+    } else if (name === "pagoEfectivo" && !checked) {
+      // Verificar si aún hay algún checkbox seleccionado
+      const otroCheckboxSeleccionado = tipoDePago.pagoTransferencia;
+      if (!otroCheckboxSeleccionado) {
+        // Si no hay otro checkbox seleccionado, no se permite desmarcar el actual
+        return;
+      }
+    }
 
     setTipoDePago({
       ...tipoDePago,
@@ -193,7 +227,7 @@ function CheckOut() {
       tipoDePagoAnterior.pagoTransferencia &&
       tipoDePago.pagoEfectivo
     ) {
-      newTotalOrder -= (totalOrder * 15) / 100; // Se quita el 15% al total
+      newTotalOrder -= (totalOrderOriginal * 15) / 100; // Se quita el 15% al total
     }
 
     setTotalOrderPago(newTotalOrder);
@@ -589,12 +623,19 @@ function CheckOut() {
               component="div"
               color="#c4072c"
             >
-              {totalOrderPago.toLocaleString("es-ES", {
-                style: "currency",
-                currency: "ARS",
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
+              {userOrderData.tipoEnvio === 1
+                ? totalOrder.toLocaleString("es-ES", {
+                    style: "currency",
+                    currency: "ARS",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                : totalOrderPago.toLocaleString("es-ES", {
+                    style: "currency",
+                    currency: "ARS",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
             </Typography>
           </div>
         </div>
