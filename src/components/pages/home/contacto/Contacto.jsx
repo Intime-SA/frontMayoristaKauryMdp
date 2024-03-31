@@ -15,11 +15,15 @@ const Contacto = () => {
       const categorias = collection(db, "categorys");
       const querySnapshot = await getDocs(categorias);
       const categoriasArray = [];
+
       querySnapshot.forEach((doc) => {
-        const dataCategoria = doc.data();
-        const id = doc.id; // Obtener el ID del documento
-        categoriasArray.push({ id, ...dataCategoria }); // Agregar el ID a los datos de la categoría
+        if (doc.data().status === true) {
+          const dataCategoria = doc.data();
+          const id = doc.id; // Obtener el ID del documento
+          categoriasArray.push({ id, ...dataCategoria }); // Agregar el ID a los datos de la categoría
+        }
       });
+
       setCategory(categoriasArray);
     };
 
