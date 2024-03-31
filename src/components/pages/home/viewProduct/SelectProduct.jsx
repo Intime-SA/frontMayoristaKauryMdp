@@ -15,6 +15,7 @@ import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import Divider from "@mui/material/Divider";
 import { db } from "../../../../firebaseConfig";
 import { CartContext } from "../../../context/CartContext";
+import SkeletonLoading from "./SkeletonLoading";
 
 const SelectProduct = ({ article }) => {
   const [loading, setLoading] = useState(true);
@@ -58,7 +59,7 @@ const SelectProduct = ({ article }) => {
     // Simular una carga durante 3 segundos
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -140,13 +141,7 @@ const SelectProduct = ({ article }) => {
       {loading ? (
         // Mostrar skeletons mientras carga el componente
         <>
-          <Skeleton variant="text" width="80%" height={50} />
-          <Skeleton variant="text" width="50%" height={30} />
-          <Skeleton variant="text" width="90%" height={30} />
-          <Skeleton variant="rectangular" width="100%" height={200} />
-          <Skeleton variant="text" width="80%" height={20} />
-          <Skeleton variant="text" width="70%" height={20} />
-          <Skeleton variant="text" width="60%" height={20} />
+          <SkeletonLoading />
         </>
       ) : (
         <>
