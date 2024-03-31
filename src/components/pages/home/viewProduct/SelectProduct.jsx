@@ -49,7 +49,6 @@ const SelectProduct = ({ article }) => {
       ...product,
       quantity: count,
     };
-    console.log(objeto);
 
     addToCart(objeto);
     navigate(`/listArticles/${category}`);
@@ -59,7 +58,7 @@ const SelectProduct = ({ article }) => {
     // Simular una carga durante 3 segundos
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -101,6 +100,26 @@ const SelectProduct = ({ article }) => {
     setPriceDefaultArticle(false); // Reiniciar el valor
   }, [id]);
 
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  useEffect(() => {}, [isButtonDisabled]);
+
+  const handleButtonClick = () => {
+    if (
+      (product.name === "PACK OFERTA X3" ||
+        product.name === "PACK X2 SURTIDO OFERTA") &&
+      count + 1 > 10
+    ) {
+      setErrorMessage("No puedes seleccionar más de 10 productos en este pack");
+      setIsButtonDisabled(true);
+    } else if (count + 1 <= product.stock) {
+      setErrorMessage("");
+      setCount(count + 1);
+      if (count + 1 < product.stock) console.log("no hay mas");
+    } else {
+      setErrorMessage("No hay suficiente stock disponible");
+    }
+  };
   return (
     <Box
       sx={{
@@ -172,7 +191,7 @@ const SelectProduct = ({ article }) => {
           </Typography>
           <SelectProductMessage />
           <FormControl
-            style={{ display: "flex", justifyContent: "center" }}
+            sx={{ display: "flex", justifyContent: "center" }}
             fullWidth
           >
             <InputLabel sx={{ height: "1rem" }} id="demo-simple-select-label">
@@ -191,7 +210,7 @@ const SelectProduct = ({ article }) => {
               }} // Ajustes de tamaño de fuente y altura
             >
               {products.map((product, index) => (
-                <MenuItem key={product.id} value={product}>
+                <MenuItem key={index} value={product}>
                   {`Talle: ${product.talle} / Color: ${product.color}`}
                 </MenuItem>
               ))}
@@ -288,7 +307,10 @@ const SelectProduct = ({ article }) => {
             }}
           >
             <Button
-              onClick={() => setCount(count - 1)}
+              onClick={() => {
+                setCount(count - 1);
+                setErrorMessage("");
+              }}
               variant="text"
               disabled={count <= 0}
               sx={{
@@ -309,25 +331,9 @@ const SelectProduct = ({ article }) => {
               {count}
             </Typography>
             <Button
-              onClick={() => {
-                if (
-                  (product.name === "PACK OFERTA X3" ||
-                    product.name === "PACK X2 SURTIDO OFERTA") &&
-                  count + 1 > 10
-                ) {
-                  setErrorMessage(
-                    "No puedes seleccionar más de 10 productos en este pack"
-                  );
-                } else {
-                  if (count + 1 <= product.stock) {
-                    setCount(count + 1);
-                  } else {
-                    setErrorMessage("No hay suficiente stock disponible");
-                  }
-                }
-              }}
+              onClick={handleButtonClick}
               variant="text"
-              disabled={product && count >= product.stock}
+              disabled={isButtonDisabled} // Utiliza el estado para deshabilitar el botón
               sx={{
                 color: "#c4072c", // Color especificado
                 fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada

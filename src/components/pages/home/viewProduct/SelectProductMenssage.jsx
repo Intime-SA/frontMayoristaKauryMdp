@@ -13,7 +13,10 @@ const SelectProductMessage = () => {
             color: "grey",
           }}
         >
-          <span style={{ fontSize: "100%" }} class="material-symbols-outlined">
+          <span
+            style={{ fontSize: "100%" }}
+            className="material-symbols-outlined"
+          >
             payments
           </span>{" "}
           El precio es pago en EFECTIVO
@@ -31,7 +34,10 @@ const SelectProductMessage = () => {
             color: "grey",
           }}
         >
-          <span style={{ fontSize: "100%" }} class="material-symbols-outlined">
+          <span
+            style={{ fontSize: "100%" }}
+            className="material-symbols-outlined"
+          >
             account_balance
           </span>{" "}
           Pago con transferencia tiene un 15% de recargo.

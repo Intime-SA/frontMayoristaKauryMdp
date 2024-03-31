@@ -74,6 +74,7 @@ const Cart = () => {
       setSelectedLocal(localId);
     }
   };
+
   const locales = [
     {
       id: 1,
@@ -86,6 +87,8 @@ const Cart = () => {
         "Showroom 2 - Rivadavia 5931. Planta alta A. TIMBRE ¨KAURY¨. De lunes a sabados de 10 a 17hs. MAR DEL PLATA",
     },
   ];
+
+  window.scrollTo(0, 0);
 
   useEffect(() => {
     const getUser = async () => {
@@ -137,7 +140,6 @@ const Cart = () => {
       const orderItems = cart.map((item) => {
         const subtotal = item.quantity * item.unit_price;
         total += subtotal;
-        console.log(selectedCheckbox);
 
         return {
           color: item.color || "",
@@ -165,7 +167,6 @@ const Cart = () => {
 
     if (total <= 40000) {
       setEstadoError(true);
-      console.log(total);
       return;
     }
 

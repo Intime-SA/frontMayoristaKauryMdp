@@ -23,9 +23,6 @@ const ListOferta = () => {
         const categorySnapshot = await getDoc(categoryRef);
 
         if (categorySnapshot.exists()) {
-          const categoryData = categorySnapshot.data();
-          const categoryReference = categoryData.category;
-
           const productCollection = collection(db, "products");
           const querySnapshot = await getDocs(productCollection);
           const productsData = [];
@@ -36,7 +33,6 @@ const ListOferta = () => {
               productData.category === "oferta" &&
               productData.promotional_price !== undefined
             ) {
-              console.log(productData);
               productsData.push({ id: product.id, ...productData });
               setOferta(true);
             }

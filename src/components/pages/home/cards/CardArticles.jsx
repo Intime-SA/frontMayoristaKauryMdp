@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
 import { useTransition, animated } from "react-spring"; // Importar useTransition y animated desde react-spring
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./ProductCardSkeleton";
 
-export default function CardArticles({
-  product,
-  setOpenProductView,
-  setArticle,
-  oferta,
-}) {
-  const theme = useTheme();
-  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
+export default function CardArticles({ product, setArticle, oferta }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleClick = (article) => {

@@ -18,7 +18,6 @@ export default function CardHome({
   const handleClick = () => {
     setOpenProducts(true);
     setSelectCategory(categoryId);
-    console.log(categoryId);
   };
 
   const handleImageLoad = () => {

@@ -141,11 +141,6 @@ function Navbar(props) {
     setCartItemCount(cart.length);
   }, [cart]);
 
-  const handleAbrirCarrito = () => {
-    // Redirigir al usuario al carrito
-    window.scrollTo(0, 0); // Desplazar al principio de la página
-  };
-
   const [showCategories, setShowCategories] = useState(false);
 
   // Función para alternar la visualización de las categorías
@@ -329,7 +324,6 @@ function Navbar(props) {
               edge="start"
               to="/cart"
               style={{ marginRight: "5%", padding: 0, marginTop: "1rem" }}
-              onClick={handleAbrirCarrito}
             >
               <span
                 style={{
