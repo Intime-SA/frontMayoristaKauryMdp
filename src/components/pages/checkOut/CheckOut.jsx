@@ -153,7 +153,7 @@ function CheckOut() {
     console.error("Error al analizar el JSON:", error);
   }
 
-  let andreaniAsucursal = 6550;
+  let andreaniAsucursal = 6900;
   let andreaniCostoDomicilio = 8550;
   let sinEnvio = 0;
 
