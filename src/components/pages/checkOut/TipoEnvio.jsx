@@ -62,7 +62,7 @@ const TipoEnvio = () => {
               fontFamily: '"Roboto Condensed", sans-serif',
             }}
           >
-            Andreani Estandar "Envío a domicilio"
+            Andreani Estandar
           </h6>
           <h6
             style={{

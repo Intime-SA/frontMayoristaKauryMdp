@@ -10,6 +10,8 @@ const ClientForm = ({
   setOpenForm,
   setDataCliente,
   andreaniCostoDomicilio,
+  andreaniAsucursal,
+  setDesabilitarEnvio,
 }) => {
   const [customerData, setCustomerData] = useState({});
   const [newDataEnvio, setNewDataEnvio] = useState({
@@ -109,8 +111,17 @@ const ClientForm = ({
         userOrder.infoEntrega = newDataEnvioCorrected.datosEnvio;
         userOrder.telefono = telefono;
 
-        if (userOrder.tipoEnvio === 1)
+        if (
+          userOrder.tipoEnvio === 1 &&
+          userOrder.envioSeleccionado === "envioDomicilio"
+        ) {
           userOrder.total = userOrder.total + andreaniCostoDomicilio;
+        } else if (
+          userOrder.tipoEnvio === 1 &&
+          userOrder.envioSeleccionado === "envioSucursal"
+        ) {
+          userOrder.total = userOrder.total + andreaniAsucursal;
+        }
 
         // Volver a convertir el objeto a una cadena JSON
         const userOrderActualizadoJSON = JSON.stringify(userOrder);
@@ -122,6 +133,8 @@ const ClientForm = ({
       console.error("Error al actualizar los datos:", error);
       setUpdateSuccess(false); // Actualización fallida
     }
+
+    setDesabilitarEnvio(true);
     window.scrollTo(0, 0); // Desplazar al principio de la página
   };
 

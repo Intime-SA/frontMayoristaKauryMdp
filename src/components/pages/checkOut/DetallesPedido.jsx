@@ -71,23 +71,52 @@ const DetallesPedido = ({ userOrder }) => {
               style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
             >
               <span style={tituloStyle}>Dirección de Envío:</span>
-              <br />
-              <span style={renderStyle}>
-                {userOrder.infoEntrega.calle}
-              </span>{" "}
-              <br />
-              <span style={renderStyle}>
-                CP: {userOrder.infoEntrega.codigoPostal}
-                {", "}
-              </span>
-              <span style={renderStyle}>
-                {userOrder.infoEntrega.provincia}
-                {" - "}
-              </span>
-              <span style={renderStyle}>
-                {"+54"}
-                {dataClient.telefono}
-              </span>
+              {userOrder.envioSeleccionado === "envioDomicilio" ? (
+                <>
+                  <br />
+                  <span style={renderStyle}>
+                    {userOrder.infoEntrega.calle}
+                  </span>{" "}
+                  <br />
+                  <span style={renderStyle}>
+                    CP: {userOrder.infoEntrega.codigoPostal}
+                    {", "}
+                  </span>
+                  <span style={renderStyle}>
+                    {userOrder.infoEntrega.provincia}
+                    {" - "}
+                  </span>
+                  <span style={renderStyle}>
+                    {"+54"}
+                    {dataClient.telefono}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <br />
+                  <span style={renderStyle}>
+                    {" "}
+                    SUCURSAL ANDREANI / CORREO ARGENTINO
+                  </span>
+                  <br />
+                  <span style={renderStyle}>
+                    A convenir con el cliente
+                  </span>{" "}
+                  <br />
+                  <span style={renderStyle}>
+                    CP: {userOrder.infoEntrega.codigoPostal}
+                    {", "}
+                  </span>
+                  <span style={renderStyle}>
+                    {userOrder.infoEntrega.provincia}
+                    {" - "}
+                  </span>
+                  <span style={renderStyle}>
+                    {"+54"}
+                    {dataClient.telefono}
+                  </span>
+                </>
+              )}
             </Typography>
             <Divider
               variant="middle"

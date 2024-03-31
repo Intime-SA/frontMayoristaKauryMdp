@@ -30,6 +30,7 @@ function CheckOut() {
   const [tipoEnvio, setTipoEnvio] = useState(0);
   const theme = useTheme();
   const [totalOrderPago, setTotalOrderPago] = useState(0);
+  const [desabilitarEnvio, setDesabilitarEnvio] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -152,6 +153,7 @@ function CheckOut() {
     console.error("Error al analizar el JSON:", error);
   }
 
+  let andreaniAsucursal = 6550;
   let andreaniCostoDomicilio = 8550;
   let sinEnvio = 0;
 
@@ -200,6 +202,14 @@ function CheckOut() {
     });
   };
 
+  const [envioSeleccionado, setEnvioSeleccionado] = useState("envioSucursal"); // Estado para almacenar la opción seleccionada
+
+  const handleCheckboxChange = (event) => {
+    const { name } = event.target;
+    console.log(name);
+    setEnvioSeleccionado(name); // Cambiar el estado solo si la opción seleccionada es diferente
+  };
+
   useEffect(() => {
     // Lógica para aplicar o quitar el descuento del 15% según el método de pago seleccionado
     let newTotalOrder = totalOrder;
@@ -220,9 +230,14 @@ function CheckOut() {
       ...userOrderData,
       total: newTotalOrder,
       tipoDePago: tipoDePago,
+      envioSeleccionado: envioSeleccionado || "sinEnvio",
     };
     localStorage.setItem("userOrder", JSON.stringify(updatedUserOrder));
-  }, [tipoDePago.pagoTransferencia, tipoDePago.pagoEfectivo]);
+  }, [
+    tipoDePago.pagoTransferencia,
+    tipoDePago.pagoEfectivo,
+    envioSeleccionado,
+  ]);
   // Verificar si hay un objeto almacenado
 
   return (
@@ -261,6 +276,31 @@ function CheckOut() {
                 <div>
                   <strong>Entrega</strong>
                   <TipoEnvio />
+                  {!desabilitarEnvio && userOrderData.tipoEnvio === 1 && (
+                    <div>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={envioSeleccionado === "envioDomicilio"}
+                            onChange={handleCheckboxChange}
+                            name="envioDomicilio"
+                          />
+                        }
+                        label="Envio a domicilio"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={envioSeleccionado === "envioSucursal"}
+                            onChange={handleCheckboxChange}
+                            name="envioSucursal"
+                          />
+                        }
+                        label="Envio a sucursal"
+                      />
+                    </div>
+                  )}
+
                   {userOrderData.tipoEnvio === 2 && (
                     <div>
                       <FormControlLabel
@@ -294,6 +334,8 @@ function CheckOut() {
                   openForm={openForm}
                   setDataCliente={setDataCliente}
                   andreaniCostoDomicilio={andreaniCostoDomicilio}
+                  andreaniAsucursal={andreaniAsucursal}
+                  setDesabilitarEnvio={setDesabilitarEnvio}
                 />
                 {dataCliente && (
                   <>
@@ -557,24 +599,30 @@ function CheckOut() {
                 component="div"
                 color="grey"
               >
-                {tipoEnvio !== 0 && userOrderData.infoEntrega.length !== 0 ? (
-                  <>
-                    {" " +
-                      andreaniCostoDomicilio.toLocaleString("es-ES", {
-                        style: "currency",
-                        currency: "ARS",
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                  </>
-                ) : (
+                {envioSeleccionado === "envioDomicilio" &&
+                  userOrderData.tipoEnvio === 1 &&
+                  andreaniCostoDomicilio.toLocaleString("es-ES", {
+                    style: "currency",
+                    currency: "ARS",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+
+                {envioSeleccionado === "envioSucursal" &&
+                  userOrderData.tipoEnvio === 1 &&
+                  andreaniAsucursal.toLocaleString("es-ES", {
+                    style: "currency",
+                    currency: "ARS",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                {userOrderData.tipoEnvio === 2 &&
                   sinEnvio.toLocaleString("es-ES", {
                     style: "currency",
                     currency: "ARS",
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
-                  })
-                )}
+                  })}
               </Typography>
             </div>
           </div>

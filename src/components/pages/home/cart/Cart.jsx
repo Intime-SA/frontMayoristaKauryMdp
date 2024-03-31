@@ -379,7 +379,7 @@ const Cart = () => {
                   fontFamily: '"Roboto Condensed", sans-serif',
                 }}
               >
-                Envío a domicilio
+                Envío a domicilio / sucursal
               </h6>
             </div>
             <div
@@ -415,7 +415,7 @@ const Cart = () => {
                     fontFamily: '"Roboto Condensed", sans-serif',
                   }}
                 >
-                  Andreani Estandar "Envio a domicilio"
+                  Andreani Estandar
                 </h6>
                 <h6
                   style={{
