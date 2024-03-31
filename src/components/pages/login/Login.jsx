@@ -142,7 +142,10 @@ const Login = () => {
             : "https://www.kaury.com/img/kaury_logo_19.svg"
         }
         alt="logo"
-        style={{ width: isNarrowScreen ? "100%" : "auto", height: "100%" }}
+        style={{
+          width: isNarrowScreen ? "400%" : "auto",
+          height: isNarrowScreen ? "400" : "auto",
+        }}
       />
       <h1
         style={{
