@@ -22,6 +22,8 @@ const Redes = () => {
       <div
         style={{
           width: "30vw",
+          minWidth: "200px", // Ancho mínimo
+          maxWidth: "400px", // Ancho máximo
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-around",
@@ -31,8 +33,14 @@ const Redes = () => {
       >
         <img
           src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/insta.png?alt=media&token=863cb77e-ae36-46dd-af67-d30ea79e2325"
-          alt=""
-          style={{ width: "10%" }}
+          alt="insta"
+          width="50px"
+          height="50px"
+          style={{
+            width: "10%", // Tamaño relativo al ancho del contenedor padre
+            minWidth: "50px", // Ancho mínimo en píxeles
+            maxWidth: "100px", // Ancho máximo en píxeles
+          }}
         />
         <Typography
           variant="p"

@@ -18,7 +18,7 @@ export default function CardArticles({ product, setArticle, oferta }) {
   const transitions = useTransition(imageLoaded, {
     from: { opacity: 0, transform: "scale(0.9)" },
     enter: { opacity: 1, transform: "scale(1)" },
-    config: { tension: 220, friction: 180 }, // Ajustar el valor de friction para hacer la aparición más lenta
+    config: { tension: 220, friction: 90 }, // Ajustar el valor de friction para hacer la aparición más lenta
   });
 
   return (

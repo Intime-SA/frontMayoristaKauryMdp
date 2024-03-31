@@ -14,7 +14,7 @@ const Newsletter = () => {
         padding: "20px",
         border: "1px solid #ccc",
         borderRadius: "8px",
-        width: "100%",
+        width: "100vw",
         height: "60vh",
         maxHeight: "400px",
         backgroundColor: "#DD0831",
@@ -41,20 +41,20 @@ const Newsletter = () => {
         gutterBottom
         style={{
           marginBottom: "0.5rem",
-          width: "80%",
-          fontSize: isNarrowScreen ? "60%" : "80%",
+          fontSize: isNarrowScreen ? "16px" : "24px", // Reducir el tamaño de fuente en pantallas estrechas
           display: "flex",
           justifyContent: "center",
+          fontWeight: 900,
         }}
       >
-        <strong>Recibí todas las ofertas y noticias</strong>
+        Recibí todas las ofertas y noticias
       </Typography>
       <Typography
         variant="p"
         gutterBottom
         style={{
           marginBottom: "0.5rem",
-          fontSize: isNarrowScreen ? "40%" : "90%",
+          fontSize: isNarrowScreen ? "16px" : "24px",
           fontWeight: 100,
         }}
       >
@@ -67,33 +67,38 @@ const Newsletter = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          width: "100%",
+          width: "100vw",
+          marginBottom: "20px", // Añadir margen inferior para separación
         }}
       >
-        <div style={{ position: "relative" }}>
-          <input
-            type="email"
-            placeholder="Tu correo electrónico"
-            style={{
-              marginBottom: "20px",
-              backgroundColor: "white",
-              borderRadius: "10px",
-              width: "80vw",
-              height: "8vh",
-              padding: "12px 20px",
-              boxSizing: "border-box",
-              border: "1px solid #ccc",
-              fontSize: "50%",
-              outline: "none",
-            }}
-          />
-        </div>
+        <input
+          type="email"
+          placeholder="Tu correo electrónico"
+          style={{
+            marginBottom: "20px",
+            backgroundColor: "white",
+            borderRadius: "10px",
+            width: "80vw", // Ancho del 100% menos los márgenes horizontales
+            maxWidth: "1500px", // Ancho máximo para evitar desbordamientos en pantallas anchas
+            height: "50px", // Altura fija para evitar cambios de diseño
+            padding: "12px 20px",
+            boxSizing: "border-box",
+            border: "1px solid #ccc",
+            fontSize: "16px", // Tamaño de fuente fijo
+            outline: "none",
+          }}
+        />
 
         <Button
           variant="contained"
           color="inherit"
           type="submit"
-          style={{ marginBottom: "20px", color: "black" }}
+          style={{
+            marginBottom: "20px",
+            color: "black",
+            width: "30%",
+            maxWidth: "300px",
+          }}
         >
           Suscribirse
         </Button>

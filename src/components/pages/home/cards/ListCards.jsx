@@ -59,6 +59,7 @@ const ListCards = () => {
               dots={false}
               infinite={true}
               speed={500}
+              arrows={false}
               slidesToShow={4}
               slidesToScroll={1}
               autoplay={true}

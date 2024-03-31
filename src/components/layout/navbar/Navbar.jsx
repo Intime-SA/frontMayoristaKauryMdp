@@ -288,32 +288,40 @@ function Navbar(props) {
                 menu
               </span>
             </IconButton>
-            <Link to="/" style={{ color: "#c4072c" }}>
+            <Link
+              to="/"
+              style={{ color: "#c4072c", width: "10%", height: "10%" }}
+            >
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "flex-start",
+                  justifyContent: "center",
                   alignItems: "center",
+                  maxWidth: "300px",
+                  maxHeight: "5rem",
                 }}
               >
                 <img
-                  style={{
-                    width: isNarrowScreen ? "10vw" : "8vw", // Establece el tamaño según el dispositivo
-                    color: "white",
-                  }}
                   src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/logo-927322684-1687738908-786eafccc1dcfd968724c4c5cba6acf61687738908-320-0.jpg?alt=media&token=4415c358-8994-40b2-bee0-9fe378428bea"
                   alt="kaury"
-                  width={isNarrowScreen ? "10vw" : "8vw"}
-                  height={isNarrowScreen ? "10vw" : "8vw"}
+                  width="200px" // Ancho en píxeles
+                  height="100px" // Altura en píxeles
+                  style={{
+                    width: isNarrowScreen ? "5rem" : "10rem", // Ancho dependiendo de isNarrowScreen
+                    height: "auto", // Altura automática para mantener la proporción
+                    maxWidth: isNarrowScreen ? "200px" : "400px", // Ancho máximo en relación al tamaño del contenedor
+                  }}
                 />
                 <h1
                   style={{
-                    color: "#c4072c",
+                    color: "white",
                     marginTop: "1%",
                     fontSize: "100%",
-                    color: "white",
                     fontWeight: 250,
+                    width: "100%", // Ancho del h1
+                    height: "100%",
+                    textAlign: "center", // Altura del h1
                   }}
                 >
                   Mayorista

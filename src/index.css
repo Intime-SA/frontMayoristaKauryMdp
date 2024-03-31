@@ -3,3 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden; /* Oculta la barra de desplazamiento lateral */
+}
