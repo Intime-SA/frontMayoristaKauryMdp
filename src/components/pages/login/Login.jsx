@@ -145,8 +145,8 @@ const Login = () => {
         width={isNarrowScreen ? "400px" : "auto"}
         height={isNarrowScreen ? "400px" : "auto"}
         style={{
-          width: isNarrowScreen ? "400%" : "auto",
-          height: isNarrowScreen ? "400" : "auto",
+          width: isNarrowScreen ? "400px" : "auto",
+          height: isNarrowScreen ? "400px" : "auto",
         }}
       />
       <h1
