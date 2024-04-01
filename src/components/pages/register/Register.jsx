@@ -20,6 +20,7 @@ import { useTheme } from "@mui/material/styles";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [errorTelefono, setErrorTelefono] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -37,6 +38,14 @@ const Register = () => {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const handleChange = (e) => {
+    // Validate and allow only numeric characters for phone number
+    if (e.target.name === "telefono" && !/^\d*$/.test(e.target.value)) {
+      setErrorTelefono("El formato del telefono es incorrecto");
+      return;
+    } else {
+      setErrorTelefono(""); // Restablecer el error a una cadena vacía si el formato es correcto
+    }
+
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   };
 
@@ -133,6 +142,8 @@ const Register = () => {
               name="telefono"
               label="Número de Teléfono"
               fullWidth
+              error={errorTelefono !== ""}
+              helperText={errorTelefono}
             />
           </Grid>
           <Grid item xs={10} md={12}>
