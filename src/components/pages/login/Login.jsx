@@ -25,7 +25,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
 const Login = () => {
@@ -34,6 +34,22 @@ const Login = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const userAgentChrome =
+    "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36";
+
+  const [isInstagramBrowser, setIsInstagramBrowser] = useState(false);
+
+  useEffect(() => {
+    const userAgentRequest = window.navigator.userAgent;
+    if (userAgentRequest !== userAgentChrome) {
+      setIsInstagramBrowser(true);
+    }
+  }, []); // El array de dependencias vacío asegura que este efecto se ejecute solo una vez
+
+  console.log(isInstagramBrowser);
+
+  console.log(isInstagramBrowser);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
@@ -230,24 +246,26 @@ const Login = () => {
                 Ingresar
               </Button>
             </Grid>
-            <Grid item xs={10} md={5}>
-              <Tooltip title="ingresa con google">
-                <Button
-                  onClick={googleSingIn}
-                  variant="contained"
-                  startIcon={<GoogleIcon />}
-                  type="button"
-                  fullWidth
-                  sx={{
-                    color: "white",
-                    textTransform: "none",
-                    textShadow: "2px 2px 2px grey",
-                  }}
-                >
-                  Ingresa con google
-                </Button>
-              </Tooltip>
-            </Grid>
+            {!isInstagramBrowser && (
+              <Grid item xs={10} md={5}>
+                <Tooltip title="ingresa con google">
+                  <Button
+                    onClick={googleSingIn}
+                    variant="contained"
+                    startIcon={<GoogleIcon />}
+                    type="button"
+                    fullWidth
+                    sx={{
+                      color: "white",
+                      textTransform: "none",
+                      textShadow: "2px 2px 2px grey",
+                    }}
+                  >
+                    Ingresa con google
+                  </Button>
+                </Tooltip>
+              </Grid>
+            )}
 
             <Grid item xs={10} md={8}>
               <Typography
