@@ -274,7 +274,7 @@ const SelectProduct = ({ article }) => {
                   {`Talle: ${product.talle}`}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  {`Precio: $${product.unit_price.toLocaleString("es-AR", {
+                  {`Precio: ${product.unit_price.toLocaleString("es-AR", {
                     style: "currency",
                     currency: "ARS",
                     minimumFractionDigits: 2,

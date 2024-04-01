@@ -102,6 +102,7 @@ const ProductCard = ({ product, handleClick, oferta }) => {
                 fontFamily: '"Roboto Condensed", sans-serif', // Aplicar tachado si oferta es true
               }}
             >
+              $
               {product.unit_price.toLocaleString("es-AR", {
                 minimumFractionDigits: 2,
               })}
