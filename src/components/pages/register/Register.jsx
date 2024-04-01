@@ -62,6 +62,14 @@ const Register = () => {
 
     try {
       const res = await signUp({ email, password });
+
+      let userAgentRequest;
+      try {
+        userAgentRequest = window.navigator.userAgent;
+      } catch (error) {
+        console.log(error);
+      }
+
       if (res.user.uid) {
         const userDoc = {
           email: res.user.email,
@@ -70,6 +78,7 @@ const Register = () => {
           apellido,
           telefono,
           fechaInicio: serverTimestamp(),
+          userAgent: userAgentRequest,
         };
         await setDoc(doc(db, "users", res.user.uid), userDoc);
       }
