@@ -60,12 +60,20 @@ export const loginGoogle = async () => {
   } catch (error) {}
 };
 
+let error;
+
 export const signUp = async ({ email, password }) => {
   try {
     let res = await createUserWithEmailAndPassword(auth, email, password);
+    console.log(res);
     return res;
   } catch (error) {
-    console.log(error);
+    let ress = await createUserWithEmailAndPassword(auth, email, password);
+    console.log(ress);
+    if (error.code === "auth/email-already-in-use") {
+      console.log("Email ya esta en uso");
+      return error;
+    }
   }
 };
 

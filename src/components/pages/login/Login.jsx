@@ -35,19 +35,22 @@ const Login = () => {
   const theme = useTheme();
   const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const userAgentChrome =
-    "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36";
+  const userAgentChrome = "Chrome";
+  const userAgentSafari = "Safari";
+  const userAgentMozila = "Mozilla";
 
   const [isInstagramBrowser, setIsInstagramBrowser] = useState(false);
 
   useEffect(() => {
     const userAgentRequest = window.navigator.userAgent;
-    if (userAgentRequest !== userAgentChrome) {
+    if (
+      !userAgentRequest.includes(userAgentChrome) &&
+      !userAgentRequest.includes(userAgentSafari) &&
+      !userAgentRequest.includes(userAgentMozila)
+    ) {
       setIsInstagramBrowser(true);
     }
   }, []); // El array de dependencias vacío asegura que este efecto se ejecute solo una vez
-
-  console.log(isInstagramBrowser);
 
   console.log(isInstagramBrowser);
 

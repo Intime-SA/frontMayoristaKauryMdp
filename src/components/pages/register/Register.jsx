@@ -12,7 +12,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signUp, db } from "../../../firebaseConfig";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
@@ -21,6 +21,7 @@ import { useTheme } from "@mui/material/styles";
 const Register = () => {
   const navigate = useNavigate();
   const [errorTelefono, setErrorTelefono] = useState("");
+  const [errorLogin, setErrorLogin] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -75,8 +76,15 @@ const Register = () => {
       navigate("/login");
     } catch (error) {
       // Manejo de errores de Firebase
-      console.error("Error al registrarse:", error.message);
-      // Puedes mostrar un mensaje de error al usuario aquí
+      console.error(error);
+      // Mostrar un mensaje de error al usuario
+      if (error.code === "auth/email-already-in-use") {
+        // Aquí puedes mostrar un mensaje al usuario indicando que la dirección de correo electrónico ya está en uso
+        // Por ejemplo:
+        setErrorLogin("La dirección de correo electrónico ya está en uso.");
+      } else {
+        // Puedes manejar otros tipos de errores aquí
+      }
     }
   };
 
@@ -215,6 +223,20 @@ const Register = () => {
           {passwordError && (
             <Grid item xs={10} md={12}>
               <p style={{ color: "red" }}>Las contraseñas no coinciden.</p>
+            </Grid>
+          )}
+          {errorLogin && (
+            <Grid item xs={10} md={12}>
+              <p style={{ color: "red" }}>
+                Este correo ya tiene una cuenta asociada
+              </p>
+              <p style={{ color: "red" }}>
+                Haz click{" "}
+                <Link style={{ color: "blue" }} to="/forgot-password">
+                  aqui
+                </Link>{" "}
+                para reestablecer su contraseña
+              </p>
             </Grid>
           )}
           <Grid container justifyContent="center" spacing={3} mt={2}>
