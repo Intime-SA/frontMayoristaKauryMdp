@@ -35,15 +35,13 @@ const Login = () => {
   const theme = useTheme();
   const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const userAgentChrome = "Chrome";
-  const userAgentSafari = "Safari";
-  const userAgentMozila = "Mozilla";
+  const userAgentIstagram = "Instagram";
 
   const [isInstagramBrowser, setIsInstagramBrowser] = useState(false);
 
   useEffect(() => {
     const userAgentRequest = window.navigator.userAgent;
-    if (!userAgentRequest.includes(userAgentChrome)) {
+    if (userAgentRequest.includes(userAgentIstagram)) {
       setIsInstagramBrowser(true);
     }
   }, []); // El array de dependencias vacío asegura que este efecto se ejecute solo una vez
