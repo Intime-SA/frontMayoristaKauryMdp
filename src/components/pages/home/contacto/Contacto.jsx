@@ -102,25 +102,35 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontSize: isNarrowScreen ? "1rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
             }}
           >
-            <span className="material-symbols-outlined">call</span> +54 (223)
-            348-5438
+            <span
+              style={{ fontSize: isNarrowScreen ? "1rem" : "1.3rem" }}
+              className="material-symbols-outlined"
+            >
+              call
+            </span>{" "}
+            +54 (223) 348-5438
           </Link>
 
           <Link
             variant="outlined"
             style={{
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontSize: isNarrowScreen ? "1rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
             }}
           >
-            <span className="material-symbols-outlined">mail</span>{" "}
+            <span
+              style={{ fontSize: isNarrowScreen ? "1rem" : "1.3rem" }}
+              className="material-symbols-outlined"
+            >
+              mail
+            </span>{" "}
             kaurymdp.store@gmail.com
           </Link>
 
@@ -129,29 +139,39 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: "0.5rem",
-              fontSize: isNarrowScreen ? "1rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
               maxWidth: isNarrowScreen ? "375px" : "100%",
               margin: isNarrowScreen ? "0.5rem" : "1rem",
             }}
           >
-            <span className="material-symbols-outlined">location_on</span> Jose
-            Mármol 970, timbre 104 de 10 a 17hs, Mar del Plata
+            <span
+              style={{ fontSize: isNarrowScreen ? "1rem" : "1.3rem" }}
+              className="material-symbols-outlined"
+            >
+              location_on
+            </span>{" "}
+            Jose Mármol 970, timbre 104 de 10 a 17hs, Mar del Plata
           </Link>
           <Link
-            to="https://maps.app.goo.gl/v5xmxXnhAXRHyeAc8"
+            to="https://maps.app.goo.gl/gUDvuRrCas3q1ioQ9"
             variant="outlined"
             style={{
               margin: "0.5rem",
-              fontSize: isNarrowScreen ? "1rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
               maxWidth: isNarrowScreen ? "375px" : "100%",
               margin: isNarrowScreen ? "0.5rem" : "1rem",
             }}
           >
-            <span className="material-symbols-outlined">location_on</span>
+            <span
+              style={{ fontSize: isNarrowScreen ? "1rem" : "1.3rem" }}
+              className="material-symbols-outlined"
+            >
+              location_on
+            </span>
             Rivadavia 5931, planta alta A de 10 a 17hs, Mar del Plata
           </Link>
         </div>
