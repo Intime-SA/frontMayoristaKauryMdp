@@ -303,11 +303,13 @@ const SelectProduct = ({ article }) => {
           >
             <Button
               onClick={() => {
-                setCount(count - 1);
-                setErrorMessage("");
+                if (count > 1) {
+                  setCount(count - 1);
+                  setErrorMessage("");
+                }
               }}
               variant="text"
-              disabled={count <= 0}
+              disabled={count <= 1}
               sx={{
                 color: "#c4072c", // Color especificado
                 fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
