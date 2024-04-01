@@ -42,6 +42,8 @@ const Pago = () => {
       CBU: 0000003100037054721391
       Titular de cuenta: RODOLFO GUILLERMO OTERO
       Recorda enviar el comprobante de pago + número de orden al WhatsApp (223) 348-5438
+
+      TOTAL A PAGAR: ${userOrder.total}
   
       Datos de envio:
       Calle: ${userOrder.infoEntrega.calle} ${" "} ${
@@ -59,6 +61,8 @@ const Pago = () => {
     Recorda enviar el comprobante de pago + número de orden al WhatsApp (223) 348-5438  
     
     Te esperamos en el showroom para retirar tu pedido.
+
+    TOTAL A PAGAR: ${userOrder.total}
     
     `;
 
@@ -94,7 +98,9 @@ const Pago = () => {
           {
             from_email: email,
             subject: asunto,
-            message: `Modalidad de pago: SOLAMENTE EFECTIVO. \n Transferencia con recargo 15%`,
+            message: `TOTAL A PAGAR: ${userOrder.total}. 
+            \n Modalidad de pago: SOLAMENTE EFECTIVO. 
+            \n Transferencia con recargo 15%`,
             to_name: toname,
           },
           "uAivPuB-RJ_3LBVlN"
