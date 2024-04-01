@@ -621,7 +621,10 @@ const Cart = () => {
               {selectedCheckbox && (
                 <>
                   <Button
-                    style={{ borderRadius: "20px" }}
+                    style={{
+                      borderRadius: "20px",
+                      fontFamily: '"Roboto Condensed", sans-serif',
+                    }}
                     color="error"
                     variant="contained"
                     onClick={() => handleSubmit()}
@@ -662,7 +665,13 @@ const Cart = () => {
                 marginTop: "1rem",
               }}
             >
-              <Link style={{ fontSize: "50%" }} to="/">
+              <Link
+                style={{
+                  fontSize: "50%",
+                  fontFamily: '"Roboto Condensed", sans-serif',
+                }}
+                to="/"
+              >
                 Ver mas productos
               </Link>
             </div>

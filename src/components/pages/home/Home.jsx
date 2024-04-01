@@ -330,7 +330,7 @@ const Home = () => {
       <Typography
         variant="h4"
         style={{
-          fontFamily: "Arial, sans-serif",
+          fontFamily: '"Roboto Condensed", sans-serif',
           fontWeight: 700,
           marginBottom: "1rem",
           color: "#c4072c",

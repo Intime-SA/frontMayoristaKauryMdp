@@ -32,6 +32,7 @@ const Newsletter = () => {
           marginBottom: "0.5rem",
           fontSize: isNarrowScreen ? "70%" : "90%",
           fontWeight: 100,
+          fontFamily: '"Roboto Condensed", sans-serif',
         }}
       >
         NewsLetter
@@ -45,6 +46,7 @@ const Newsletter = () => {
           display: "flex",
           justifyContent: "center",
           fontWeight: 900,
+          fontFamily: '"Roboto Condensed", sans-serif',
         }}
       >
         Recibí todas las ofertas y noticias
@@ -56,6 +58,7 @@ const Newsletter = () => {
           marginBottom: "0.5rem",
           fontSize: isNarrowScreen ? "16px" : "24px",
           fontWeight: 100,
+          fontFamily: '"Roboto Condensed", sans-serif',
         }}
       >
         ¿Querés recibir nuestras ofertas? ¡Registrate ya mismo y comenzá a
@@ -88,20 +91,6 @@ const Newsletter = () => {
             outline: "none",
           }}
         />
-
-        <Button
-          variant="contained"
-          color="inherit"
-          type="submit"
-          style={{
-            marginBottom: "20px",
-            color: "black",
-            width: "30%",
-            maxWidth: "300px",
-          }}
-        >
-          Suscribirse
-        </Button>
       </form>
     </div>
   );

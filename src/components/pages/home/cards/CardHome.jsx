@@ -46,7 +46,13 @@ export default function CardHome({
               justifyContent: "center",
             }}
           >
-            <Typography gutterBottom variant="h5" component="div" color="white">
+            <Typography
+              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              gutterBottom
+              variant="h5"
+              component="div"
+              color="white"
+            >
               {categoryNombre}
             </Typography>
             {/*           <Typography variant="body2" color="white">

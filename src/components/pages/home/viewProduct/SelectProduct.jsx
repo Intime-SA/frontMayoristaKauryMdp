@@ -147,7 +147,7 @@ const SelectProduct = ({ article }) => {
         <>
           <Typography
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: '"Roboto Condensed", sans-serif',
               fontWeight: 600,
               fontStyle: "normal",
             }}
@@ -156,7 +156,7 @@ const SelectProduct = ({ article }) => {
           </Typography>
           <Typography
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: '"Roboto Condensed", sans-serif',
               fontWeight: 900,
               fontStyle: "normal",
               color: "#c4072c",
@@ -270,20 +270,36 @@ const SelectProduct = ({ article }) => {
                 }}
               />
               <Box>
-                <Typography variant="body2" gutterBottom>
+                <Typography
+                  variant="body2"
+                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  gutterBottom
+                >
                   {`Talle: ${product.talle}`}
                 </Typography>
-                <Typography variant="body2" gutterBottom>
+                <Typography
+                  variant="body2"
+                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  gutterBottom
+                >
                   {`Precio: ${product.unit_price.toLocaleString("es-AR", {
                     style: "currency",
                     currency: "ARS",
                     minimumFractionDigits: 2,
                   })}`}
                 </Typography>
-                <Typography variant="body2" gutterBottom>
+                <Typography
+                  variant="body2"
+                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  gutterBottom
+                >
                   {`Color: ${product.color}`}
                 </Typography>
-                <Typography variant="body2" gutterBottom>
+                <Typography
+                  variant="body2"
+                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  gutterBottom
+                >
                   {`Stock: ${product.stock}`}
                 </Typography>
               </Box>
@@ -373,7 +389,10 @@ const SelectProduct = ({ article }) => {
               onClick={add}
               variant="contained"
               fullWidth
-              style={{ borderRadius: "20px" }}
+              style={{
+                borderRadius: "20px",
+                fontFamily: '"Roboto Condensed", sans-serif',
+              }}
               disabled={!product}
               color="error"
             >

@@ -49,6 +49,7 @@ const Redes = () => {
             marginBottom: "0.5rem",
             fontSize: isNarrowScreen ? "30%" : "60%",
             fontWeight: 100,
+            fontFamily: '"Roboto Condensed", sans-serif',
           }}
         >
           Estamos en instagram
@@ -63,7 +64,12 @@ const Redes = () => {
             fontSize: isNarrowScreen ? "20%" : "40%",
           }}
         >
-          <Link to="https://www.instagram.com/kaurymdp">SEGUINOS</Link>
+          <Link
+            style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+            to="https://www.instagram.com/kaurymdp"
+          >
+            SEGUINOS
+          </Link>
         </Button>
       </div>
     </div>
