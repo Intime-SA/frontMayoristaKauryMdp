@@ -43,11 +43,7 @@ const Login = () => {
 
   useEffect(() => {
     const userAgentRequest = window.navigator.userAgent;
-    if (
-      !userAgentRequest.includes(userAgentChrome) &&
-      !userAgentRequest.includes(userAgentSafari) &&
-      !userAgentRequest.includes(userAgentMozila)
-    ) {
+    if (!userAgentRequest.includes(userAgentChrome)) {
       setIsInstagramBrowser(true);
     }
   }, []); // El array de dependencias vacío asegura que este efecto se ejecute solo una vez
