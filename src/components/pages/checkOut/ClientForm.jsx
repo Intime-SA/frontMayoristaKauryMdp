@@ -26,6 +26,7 @@ const ClientForm = ({
     },
   });
   const [telefono, setTelefono] = useState("");
+  const [errorTelefono, setErrorTelefono] = useState("");
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [userData, setUserData] = useState([]);
   const { user } = useContext(AuthContext);
@@ -224,7 +225,18 @@ const ClientForm = ({
                     variant="outlined"
                     label="Teléfono"
                     value={telefono}
-                    onChange={(e) => setTelefono(e.target.value)}
+                    onChange={(e) => {
+                      const inputValue = e.target.value;
+                      // Validate and allow only numeric characters for phone number
+                      if (!/^\d*$/.test(inputValue)) {
+                        setErrorTelefono(
+                          "El formato del teléfono es incorrecto"
+                        );
+                      } else {
+                        setErrorTelefono(""); // Restablecer el error a una cadena vacía si el formato es correcto
+                        setTelefono(inputValue); // Actualizar el estado del teléfono si el formato es correcto
+                      }
+                    }}
                     fullWidth
                     required
                     style={{
@@ -233,6 +245,8 @@ const ClientForm = ({
                       maxWidth: "400px",
                     }}
                     InputLabelProps={{ shrink: true }}
+                    error={errorTelefono !== ""}
+                    helperText={errorTelefono}
                   />
                 </div>
               </div>
