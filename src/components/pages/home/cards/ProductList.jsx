@@ -24,22 +24,14 @@ const ProductList = () => {
     const fetchData = async () => {
       setLoadingMore(true);
       const productCollection = collection(db, "products");
-      const q = query(
-        productCollection,
-        where("category", "==", category.id),
-        limit(1 + page)
-      );
+      const q = query(productCollection, where("category", "==", category.id));
       const snapShotProducts = await getDocs(q);
       const newArray = [];
 
       snapShotProducts.forEach((product) => {
         const name = product.data().name;
         const color = product.data().color;
-        if (
-          name &&
-          color &&
-          !newArray.some((item) => item.name === name && item.color === color)
-        ) {
+        if (name && !newArray.some((item) => item.name === name)) {
           newArray.push(product.data());
         }
       });
@@ -50,7 +42,7 @@ const ProductList = () => {
     };
 
     fetchData();
-  }, [category, page]);
+  }, [category]);
 
   useEffect(() => {
     const prevCategory = localStorage.getItem("category");
