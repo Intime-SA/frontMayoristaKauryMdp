@@ -83,7 +83,7 @@ const Login = () => {
       }
     } catch (error) {
       alert(
-        "Las credenciales ingresadas no son validas. Por favor, comuniquese con el administrador. \n\n Email: ramiro@desarrollostech.com \n Tel: +54 9 11 6870-2318"
+        "Las credenciales ingresadas no son validas. Por favor, comuniquese con el administrador. \n\n Email: comercial@mayoristamdp.com \n Tel: +54 9 (223)348-5438"
       );
       console.log(error);
     }
