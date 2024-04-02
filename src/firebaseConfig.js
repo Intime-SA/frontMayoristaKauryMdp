@@ -13,8 +13,6 @@ import {
 import { getFirestore } from "firebase/firestore";
 import { getPerformance } from "firebase/performance";
 
-const perf = getPerformance(app);
-
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,
   authDomain: import.meta.env.VITE_AUTHDOMAIN,
@@ -28,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 export const db = getFirestore(app);
+const perf = getPerformance(app);
 
 export const onSingIn = async ({ email, password }) => {
   try {
