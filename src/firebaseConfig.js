@@ -11,6 +11,9 @@ import {
 } from "firebase/auth";
 
 import { getFirestore } from "firebase/firestore";
+import { getPerformance } from "firebase/performance";
+
+const perf = getPerformance(app);
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,
