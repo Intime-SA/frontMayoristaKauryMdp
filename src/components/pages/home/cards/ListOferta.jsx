@@ -3,7 +3,15 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import CardArticles from "./CardArticles";
 import { db } from "../../../../firebaseConfig";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  query,
+  where,
+  getDocsFromCache,
+} from "firebase/firestore";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -19,31 +27,44 @@ const ListOferta = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const categoryRef = doc(db, "categorys", "oferta");
-        const categorySnapshot = await getDoc(categoryRef);
+        const productCollectionRef = collection(db, "products");
+        const q = query(
+          productCollectionRef,
+          where("category", "==", "oferta")
+        );
+        const cacheQuerySnapshot = await getDocsFromCache(q);
+        let querySnapshot;
 
-        if (categorySnapshot.exists()) {
-          const productCollection = collection(db, "products");
-          const querySnapshot = await getDocs(productCollection);
-          const productsData = [];
-
-          querySnapshot.forEach((product) => {
-            const productData = product.data();
-            if (
-              productData.category === "oferta" &&
-              productData.promotional_price !== undefined
-            ) {
-              productsData.push({ id: product.id, ...productData });
-              setOferta(true);
-            }
-          });
-
-          setProducts(productsData);
+        if (cacheQuerySnapshot.empty) {
+          console.log("Fetching data from Firebase...");
+          querySnapshot = await getDocs(q);
         } else {
-          console.error("La categoría 'oferta' no existe.");
+          console.log("Fetching data from cache...");
+          querySnapshot = cacheQuerySnapshot;
+        }
+
+        const newArray = [];
+        let productCount = 0;
+
+        querySnapshot.forEach((doc) => {
+          const productData = doc.data();
+          if (productCount < 3) {
+            newArray.push({ id: doc.id, ...productData });
+            productCount++;
+          }
+        });
+
+        // Verificar si se encontraron productos para la oferta
+        if (newArray.length > 0) {
+          setProducts(newArray);
+          setOferta(true);
+        } else {
+          console.error(
+            "No se encontraron productos para la categoría 'oferta'."
+          );
         }
       } catch (error) {
-        console.error("Error fetching products: ", error);
+        console.error("Error fetching data:", error);
       }
     };
 

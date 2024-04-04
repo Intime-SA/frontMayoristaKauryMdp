@@ -4,7 +4,14 @@ import { useTheme } from "@mui/material/styles";
 import CardArticles from "./CardArticles";
 import CircularProgressWithLabel from "./CircularProgressWithLabel";
 import { useParams } from "react-router-dom";
-import { collection, getDocs, query, where, limit } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  limit,
+  getDocsFromCache,
+} from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
 import { Typography } from "@mui/material";
 
@@ -19,26 +26,43 @@ const ProductList = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [oferta, setOferta] = useState(false);
   const [article, setArticle] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       setLoadingMore(true);
-      const productCollection = collection(db, "products");
-      const q = query(productCollection, where("category", "==", category.id));
-      const snapShotProducts = await getDocs(q);
-      const newArray = [];
 
-      snapShotProducts.forEach((product) => {
-        const name = product.data().name;
-        const color = product.data().color;
-        if (name && !newArray.some((item) => item.name === name)) {
-          newArray.push(product.data());
+      try {
+        const productCollectionRef = collection(db, "products");
+        const q = query(
+          productCollectionRef,
+          where("category", "==", category.id)
+        );
+        const cacheQuerySnapshot = await getDocsFromCache(q);
+        let querySnapshot;
+
+        if (cacheQuerySnapshot.empty) {
+          console.log("Fetching data from Firebase...");
+          querySnapshot = await getDocs(q);
+        } else {
+          console.log("Fetching data from cache...");
+          querySnapshot = cacheQuerySnapshot;
         }
-      });
 
-      setProducts(newArray);
-      setLoading(false);
-      setLoadingMore(false);
+        const newArray = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const name = data.name;
+          const color = data.color;
+          if (name && !newArray.some((item) => item.name === name)) {
+            newArray.push(data);
+          }
+        });
+
+        setProducts(newArray);
+        setLoading(false);
+        setLoadingMore(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
     fetchData();

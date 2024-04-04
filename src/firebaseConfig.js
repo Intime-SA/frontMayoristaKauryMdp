@@ -10,7 +10,11 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-import { getFirestore } from "firebase/firestore";
+import {
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
+} from "firebase/firestore";
 import { getPerformance } from "firebase/performance";
 
 const firebaseConfig = {
@@ -25,7 +29,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export const db = getFirestore(app);
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache(
+    /*settings*/ { tabManager: persistentMultipleTabManager() }
+  ),
+});
 const perf = getPerformance(app);
 
 export const onSingIn = async ({ email, password }) => {

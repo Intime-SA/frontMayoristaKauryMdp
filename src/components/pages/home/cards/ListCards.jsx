@@ -3,7 +3,14 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import CardHome from "./CardHome";
 import { db } from "../../../../firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDocsFromCache,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import ListArticles from "./ListArticles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -20,7 +27,21 @@ const ListCards = () => {
     const fetchCategories = async () => {
       try {
         const categoryCollection = collection(db, "categorys");
-        const querySnapshot = await getDocs(categoryCollection);
+        const cacheQuerySnapshot = await getDocsFromCache(categoryCollection);
+
+        let querySnapshot;
+
+        // Verificar si la caché está vacía
+        if (cacheQuerySnapshot.empty) {
+          console.log("trayendo info de firebase");
+          // Si la caché está vacía, realizar la consulta a Firestore
+          querySnapshot = await getDocs(categoryCollection);
+        } else {
+          console.log("trayendo info de cache");
+          // Si hay datos en caché, utilizarlos
+          querySnapshot = cacheQuerySnapshot;
+        }
+
         const categoriesData = [];
 
         querySnapshot.forEach((doc) => {
@@ -32,7 +53,7 @@ const ListCards = () => {
 
         setCategories(categoriesData);
       } catch (error) {
-        console.error("Error fetching categories: ", error);
+        console.log("Error al obtener las categorías:", error);
       }
     };
 
