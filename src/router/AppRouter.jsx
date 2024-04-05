@@ -9,13 +9,13 @@ import ProtectedUsers from "./ProtectedUsers";
 const AppRouter = () => {
   return (
     <Routes>
-      <Route element={<ProtectedUsers />}>
-        <Route element={<Navbar />}>
-          {routes.map(({ id, path, Element }) => (
-            <Route key={id} path={path} element={<Element />} />
-          ))}
-        </Route>
+      {/*       <Route element={<ProtectedUsers />}> */}
+      <Route element={<Navbar />}>
+        {routes.map(({ id, path, Element }) => (
+          <Route key={id} path={path} element={<Element />} />
+        ))}
       </Route>
+      {/*       </Route> */}
 
       {/* Login */}
       <Route path="/login" element={<Login />} />

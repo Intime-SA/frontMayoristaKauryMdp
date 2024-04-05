@@ -22,7 +22,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
-
+import { CartContext } from "../../context/CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
@@ -30,6 +30,7 @@ import { useTheme } from "@mui/material/styles";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthContext);
+  const { cart } = useContext(CartContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
@@ -77,8 +78,12 @@ const Login = () => {
         }; // Obtén los datos del documento
         console.log(finalyUser);
         handleLogin(finalyUser);
-        navigate("/"); // Asumo que tienes una función navigate para redirigir al usuario
-
+        // Asumo que tienes una función navigate para redirigir al usuario
+        if (cart.length >= 1) {
+          navigate("/cart");
+        } else {
+          navigate("/");
+        }
         // No necesitas el 'return getDoc(userDoc);' ya que no parece necesario aquí
       }
     } catch (error) {
@@ -127,7 +132,11 @@ const Login = () => {
           rol: "customer",
         };
         handleLogin(finalyUser);
-        navigate("/");
+        if (cart.length >= 1) {
+          navigate("/cart");
+        } else {
+          navigate("/");
+        }
       }
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
