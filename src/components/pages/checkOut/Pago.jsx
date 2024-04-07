@@ -15,6 +15,7 @@ import emailjs from "emailjs-com";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import EmailKaury from "./EmailKaury";
 
 const Pago = () => {
   const [userOrder, setUserOrder] = useState(null);
@@ -31,10 +32,48 @@ const Pago = () => {
   const { clearCart } = useContext(CartContext);
 
   const isMobile = useMediaQuery("(max-width:760px)");
-  const sendEmail = (subject) => {
-    const asunto = `¡Confirmacion de Compra! - Numero de Orden: #${subject}`;
 
-    console.log(userOrder.tipoDePago.pagoEfectivo);
+  const frase = [
+    "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+    "El futuro pertenece a quienes creen en la belleza de sus sueños.",
+    "Cada pequeño paso te acerca más a tus grandes metas.",
+    "Los grandes logros son el resultado de pequeños esfuerzos que se hacen día tras día.",
+    "Los sueños se hacen realidad con determinación y perseverancia en cada paso del camino.",
+    "El camino hacia el éxito está pavimentado con pequeños pasos de valentía.",
+    "Cada paso adelante es un paso más cerca de alcanzar tus sueños.",
+    "No subestimes el poder de dar un pequeño paso cada día hacia tus metas.",
+    "El progreso no es una línea recta, es el resultado de pequeños esfuerzos consistentes.",
+    "Las grandes metas se alcanzan con pequeños pasos y grandes dosis de determinación.",
+    "El único modo de hacer un gran trabajo es amar lo que haces.",
+    "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+    "El futuro pertenece a quienes creen en la belleza de sus sueños.",
+    "El éxito no es definitivo, el fracaso no es fatal: es el coraje para continuar lo que cuenta.",
+    "La diferencia entre lo imposible y lo posible radica en la determinación de una persona.",
+    "No te preguntes si es posible; pregúntate cómo lo harás.",
+    "No importa lo lento que vayas, siempre y cuando no te detengas.",
+    "El éxito no es la clave de la felicidad. La felicidad es la clave del éxito. Si amas lo que estás haciendo, tendrás éxito.",
+    "El emprendimiento es vivir unos años de tu vida como la mayoría no quiere, para que puedas vivir el resto de tu vida como la mayoría no puede.",
+    "La única forma de hacer un gran trabajo es amar lo que haces.",
+    "El único límite para tus logros es tu imaginación.",
+    "Cada día es una nueva oportunidad para ser mejor que ayer.",
+    "El éxito no es el resultado de un acto espontáneo, sino el resultado de años de esfuerzo constante.",
+    "Sueña en grande y atrévete a fallar.",
+    "El éxito no es definitivo, el fracaso no es fatal.",
+    "El emprendimiento no es un destino, es un viaje. Disfruta del viaje y celebra cada paso del camino.",
+    "El éxito no es el resultado de un acto espontáneo, sino el resultado de años de esfuerzo constante.",
+    "Sueña en grande y atrévete a fallar.",
+    "El único límite para tus logros es tu imaginación.",
+    "Cada día es una nueva oportunidad para cambiar tu vida.",
+  ];
+  console.log(frase);
+
+  const seleccionarFraseAleatoria = () => {
+    const indice = Math.floor(Math.random() * frase.length);
+    return frase[indice];
+  };
+
+  const sendEmail = (subject, frase) => {
+    const asunto = `¡Confirmacion de Compra! - Numero de Orden: #${subject}`;
 
     // Datos bancarios
     const datosBancarios = `
@@ -43,7 +82,12 @@ const Pago = () => {
       Titular de cuenta: RODOLFO GUILLERMO OTERO
       Recorda enviar el comprobante de pago + número de orden al WhatsApp (223) 348-5438
 
-      TOTAL A PAGAR: ${userOrder.total}
+      TOTAL A PAGAR: ${userOrder.total.toLocaleString("es-ES", {
+        style: "currency",
+        currency: "ARS",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}
   
       Datos de envio:
       Calle: ${userOrder.infoEntrega.calle} ${" "} ${
@@ -62,7 +106,12 @@ const Pago = () => {
     
     Te esperamos en el showroom para retirar tu pedido.
 
-    TOTAL A PAGAR: ${userOrder.total}
+    TOTAL A PAGAR: ${userOrder.total.toLocaleString("es-ES", {
+      style: "currency",
+      currency: "ARS",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}
     
     `;
 
@@ -76,6 +125,7 @@ const Pago = () => {
             subject: asunto,
             message: datosBancarios,
             to_name: toname,
+            frase: frase,
           },
           "uAivPuB-RJ_3LBVlN"
         )
@@ -98,10 +148,16 @@ const Pago = () => {
           {
             from_email: email,
             subject: asunto,
-            message: `TOTAL A PAGAR: ${userOrder.total}. 
+            message: `TOTAL A PAGAR: ${userOrder.total.toLocaleString("es-ES", {
+              style: "currency",
+              currency: "ARS",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}. 
             \n Modalidad de pago: SOLAMENTE EFECTIVO. 
             \n Transferencia con recargo 15%`,
             to_name: toname,
+            frase: frase,
           },
           "uAivPuB-RJ_3LBVlN"
         )
@@ -126,6 +182,7 @@ const Pago = () => {
             subject: asunto,
             message: datosBancariosShowroom,
             to_name: toname,
+            frase: frase,
           },
           "uAivPuB-RJ_3LBVlN"
         )
@@ -205,8 +262,9 @@ const Pago = () => {
     } catch (error) {
       console.error("Error al realizar el pedido:", error.message);
     }
+    const fraseAleatoria = seleccionarFraseAleatoria();
     setRenderOrder(true);
-    sendEmail(numberOrder);
+    sendEmail(numberOrder, fraseAleatoria);
     clearCart();
   };
 
@@ -270,6 +328,7 @@ const Pago = () => {
         {renderOrder && (
           <>
             <div>
+              <EmailKaury userOrder={userOrder} email={email} toname={toname} />
               <div
                 style={{
                   borderRadius: "10px",
