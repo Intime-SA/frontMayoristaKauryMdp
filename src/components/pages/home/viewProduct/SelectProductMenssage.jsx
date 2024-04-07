@@ -40,7 +40,7 @@ const SelectProductMessage = () => {
           >
             account_balance
           </span>{" "}
-          Pago con transferencia tiene un 15% de recargo.
+          Aceptamos pago por transferencia
         </Typography>
       </div>
     </div>
