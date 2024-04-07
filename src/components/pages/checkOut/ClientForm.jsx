@@ -25,6 +25,7 @@ const ClientForm = ({
       provincia: "",
     },
   });
+  const [dni, setDni] = useState("");
   const [telefono, setTelefono] = useState("");
   const [errorTelefono, setErrorTelefono] = useState("");
   const [updateSuccess, setUpdateSuccess] = useState(false);
@@ -88,7 +89,8 @@ const ClientForm = ({
 
       await updateDoc(userRef, {
         datosEnvio: newDataEnvioCorrected.datosEnvio, // Actualizamos datos de envío
-        telefono: telefono, // Agregamos o actualizamos el teléfono
+        telefono: telefono,
+        dni: dni, // Agregamos o actualizamos el teléfono
       });
 
       setUpdateSuccess(true); // Actualización exitosa
@@ -247,6 +249,23 @@ const ClientForm = ({
                     InputLabelProps={{ shrink: true }}
                     error={errorTelefono !== ""}
                     helperText={errorTelefono}
+                  />
+                  <TextField
+                    name="dni"
+                    variant="outlined"
+                    label="DNI/CUIT"
+                    value={dni}
+                    onChange={(e) => {
+                      setDni(e.target.value);
+                    }}
+                    fullWidth
+                    required
+                    style={{
+                      marginBottom: "1rem",
+                      width: "100%",
+                      maxWidth: "400px",
+                    }}
+                    InputLabelProps={{ shrink: true }}
                   />
                 </div>
               </div>

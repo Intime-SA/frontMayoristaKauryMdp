@@ -42,6 +42,8 @@ const SelectProduct = ({ article }) => {
     newCount = Math.min(count, 10);
   }
 
+  console.log(article.id);
+
   const add = () => {
     if (category == "PACK OFERTA X3" || category == "PACK X2 SURTIDO OFERTA") {
     }
@@ -69,7 +71,9 @@ const SelectProduct = ({ article }) => {
     const fetchData = async () => {
       const productCollection = collection(db, "products");
       const q = query(productCollection, where("name", "==", article.id));
+      console.log(q);
       const snapShotProducts = await getDocs(q);
+      console.log(snapShotProducts);
       const newArray = [];
       snapShotProducts.forEach((product) => {
         if (product.data().stock > 0) {
