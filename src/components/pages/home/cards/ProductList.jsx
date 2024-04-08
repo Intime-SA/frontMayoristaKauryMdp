@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
 import { Typography } from "@mui/material";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 const ProductList = () => {
   const category = useParams();
@@ -153,11 +154,13 @@ const ProductList = () => {
               boxSizing: "border-box",
             }}
           >
-            <CardArticles
-              product={product}
-              setArticle={setArticleWithScrollPosition}
-              oferta={oferta}
-            />
+            <LazyLoadComponent>
+              <CardArticles
+                product={product}
+                setArticle={setArticleWithScrollPosition}
+                oferta={oferta}
+              />
+            </LazyLoadComponent>
           </div>
         ))
       ) : (

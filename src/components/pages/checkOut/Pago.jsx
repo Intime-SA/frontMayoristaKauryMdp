@@ -6,7 +6,6 @@ import {
   doc,
   getDoc,
   serverTimestamp,
-  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import { Button, Typography } from "@mui/material";
