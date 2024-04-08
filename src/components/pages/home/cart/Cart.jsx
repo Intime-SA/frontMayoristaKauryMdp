@@ -42,7 +42,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const [clienteRef, setClienteRef] = useState();
-  const [nuevoId, setNuevoId] = useState(0);
+
   const [orderItems, setOrderItems] = useState([]);
   const [totalOrder, setTotalOrder] = useState();
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
@@ -118,25 +118,6 @@ const Cart = () => {
   }, [user]);
 
   useEffect(() => {
-    const traerId = async () => {
-      try {
-        const refContador = doc(db, "contador", "contador");
-        const docContador = await getDoc(refContador);
-
-        const nuevoValor = docContador.data().autoincremental + 1;
-        setNuevoId(nuevoValor);
-
-        const nuevoValorObj = { autoincremental: nuevoValor };
-
-        await updateDoc(refContador, nuevoValorObj);
-      } catch (error) {
-        console.error("Error al obtener el nuevo ID:", error);
-      }
-    };
-    traerId();
-  }, []);
-
-  useEffect(() => {
     const orderItemsTransform = (cart) => {
       let total = 0;
       const orderItems = cart.map((item) => {
@@ -180,7 +161,6 @@ const Cart = () => {
       infoEntrega: [],
       lastState: "nueva",
       note: "",
-      numberOrder: nuevoId,
       orderItems: orderItems,
       status: "nueva",
       total: totalOrder,
@@ -195,8 +175,6 @@ const Cart = () => {
 
     // Aquí puedes realizar la lógica de almacenamiento de la orden en la base de datos
   };
-
-  const userInfoString = localStorage.getItem("userInfo");
 
   let precioTotalCarrito = 0; // Inicializa el precio total del carrito
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import CustomStepper from "../home/cart/CustomStepper";
 import {
   addDoc,
@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import EmailKaury from "./EmailKaury";
+import { useLocation } from "react-router";
 
 const Pago = () => {
   const [userOrder, setUserOrder] = useState(null);
@@ -65,12 +66,13 @@ const Pago = () => {
     "El único límite para tus logros es tu imaginación.",
     "Cada día es una nueva oportunidad para cambiar tu vida.",
   ];
-  console.log(frase);
 
   const seleccionarFraseAleatoria = () => {
     const indice = Math.floor(Math.random() * frase.length);
     return frase[indice];
   };
+
+  const navigate = useNavigate();
 
   const sendEmail = (subject, frase) => {
     const asunto = `¡Confirmacion de Compra! - Numero de Orden: #${subject}`;
@@ -207,14 +209,32 @@ const Pago = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const traerId = async () => {
+      try {
+        const refContador = doc(db, "contador", "contador");
+        const docContador = await getDoc(refContador);
+
+        const nuevoValor = docContador.data().autoincremental + 1;
+        setNumberOrder(nuevoValor);
+
+        const nuevoValorObj = { autoincremental: nuevoValor };
+
+        await updateDoc(refContador, nuevoValorObj);
+      } catch (error) {
+        console.error("Error al obtener el nuevo ID:", error);
+      }
+    };
+    traerId();
+  }, []);
+
+  console.log(numberOrder);
+
   // Actualizar la referencia de usuario cuando el pedido cambia
   useEffect(() => {
     if (userOrder) {
       const userRef = doc(db, "users", userOrder.clienteId);
       setUserRef(userRef);
-      const numberOrder = userOrder.numberOrder;
-      setNumberOrder(numberOrder);
-
       const obtenerEmail = async () => {
         try {
           const docSnap = await getDoc(userRef);
@@ -234,7 +254,6 @@ const Pago = () => {
     }
   }, [userOrder]);
 
-  const navigate = useNavigate();
   const volver = () => {
     navigate("/");
   };
@@ -248,6 +267,7 @@ const Pago = () => {
           ...userOrder,
           client: userRef,
           date: serverTimestamp(),
+          numberOrder: numberOrder,
         };
         console.log(modifiedUserOrder);
 

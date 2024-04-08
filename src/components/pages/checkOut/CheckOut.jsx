@@ -54,24 +54,6 @@ function CheckOut() {
     getUser();
   }, []);
 
-  useEffect(() => {
-    const traerId = async () => {
-      try {
-        const refContador = doc(db, "contador", "contador");
-        const docContador = await getDoc(refContador);
-
-        const nuevoValor = docContador.data().autoincremental + 1;
-
-        const nuevoValorObj = { autoincremental: nuevoValor };
-
-        await updateDoc(refContador, nuevoValorObj);
-      } catch (error) {
-        console.error("Error al obtener el nuevo ID:", error);
-      }
-    };
-    traerId();
-  }, []);
-
   const handleChangeEmail = (e) => {
     const email = e.target.value;
     setEmailCliente(email);
