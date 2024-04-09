@@ -14,7 +14,10 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
 import { Typography } from "@mui/material";
-import { LazyLoadComponent } from "react-lazy-load-image-component";
+import {
+  LazyLoadComponent,
+  LazyLoadImage,
+} from "react-lazy-load-image-component";
 
 const ProductList = () => {
   const category = useParams();
@@ -154,7 +157,14 @@ const ProductList = () => {
               boxSizing: "border-box",
             }}
           >
-            <LazyLoadComponent threshold={0}>
+            <LazyLoadComponent
+              alt={product.name}
+              effect="blur" // Efecto de carga
+              width="100%"
+              height={product.image ? "400px" : "350px"} // Altura de la imagen
+              style={{ borderRadius: "20px 20px 0 0", maxHeight: "400px" }}
+              threshold={0}
+            >
               <CardArticles
                 product={product}
                 setArticle={setArticleWithScrollPosition}
