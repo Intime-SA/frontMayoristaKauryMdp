@@ -154,7 +154,7 @@ const ProductList = () => {
               boxSizing: "border-box",
             }}
           >
-            <LazyLoadComponent>
+            <LazyLoadComponent threshold={0}>
               <CardArticles
                 product={product}
                 setArticle={setArticleWithScrollPosition}
