@@ -30,6 +30,9 @@ const Pago = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // Hace scroll al tope de la página
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0); // Hace scroll al tope de la página
+  }, [renderOrder]);
 
   const { clearCart } = useContext(CartContext);
 
