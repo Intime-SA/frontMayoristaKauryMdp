@@ -21,6 +21,7 @@ const VerticalCarrusel = ({ article }) => {
           const color = doc.data().color;
           if (color && !filteredArticles.some((item) => item.color === color)) {
             filteredArticles.push({
+              imageMobile: doc.data().imageMobile || doc.data().image, // Si imageMobile no existe, asignamos la imagen a imageMobile
               image: doc.data().image,
               color: color,
             });
@@ -62,7 +63,7 @@ const VerticalCarrusel = ({ article }) => {
           filteredArticles.map((item, index) => (
             <img
               key={index}
-              src={item.image}
+              src={item.imageMobile || item.image}
               alt={`Article ${index + 1}`}
               style={styles.imageThumbnail}
               onClick={() => handleImageClick(item.image)}
