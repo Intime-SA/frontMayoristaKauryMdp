@@ -239,7 +239,7 @@ const Cart = () => {
                 <CardMedia
                   component="img"
                   sx={{ width: 75, height: 75, borderRadius: "10px" }}
-                  image={producto.image}
+                  image={producto.imageCard}
                   alt={producto.name}
                 />
                 <CardContent sx={{ flex: 1, paddingTop: "0rem" }}>
