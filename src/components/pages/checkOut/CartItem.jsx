@@ -10,7 +10,7 @@ function CartItem({ product }) {
           <CardMedia
             component="img"
             height="75" // Estableciendo el ancho fijo
-            src={product.image}
+            src={product.imageCard || product.image}
             alt={product.name}
             sx={{ objectFit: "cover", maxHeight: "100px" }} // Establecer estilos para la imagen
           />

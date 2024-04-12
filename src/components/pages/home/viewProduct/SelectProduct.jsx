@@ -264,7 +264,7 @@ const SelectProduct = ({ article }) => {
               }}
             >
               <img
-                src={product.imageCard}
+                src={product.imageCard || product.image}
                 alt=""
                 style={{
                   width: "100px",
