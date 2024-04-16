@@ -153,45 +153,27 @@ const Login = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        padding: "15%",
+        padding: "5%",
+        paddingTop: "0",
         // backgroundColor: theme.palette.secondary.main,
       }}
     >
       <img
         src="https://www.kaury.com/img/kaury_logo_19.svg"
         alt="logo"
-        loading="lazy"
-        width={isNarrowScreen ? "300px" : "auto"}
-        height={isNarrowScreen ? "300px" : "auto"}
+        style={{
+          width: isNarrowScreen ? "70%" : "auto",
+          maxWidth: "400px",
+          marginLeft: "1rem",
+        }}
       />
-      <h1
-        style={{
-          color: "#c4072c",
-          marginTop: "1%",
-          fontSize: "100%",
-          color: "#c4072c",
-          fontWeight: 250,
-        }}
-      >
-        Mayorista
-      </h1>
-      <h2
-        style={{
-          color: "#c4072c",
-          marginTop: "1%",
-          fontSize: "100%",
-          color: "#c4072c",
-          fontWeight: 250,
-        }}
-      >
-        Mar del Plata
-      </h2>
       <form onSubmit={handleSubmit}>
         <Grid
           container
           rowSpacing={2}
           // alignItems="center"
           justifyContent={"center"}
+          style={{ maxWidth: "600px" }}
         >
           <Grid item xs={10} md={12}>
             <TextField
@@ -276,11 +258,22 @@ const Login = () => {
             <Grid item xs={10} md={8}>
               <Typography
                 color={"secondary.primary"}
-                variant={"h6"}
+                variant={"body"}
                 mt={1}
-                align="center"
+                style={{
+                  display: "fle",
+                  justifyContent: "center",
+                }}
               >
-                ¿Aun no tienes cuenta?
+                <p
+                  style={{
+                    marginTop: "1rem",
+                    fontFamily: '"Roboto Condensed", sans-serif',
+                    textAlign: "center",
+                  }}
+                >
+                  ¿Aun no tienes cuenta?
+                </p>
               </Typography>
             </Grid>
             <Grid item xs={10} md={5}>

@@ -101,42 +101,34 @@ const Register = () => {
     <Box
       sx={{
         width: "100%",
+
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        padding: "5%",
+        paddingTop: "0",
+
+        // backgroundColor: theme.palette.secondary.main,
       }}
     >
       <img
         src="https://www.kaury.com/img/kaury_logo_19.svg"
         alt="logo"
-        style={{ width: isNarrowScreen ? "50%" : "auto" }}
+        style={{
+          width: isNarrowScreen ? "70%" : "auto",
+          maxWidth: "400px",
+          marginLeft: "1rem",
+        }}
       />
-      <h1
-        style={{
-          color: "#c4072c",
-          marginTop: "1%",
-          fontSize: "100%",
-          color: "#c4072c",
-          fontWeight: 250,
-        }}
-      >
-        Mayorista
-      </h1>
-      <h2
-        style={{
-          color: "#c4072c",
-          marginTop: "1%",
-          fontSize: "100%",
-          color: "#c4072c",
-          fontWeight: 250,
-        }}
-      >
-        Mar del Plata
-      </h2>
       <form onSubmit={handleSubmit}>
-        <Grid container rowSpacing={2} justifyContent="center">
+        <Grid
+          container
+          rowSpacing={2}
+          justifyContent="center"
+          style={{ maxWidth: "600px" }}
+        >
           <Grid item xs={10} md={12}>
             <TextField
               onChange={handleChange}
@@ -248,8 +240,24 @@ const Register = () => {
               </p>
             </Grid>
           )}
-          <Grid container justifyContent="center" spacing={3} mt={2}>
-            <Grid item xs={10} md={7}>
+          <Grid
+            container
+            style={{ display: "flex" }}
+            justifyContent="center"
+            spacing={3}
+            mt={2}
+          >
+            <Grid item xs={5} md={5}>
+              <Button
+                variant="contained"
+                fullWidth
+                onClick={() => navigate("/login")}
+                type="button"
+              >
+                REGRESAR
+              </Button>
+            </Grid>
+            <Grid item xs={5} md={5}>
               <Button
                 variant="contained"
                 color="success"
@@ -262,16 +270,6 @@ const Register = () => {
                 }}
               >
                 REGISTRAR
-              </Button>
-            </Grid>
-            <Grid item xs={10} md={7}>
-              <Button
-                variant="contained"
-                fullWidth
-                onClick={() => navigate("/login")}
-                type="button"
-              >
-                REGRESAR
               </Button>
             </Grid>
           </Grid>
