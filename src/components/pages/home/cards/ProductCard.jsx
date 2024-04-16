@@ -119,7 +119,7 @@ const ProductCard = ({ product, handleClick, oferta }) => {
         </CardActionArea>
       </Link>
       <img
-        src={product.image || ""}
+        src={product.imageCard || ""}
         alt={product.name}
         style={{ display: "none" }}
         onLoad={handleImageLoad}
