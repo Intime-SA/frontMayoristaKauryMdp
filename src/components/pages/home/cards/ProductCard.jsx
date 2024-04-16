@@ -20,7 +20,6 @@ const ProductCard = ({ product, handleClick, oferta }) => {
   return (
     <Card
       sx={{
-        width: "300px",
         maxWidth: isNarrowScreen ? 350 : 650,
         borderRadius: "20px",
         margin: "1rem",
