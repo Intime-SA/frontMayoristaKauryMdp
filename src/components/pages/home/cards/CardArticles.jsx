@@ -37,7 +37,7 @@ export default function CardArticles({ product, setArticle, oferta }) {
         )
       )}
       <img
-        src={product.image || ""}
+        src={product.imageCard || ""}
         alt={product.name}
         style={{ display: "none" }}
         onLoad={handleImageLoad}

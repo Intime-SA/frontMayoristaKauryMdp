@@ -161,7 +161,7 @@ const ProductList = () => {
               alt={product.name}
               effect="blur" // Efecto de carga
               width="100%"
-              height={product.image ? "400px" : "350px"} // Altura de la imagen
+              height={product.imageCard ? "400px" : "350px"} // Altura de la imagen
               style={{ borderRadius: "20px 20px 0 0", maxHeight: "400px" }}
               threshold={0}
             >
