@@ -43,7 +43,7 @@ const ProductCard = ({ product, handleClick, oferta }) => {
               style={{
                 borderRadius: "20px 20px 0 0",
                 maxHeight: "400px",
-                maxWidth: "300px",
+                maxWidth: "350px",
               }}
             />
           ) : (
