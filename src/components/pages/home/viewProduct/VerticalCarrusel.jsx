@@ -32,7 +32,7 @@ const VerticalCarrusel = ({ article }) => {
       setFilteredArticles(filteredArticles);
 
       if (filteredArticles.length > 0) {
-        setSelectedImage(filteredArticles[0].image); // Seleccionar la primera imagen
+        setSelectedImage(filteredArticles[0].imageCard); // Seleccionar la primera imagen
       }
     };
 
@@ -66,7 +66,7 @@ const VerticalCarrusel = ({ article }) => {
               src={item.imageCard || item.image}
               alt={`Article ${index + 1}`}
               style={styles.imageThumbnail}
-              onClick={() => handleImageClick(item.image)}
+              onClick={() => handleImageClick(item.imageCard)}
               onLoad={() => setImagesLoaded(true)} // Marca la imagen como cargada
             />
           ))}
@@ -97,20 +97,21 @@ const VerticalCarrusel = ({ article }) => {
             style={styles.selectedImage}
           />
         )}
-        {!imagesLoaded && ( // Mostrar Skeleton al cambiar de imagen
-          <div>
-            <Skeleton
-              sx={{
-                bgcolor: "grey.400",
-                marginBottom: "1rem",
-                borderRadius: "30px",
-              }}
-              variant="rectangular"
-              width="40vw"
-              height={"65vh"}
-            />
-          </div>
-        )}
+        {!imagesLoaded &&
+          !selectedImage && ( // Mostrar Skeleton al cambiar de imagen
+            <div>
+              <Skeleton
+                sx={{
+                  bgcolor: "grey.400",
+                  marginBottom: "1rem",
+                  borderRadius: "30px",
+                }}
+                variant="rectangular"
+                width="40vw"
+                height={"65vh"}
+              />
+            </div>
+          )}
       </div>
     </div>
   );
