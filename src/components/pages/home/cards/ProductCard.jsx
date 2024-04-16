@@ -20,8 +20,8 @@ const ProductCard = ({ product, handleClick, oferta }) => {
   return (
     <Card
       sx={{
-        width: "250px",
-        maxWidth: isNarrowScreen ? 250 : 650,
+        width: "300px",
+        maxWidth: isNarrowScreen ? 350 : 650,
         borderRadius: "20px",
         margin: "1rem",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
@@ -35,13 +35,17 @@ const ProductCard = ({ product, handleClick, oferta }) => {
           {imageLoaded ? (
             <CardMedia
               component="img"
-              height="300px"
+              height="400px"
               image={
                 product.imageCard ||
                 "https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/Mayorista%20Mar%20del%20Plata%20(2).png?alt=media&token=87bdf689-8eb7-49b1-9317-f6a52a9a0781"
               }
               alt={product.name}
-              style={{ borderRadius: "20px 20px 0 0", maxHeight: "400px" }}
+              style={{
+                borderRadius: "20px 20px 0 0",
+                maxHeight: "400px",
+                maxWidth: "300px",
+              }}
             />
           ) : (
             <Skeleton
