@@ -56,6 +56,7 @@ const ProductList = () => {
           const data = doc.data();
           const name = data.name;
           const color = data.color;
+          const stock = data.stock;
           if (name && !newArray.some((item) => item.name === name)) {
             newArray.push(data);
           }
