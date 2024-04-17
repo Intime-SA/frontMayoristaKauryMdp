@@ -20,7 +20,7 @@ const HorizontalCarrusel = ({ article }) => {
           const color = doc.data().color;
           if (color && !articles.some((item) => item.color === color)) {
             articles.push({
-              image: doc.data().image,
+              imageCard: doc.data().imageCard,
               color: color,
             });
           }
@@ -57,7 +57,7 @@ const HorizontalCarrusel = ({ article }) => {
         {filteredArticles.map((item, index) => (
           <div key={index} style={{ height: "600px" }}>
             <img
-              src={item.image}
+              src={item.imageCard}
               alt={`Article img`}
               style={{ width: "100%", height: "600px", objectFit: "contain" }}
             />
