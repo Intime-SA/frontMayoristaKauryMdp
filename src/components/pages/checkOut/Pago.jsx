@@ -83,6 +83,9 @@ const Pago = () => {
 
     // Datos bancarios
     const datosBancarios = `
+
+      Numero Orden: ${userOrder.numberOrder}
+    
       Alias a transferir: KAURYMAYORISTA
       CBU: 0000003100037054721391
       Titular de cuenta: RODOLFO GUILLERMO OTERO
@@ -105,6 +108,9 @@ const Pago = () => {
 
     `;
     const datosBancariosShowroom = `
+
+    Numero Orden: ${userOrder.numberOrder}
+
     Alias a transferir: KAURYMAYORISTA
     CBU: 0000003100037054721391
     Titular de cuenta: RODOLFO GUILLERMO OTERO
@@ -154,7 +160,11 @@ const Pago = () => {
           {
             from_email: email,
             subject: asunto,
-            message: `TOTAL A PAGAR: ${userOrder.total.toLocaleString("es-ES", {
+            message: `
+            
+            Numero Orden: ${userOrder.numberOrder}
+
+            TOTAL A PAGAR: ${userOrder.total.toLocaleString("es-ES", {
               style: "currency",
               currency: "ARS",
               minimumFractionDigits: 2,
