@@ -5,6 +5,7 @@ import {
   collection,
   doc,
   getDoc,
+  runTransaction,
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
@@ -227,18 +228,19 @@ const Pago = () => {
     const traerId = async () => {
       try {
         const refContador = doc(db, "contador", "contador");
-        const docContador = await getDoc(refContador);
 
-        const nuevoValor = docContador.data().autoincremental + 1;
-        setNumberOrder(nuevoValor);
+        await runTransaction(db, async (transaction) => {
+          const docContador = await transaction.get(refContador);
+          const nuevoValor = docContador.data().autoincremental + 1;
 
-        const nuevoValorObj = { autoincremental: nuevoValor };
-
-        await updateDoc(refContador, nuevoValorObj);
+          transaction.update(refContador, { autoincremental: nuevoValor });
+          setNumberOrder(nuevoValor);
+        });
       } catch (error) {
         console.error("Error al obtener el nuevo ID:", error);
       }
     };
+
     traerId();
   }, []);
 
