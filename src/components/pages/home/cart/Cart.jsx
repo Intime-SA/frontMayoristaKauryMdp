@@ -145,6 +145,24 @@ const Cart = () => {
     orderItemsTransform(cart);
   }, [cart]);
 
+  useEffect(() => {
+    // Buscar si existe la propiedad userOrder en el localStorage
+    const userOrderJSON = localStorage.getItem("userOrder");
+    const totalCarritoJSON = localStorage.getItem("totalCarrito");
+
+    // Si existe, borrarla
+    if (userOrderJSON) {
+      localStorage.removeItem("userOrder");
+      console.log("La propiedad userOrder se ha eliminado del localStorage.");
+    }
+    if (totalCarritoJSON) {
+      localStorage.removeItem("totalCarrito");
+      console.log(
+        "La propiedad totalCarrito se ha eliminado del localStorage."
+      );
+    }
+  }, []);
+
   const handleSubmit = async () => {
     let total = await getTotalPrice();
 

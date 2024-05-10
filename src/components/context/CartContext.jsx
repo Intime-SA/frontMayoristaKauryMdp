@@ -51,6 +51,8 @@ const CartContextComponente = ({ children }) => {
     return total;
   };
 
+  const [regresoDePago, setRegresoDePago] = useState(false);
+
   let data = {
     cart,
     addToCart,
@@ -58,6 +60,8 @@ const CartContextComponente = ({ children }) => {
     clearCart,
     deleteById,
     getTotalPrice,
+    setRegresoDePago,
+    regresoDePago,
   };
 
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;

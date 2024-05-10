@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Form, Link, useLocation } from "react-router-dom";
 import { db } from "../../../firebaseConfig";
 import {
   updateDoc,
@@ -20,7 +20,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
 function CheckOut() {
-  const { cart } = useContext(CartContext);
+  const { cart, regresoDePago } = useContext(CartContext);
 
   const orderId = null;
   const [openForm, setOpenForm] = useState(false);
@@ -88,8 +88,15 @@ function CheckOut() {
     const userOrderJSON = localStorage.getItem("userOrder");
     if (userOrderJSON) {
       const userOrderData = JSON.parse(userOrderJSON);
-      if (userOrderData.total) {
-        setTotalOrderOriginal(userOrderData.total);
+      if (fromPago) {
+        const totalCarritoJSON = localStorage.getItem("totalCarrito");
+        const totalCarritoData = JSON.parse(totalCarritoJSON);
+
+        setTotalOrderOriginal(totalCarritoData);
+      } else {
+        if (userOrderData.total) {
+          setTotalOrderOriginal(userOrderData.total);
+        }
         localStorage.setItem("totalCarrito", userOrderData.total.toString());
       }
     } else {
@@ -101,19 +108,23 @@ function CheckOut() {
 
   let totalOrder = 0; // Inicializar el total en caso de que no haya ningún objeto userOrder en localStorage
 
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const fromPago = params.get("fromPago");
   // Verificar si hay un objeto almacenado
   if (userOrderJSON) {
     // Parsear la cadena JSON de vuelta a un objeto JavaScript
     const userOrder = JSON.parse(userOrderJSON);
 
-    // Verificar si la propiedad 'total' está definida en el objeto userOrder
     if (userOrder.total) {
       totalOrder = userOrder.total; // Asignar el total del objeto userOrder a la variable totalOrder
     }
 
     // Ahora userOrder es un objeto JavaScript que puedes utilizar en tu código
     console.log(userOrder);
-  } else {
+  }
+  // Verificar si la propiedad 'total' está definida en el objeto userOrder
+  else {
     console.log("No se encontró ningún objeto userOrder en localStorage");
   }
 
@@ -192,35 +203,73 @@ function CheckOut() {
     setEnvioSeleccionado(name); // Cambiar el estado solo si la opción seleccionada es diferente
   };
 
-  useEffect(() => {
-    // Lógica para aplicar o quitar el descuento del 15% según el método de pago seleccionado
-    let newTotalOrder = totalOrder;
+  const [shouldApplyEffect, setShouldApplyEffect] = useState(true);
 
-    if (tipoDePago.pagoTransferencia) {
-      newTotalOrder += (totalOrder * 15) / 100; // Se añade el 15% al total
-    } else if (
-      tipoDePagoAnterior.pagoTransferencia &&
-      tipoDePago.pagoEfectivo
-    ) {
-      newTotalOrder -= (totalOrderOriginal * 15) / 100; // Se quita el 15% al total
+  useEffect(() => {
+    function handlePopstate() {
+      setShouldApplyEffect(false); // Desactivar el efecto al detectar el evento popstate
     }
 
-    setTotalOrderPago(newTotalOrder);
+    window.addEventListener("popstate", handlePopstate);
 
-    // Actualizamos el objeto userOrder en localStorage
-    const updatedUserOrder = {
-      ...userOrderData,
-      total: newTotalOrder,
-      tipoDePago: tipoDePago,
-      envioSeleccionado: envioSeleccionado || "sinEnvio",
+    return () => {
+      window.removeEventListener("popstate", handlePopstate);
     };
-    localStorage.setItem("userOrder", JSON.stringify(updatedUserOrder));
+  }, []);
+
+  useEffect(() => {
+    if (shouldApplyEffect) {
+      // Lógica para aplicar o quitar el descuento del 15% según el método de pago seleccionado
+      let newTotalOrder = totalOrder;
+
+      if (tipoDePago.pagoTransferencia) {
+        newTotalOrder += (totalOrder * 15) / 100; // Se añade el 15% al total
+      } else if (
+        tipoDePagoAnterior.pagoTransferencia &&
+        tipoDePago.pagoEfectivo
+      ) {
+        newTotalOrder -= (totalOrderOriginal * 15) / 100; // Se quita el 15% al total
+      }
+
+      setTotalOrderPago(newTotalOrder);
+
+      // Actualizamos el objeto userOrder en localStorage
+      const updatedUserOrder = {
+        ...userOrderData,
+        total: newTotalOrder,
+        tipoDePago: tipoDePago,
+        envioSeleccionado: envioSeleccionado || "sinEnvio",
+      };
+      localStorage.setItem("userOrder", JSON.stringify(updatedUserOrder));
+    }
   }, [
+    shouldApplyEffect,
     tipoDePago.pagoTransferencia,
     tipoDePago.pagoEfectivo,
     envioSeleccionado,
   ]);
-  // Verificar si hay un objeto almacenado
+
+  function handleRegresoDePago() {
+    setShouldApplyEffect(false); // Desactivar el efecto
+    // Otras acciones necesarias al regresar de la página de pago
+  }
+
+  useEffect(() => {
+    function handleBeforeUnload(event) {
+      const params = new URLSearchParams(location.search);
+      const fromPago = params.get("fromPago");
+
+      if (fromPago === "true") {
+        // El usuario vuelve desde la página de pago, ejecutar funcionalidades necesarias
+      }
+    }
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <div>
@@ -318,6 +367,7 @@ function CheckOut() {
                   andreaniCostoDomicilio={andreaniCostoDomicilio}
                   andreaniAsucursal={andreaniAsucursal}
                   setDesabilitarEnvio={setDesabilitarEnvio}
+                  fromPago={fromPago}
                 />
                 {dataCliente && (
                   <>

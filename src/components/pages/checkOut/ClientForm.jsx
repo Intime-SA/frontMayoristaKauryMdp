@@ -12,6 +12,7 @@ const ClientForm = ({
   andreaniCostoDomicilio,
   andreaniAsucursal,
   setDesabilitarEnvio,
+  fromPago,
 }) => {
   const [customerData, setCustomerData] = useState({});
   const [newDataEnvio, setNewDataEnvio] = useState({
@@ -32,6 +33,8 @@ const ClientForm = ({
   const [userData, setUserData] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  console.log("esto es fromPago: " + fromPago);
 
   useEffect(() => {
     const fetchData = async () => {

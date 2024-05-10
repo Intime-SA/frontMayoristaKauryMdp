@@ -35,7 +35,7 @@ const Pago = () => {
     window.scrollTo(0, 0); // Hace scroll al tope de la página
   }, [renderOrder]);
 
-  const { clearCart } = useContext(CartContext);
+  const { clearCart, setRegresoDePago } = useContext(CartContext);
 
   const isMobile = useMediaQuery("(max-width:760px)");
 
@@ -304,6 +304,14 @@ const Pago = () => {
     clearCart();
   };
 
+  function bloquearRetroceso(event) {
+    setRegresoDePago(true);
+    event.preventDefault();
+    window.history.forward();
+  }
+
+  window.addEventListener("popstate", bloquearRetroceso);
+
   return (
     <div
       style={{
@@ -441,15 +449,19 @@ const Pago = () => {
         >
           <Button
             variant="contained"
-            color="error"
+            color="success"
             style={{ borderRadius: "50px" }}
             onClick={realizarPedido}
           >
-            REALIZAR PEDIDO
+            Realizar Pedido
           </Button>
-          <Link to="/checkout">
-            <Button variant="contained" color="info">
-              Volver
+          <Link to="/">
+            <Button
+              style={{ borderRadius: "50px" }}
+              variant="contained"
+              color="error"
+            >
+              Cancelar
             </Button>
           </Link>
         </div>
