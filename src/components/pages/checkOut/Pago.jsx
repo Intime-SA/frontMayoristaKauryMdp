@@ -85,7 +85,7 @@ const Pago = () => {
     // Datos bancarios
     const datosBancarios = `
 
-      Numero Orden: ${userOrder.numberOrder}
+      Numero Orden: ${subject}
     
       Alias a transferir: KAURYMAYORISTA
       CBU: 0000003100037054721391
@@ -110,7 +110,7 @@ const Pago = () => {
     `;
     const datosBancariosShowroom = `
 
-    Numero Orden: ${userOrder.numberOrder}
+    Numero Orden: ${subject}
 
     Alias a transferir: KAURYMAYORISTA
     CBU: 0000003100037054721391
@@ -163,7 +163,7 @@ const Pago = () => {
             subject: asunto,
             message: `
             
-            Numero Orden: ${userOrder.numberOrder}
+            Numero Orden: ${subject}
 
             TOTAL A PAGAR: ${userOrder.total.toLocaleString("es-ES", {
               style: "currency",

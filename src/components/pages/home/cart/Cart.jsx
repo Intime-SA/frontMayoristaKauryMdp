@@ -166,7 +166,7 @@ const Cart = () => {
   const handleSubmit = async () => {
     let total = await getTotalPrice();
 
-    if (total <= 40000) {
+    if (total <= 60000) {
       setEstadoError(true);
       return;
     }
