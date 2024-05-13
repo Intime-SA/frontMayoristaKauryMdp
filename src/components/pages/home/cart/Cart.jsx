@@ -649,7 +649,7 @@ const Cart = () => {
                       color: "#c4072c",
                     }}
                   >
-                    La compra minima en el sitio mayorista es de $40.000,00
+                    La compra minima en el sitio mayorista es de $60.000,00
                   </Typography>
                 </div>
               )}
