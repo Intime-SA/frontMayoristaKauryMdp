@@ -79,6 +79,7 @@ const Contacto = () => {
                   fontSize: isNarrowScreen ? "0.8rem" : "1rem",
                   color: "#c4072c",
                   textAlign: isNarrowScreen ? "center" : "left",
+                  fontFamily: '"Roboto Condensed", sans-serif',
                 }}
               >
                 {cat.name}
@@ -96,6 +97,7 @@ const Contacto = () => {
             justifyContent: "center",
             alignItems: isNarrowScreen ? "center" : "flex-start",
             marginTop: "3rem",
+            fontFamily: '"Roboto Condensed", sans-serif',
           }}
         >
           <Link
@@ -105,6 +107,7 @@ const Contacto = () => {
               fontSize: isNarrowScreen ? "0.7rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
+              fontFamily: '"Roboto Condensed", sans-serif',
             }}
           >
             <span
@@ -123,6 +126,7 @@ const Contacto = () => {
               fontSize: isNarrowScreen ? "0.7rem" : "1rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
+              fontFamily: '"Roboto Condensed", sans-serif',
             }}
           >
             <span
@@ -144,6 +148,7 @@ const Contacto = () => {
               textAlign: isNarrowScreen ? "center" : "left",
               maxWidth: isNarrowScreen ? "375px" : "100%",
               margin: isNarrowScreen ? "0.5rem" : "1rem",
+              fontFamily: '"Roboto Condensed", sans-serif',
             }}
           >
             <span
@@ -164,6 +169,7 @@ const Contacto = () => {
               textAlign: isNarrowScreen ? "center" : "left",
               maxWidth: isNarrowScreen ? "375px" : "100%",
               margin: isNarrowScreen ? "0.5rem" : "1rem",
+              fontFamily: '"Roboto Condensed", sans-serif',
             }}
           >
             <span

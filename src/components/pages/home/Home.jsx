@@ -92,7 +92,12 @@ const Home = () => {
                   <p style={{ margin: "0px" }}>
                     <strong>WHATSAPP</strong>
                   </p>
-                  <p style={{ margin: "0px" }}>
+                  <p
+                    style={{
+                      margin: "0px",
+                      fontFamily: '"Roboto Condensed", sans-serif',
+                    }}
+                  >
                     Si queres revender nuestros productos, no dudes en
                     contactarte con nosotros.
                   </p>
