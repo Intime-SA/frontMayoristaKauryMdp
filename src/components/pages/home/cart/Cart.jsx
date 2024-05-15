@@ -166,7 +166,7 @@ const Cart = () => {
   const handleSubmit = async () => {
     let total = await getTotalPrice();
 
-    if (total <= 60000) {
+    if (total <= 50000) {
       setEstadoError(true);
       return;
     }
@@ -649,7 +649,7 @@ const Cart = () => {
                       color: "#c4072c",
                     }}
                   >
-                    La compra minima en el sitio mayorista es de $60.000,00
+                    La compra minima en el sitio mayorista es de $50.000,00
                   </Typography>
                 </div>
               )}
