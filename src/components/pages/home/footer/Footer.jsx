@@ -45,7 +45,7 @@ const Footer = () => {
         </a>
         <p
           style={{
-            fontSize: isNarrowScreen ? "20%" : "40%",
+            fontSize: isNarrowScreen ? "30%" : "50%",
             fontWeight: 100,
             fontFamily: "'Roboto Condensed', sans-serif",
             color: "white",
