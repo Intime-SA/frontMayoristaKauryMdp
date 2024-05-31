@@ -378,7 +378,7 @@ function Row(props) {
           <TableCell
             style={{
               width: "15%",
-              fontSize: "1.2rem",
+              fontSize: isMobile ? "0.9rem" : "1.2rem",
               fontFamily: '"Montserrat", sans-serif',
             }}
           >
@@ -387,7 +387,7 @@ function Row(props) {
           <TableCell
             style={{
               width: "15%",
-              fontSize: "1.2rem",
+              fontSize: isMobile ? "0.9rem" : "1.2rem",
               fontFamily: '"Kanit", sans-serif',
             }}
             align="right"
@@ -400,7 +400,7 @@ function Row(props) {
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: "1rem",
-                fontSize: "1.2rem",
+                fontSize: isMobile ? "0.9rem" : "1.2rem",
                 fontFamily: '"Kanit", sans-serif',
               }}
             >
@@ -428,15 +428,23 @@ function Row(props) {
             </TableCell>
           )}
 
-          <TableCell style={{ width: "15%", fontSize: "1.2rem" }} align="right">
+          <TableCell
+            style={{ width: "5%", fontSize: isMobile ? "0.9rem" : "1.2rem" }}
+            align="center"
+          >
             <Button
               style={{
-                fontSize: "1.2rem",
+                fontSize: isMobile ? "0.9rem" : "1.2rem",
                 fontFamily: '"Kanit", sans-serif',
+                padding: "0",
+                display: "flex",
+                justifyContent: "center",
               }}
               onClick={() => openDataOrderCard(row.id)}
             >
-              <div>{estadoRender(status)}</div>
+              <div style={{ padding: "0px", margin: "0px" }}>
+                {estadoRender(status)}
+              </div>
             </Button>
           </TableCell>
         </TableRow>
