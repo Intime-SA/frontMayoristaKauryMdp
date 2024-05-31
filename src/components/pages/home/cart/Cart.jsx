@@ -127,7 +127,7 @@ const Cart = () => {
         return {
           color: item.color || "",
           descuento: 0,
-          image: item.image || "",
+          image: item.image || item.imageCard || "",
           name: item.name || "",
           productId: item.idc || "",
           quantity: item.quantity || "",

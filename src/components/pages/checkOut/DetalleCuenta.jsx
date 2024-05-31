@@ -7,7 +7,7 @@ const DetalleCuenta = () => {
     const tituloStyle = { fontWeight: "bold" };
     const renderStyle = {
       color: "black",
-      fontFamily: '"Roboto Condensed", sans-serif',
+      fontFamily: '"Kanit", sans-serif',
     };
 
     return (
@@ -21,7 +21,7 @@ const DetalleCuenta = () => {
           </span>
           <Typography
             variant="body2"
-            style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+            style={{ fontFamily: '"Kanit", sans-serif' }}
           >
             <span style={tituloStyle}>Alias a transferir:</span>{" "}
             <span style={renderStyle}>KAURYMAYORISTA</span>
@@ -39,7 +39,7 @@ const DetalleCuenta = () => {
         <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
           <Typography
             variant="body2"
-            style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+            style={{ fontFamily: '"Kanit", sans-serif' }}
           >
             <span style={tituloStyle}>CBU:</span>{" "}
             <span style={renderStyle}>0000003100037054721391</span>
@@ -57,7 +57,7 @@ const DetalleCuenta = () => {
         <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
           <Typography
             variant="body2"
-            style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+            style={{ fontFamily: '"Kanit", sans-serif' }}
           >
             <span style={tituloStyle}>Titular de cuenta:</span>{" "}
             <span style={renderStyle}>RODOLFO GUILLERMO OTERO</span>
@@ -75,13 +75,13 @@ const DetalleCuenta = () => {
         <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
           <Typography
             variant="body2"
-            style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+            style={{ fontFamily: '"Kanit", sans-serif' }}
           >
             Te enviamos un correo electronico con el detalle de tu compra!
           </Typography>
           <Typography
             variant="body2"
-            style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+            style={{ fontFamily: '"Kanit", sans-serif' }}
           >
             Recorda enviar el <strong>comprobante de pago</strong> +{" "}
             <strong>número de orden</strong> al WhatsApp (223) 348-5438

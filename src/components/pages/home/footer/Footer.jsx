@@ -38,7 +38,7 @@ const Footer = () => {
       <div style={{ display: "flex", alignItems: "center", marginTop: "1rem" }}>
         <a href="https://atlantics.dev">
           <img
-            style={{ width: "3vw", marginBottom: "1rem" }}
+            style={{ width: "10vw", marginBottom: "1rem", maxWidth: "50px" }}
             src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/00000altanticdev-removebg-preview.png?alt=media&token=933ef3e7-fc96-48ac-bd20-8a43858dceab"
             alt=""
           />
@@ -47,7 +47,7 @@ const Footer = () => {
           style={{
             fontSize: isNarrowScreen ? "30%" : "50%",
             fontWeight: 100,
-            fontFamily: "'Roboto Condensed', sans-serif",
+            fontFamily: '"Kanit", sans-serif',
             color: "white",
           }}
         >

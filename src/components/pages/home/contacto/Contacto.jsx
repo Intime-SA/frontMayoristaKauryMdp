@@ -103,7 +103,7 @@ const Contacto = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: isNarrowScreen ? "center" : "flex-start",
+            alignItems: "flex-start",
             marginTop: "3rem",
             fontFamily: '"Kanit", sans-serif',
           }}

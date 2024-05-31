@@ -5,6 +5,7 @@ import ListArticles from "../components/pages/home/cards/ListArticles";
 import Cart from "../components/pages/home/cart/Cart";
 import ViewProduct from "../components/pages/home/viewProduct/ViewProduct";
 import Compras from "../components/pages/userOrders/Compras";
+import UserOrders from "../components/pages/userOrders/UserOrders";
 
 export const routes = [
   {
@@ -40,6 +41,6 @@ export const routes = [
   {
     id: "compras",
     path: "/compras",
-    Element: Compras,
+    Element: UserOrders,
   },
 ];

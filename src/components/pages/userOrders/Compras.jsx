@@ -9,7 +9,6 @@ const Compras = () => {
         alignItems: "center",
         flexDirection: "column",
         fontSize: "2rem",
-        top: "10rem",
         position: "relative",
       }}
     >
