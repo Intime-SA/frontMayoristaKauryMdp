@@ -41,7 +41,10 @@ export default function CardOfert({ product }) {
           <Typography
             variant="body1"
             color="textSecondary"
-            style={{ marginBottom: "0.5rem" }}
+            style={{
+              marginBottom: "0.5rem",
+              fontFamily: '"Montserrat", sans-serif',
+            }}
           >
             <strong>Art {product.name}</strong>
           </Typography>
@@ -50,7 +53,10 @@ export default function CardOfert({ product }) {
             variant="h6"
             component="div"
             color="red"
-            style={{ fontWeight: "bold" }}
+            style={{
+              fontWeight: "bold",
+              fontFamily: '"Montserrat", sans-serif',
+            }}
           >
             $
             {" " +
@@ -66,7 +72,10 @@ export default function CardOfert({ product }) {
             }}
           >
             <Button
-              style={{ borderRadius: "40px" }}
+              style={{
+                borderRadius: "40px",
+                fontFamily: '"Kanit", sans-serif',
+              }}
               variant="contained"
               color="error"
             >

@@ -70,10 +70,12 @@ const ProductCard = ({ product, handleClick, oferta }) => {
               color="textSecondary"
               style={{
                 marginBottom: "0.5rem",
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Montserrat", sans-serif',
               }}
             >
-              <strong>Art {product.name}</strong>
+              <strong style={{ fontFamily: '"Kanit", sans-serif' }}>
+                Art {product.name}
+              </strong>
             </Typography>
             <Typography
               gutterBottom
@@ -82,7 +84,7 @@ const ProductCard = ({ product, handleClick, oferta }) => {
               color="red"
               style={{
                 fontWeight: "900",
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Montserrat", sans-serif',
                 textDecoration: oferta ? "line-through" : "none",
                 display: oferta ? "flex" : "none", // Aplicar tachado si oferta es true
               }}
@@ -103,7 +105,7 @@ const ProductCard = ({ product, handleClick, oferta }) => {
               color="red"
               style={{
                 fontWeight: "900",
-                fontFamily: '"Roboto Condensed", sans-serif', // Aplicar tachado si oferta es true
+                fontFamily: '"Montserrat", sans-serif', // Aplicar tachado si oferta es true
               }}
             >
               $

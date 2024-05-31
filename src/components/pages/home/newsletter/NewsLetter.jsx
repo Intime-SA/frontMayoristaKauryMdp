@@ -13,7 +13,6 @@ const Newsletter = () => {
         textAlign: "center",
         padding: "20px",
         border: "1px solid #ccc",
-        borderRadius: "8px",
         width: "100vw",
         height: "60vh",
         maxHeight: "400px",
@@ -32,7 +31,7 @@ const Newsletter = () => {
           marginBottom: "0.5rem",
           fontSize: isNarrowScreen ? "70%" : "90%",
           fontWeight: 100,
-          fontFamily: '"Roboto Condensed", sans-serif',
+          fontFamily: '"Kanit", sans-serif',
         }}
       >
         NewsLetter
@@ -46,7 +45,7 @@ const Newsletter = () => {
           display: "flex",
           justifyContent: "center",
           fontWeight: 900,
-          fontFamily: '"Roboto Condensed", sans-serif',
+          fontFamily: '"Kanit", sans-serif',
         }}
       >
         Recibí todas las ofertas y noticias
@@ -56,9 +55,9 @@ const Newsletter = () => {
         gutterBottom
         style={{
           marginBottom: "0.5rem",
-          fontSize: isNarrowScreen ? "16px" : "24px",
-          fontWeight: 100,
-          fontFamily: '"Roboto Condensed", sans-serif',
+          fontSize: isNarrowScreen ? "12  px" : "20px",
+          fontWeight: 300,
+          fontFamily: '"Kanit", sans-serif',
         }}
       >
         ¿Querés recibir nuestras ofertas? ¡Registrate ya mismo y comenzá a
@@ -89,6 +88,7 @@ const Newsletter = () => {
             border: "1px solid #ccc",
             fontSize: "16px", // Tamaño de fuente fijo
             outline: "none",
+            fontFamily: '"Kanit", sans-serif',
           }}
         />
       </form>

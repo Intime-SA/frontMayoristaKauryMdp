@@ -30,6 +30,14 @@ const Contacto = () => {
     fetchData();
   }, []);
 
+  const styles = {
+    fontFamily: '"Kanit", sans-serif',
+    backgroundColor: "#f0f0f0",
+    color: "#333",
+    fontSize: "16px", // Ajusta el tamaño de fuente según tus necesidades
+    // Otros estilos que necesites
+  };
+
   return (
     <div
       style={{
@@ -43,7 +51,7 @@ const Contacto = () => {
         alignItems: "center",
         flexDirection: isNarrowScreen ? "column" : "row",
         color: "#c4072c", // Color para todo el componente
-        fontFamily: '"Roboto Condensed", sans-serif', // Fuente para todo el componente
+        fontFamily: '"Kanit", sans-serif', // Fuente para todo el componente
       }}
     >
       {/* Renderizar categorías */}
@@ -76,10 +84,10 @@ const Contacto = () => {
                 variant="outlined"
                 style={{
                   marginTop: "0.5rem",
-                  fontSize: isNarrowScreen ? "0.8rem" : "1rem",
+                  fontSize: isNarrowScreen ? "0.8rem" : "1.2rem",
                   color: "#c4072c",
                   textAlign: isNarrowScreen ? "center" : "left",
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                 }}
               >
                 {cat.name}
@@ -97,17 +105,17 @@ const Contacto = () => {
             justifyContent: "center",
             alignItems: isNarrowScreen ? "center" : "flex-start",
             marginTop: "3rem",
-            fontFamily: '"Roboto Condensed", sans-serif',
+            fontFamily: '"Kanit", sans-serif',
           }}
         >
           <Link
             variant="outlined"
             style={{
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1.2rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
             }}
           >
             <span
@@ -123,10 +131,10 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1.2rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
             }}
           >
             <span
@@ -143,12 +151,12 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: "0.5rem",
-              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1.2rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
               maxWidth: isNarrowScreen ? "375px" : "100%",
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
             }}
           >
             <span
@@ -164,12 +172,12 @@ const Contacto = () => {
             variant="outlined"
             style={{
               margin: "0.5rem",
-              fontSize: isNarrowScreen ? "0.7rem" : "1rem",
+              fontSize: isNarrowScreen ? "0.7rem" : "1.2rem",
               color: "#c4072c",
               textAlign: isNarrowScreen ? "center" : "left",
               maxWidth: isNarrowScreen ? "375px" : "100%",
               margin: isNarrowScreen ? "0.5rem" : "1rem",
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
             }}
           >
             <span
@@ -177,8 +185,8 @@ const Contacto = () => {
               className="material-symbols-outlined"
             >
               location_on
-            </span>
-            Rivadavia 5931, planta alta A de 10 a 17hs, Mar del Plata
+            </span>{" "}
+            Rivadavia 5931, Planta Alta A de 10 a 17hs, Mar del Plata
           </Link>
         </div>
       </div>

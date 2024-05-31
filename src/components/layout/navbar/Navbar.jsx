@@ -143,7 +143,6 @@ function Navbar(props) {
   };
 
   const cerrarSesion = () => {
-    logOut();
     navigate("/login");
   };
 
@@ -171,13 +170,28 @@ function Navbar(props) {
       {/* Lista de elementos del menú */}
       <List>
         {menuItems.map(({ id, path, title, Icon }) => (
-          <Link key={id} to={path}>
-            <ListItem disablePadding>
-              <ListItemButton>
+          <Link
+            style={{ fontFamily: '"Kanit", sans-serif' }}
+            key={id}
+            to={path}
+          >
+            <ListItem
+              style={{ fontFamily: '"Kanit", sans-serif' }}
+              disablePadding
+            >
+              <ListItemButton style={{ fontFamily: '"Kanit", sans-serif' }}>
                 <ListItemIcon>
                   <Icon sx={{ color: "#c4072c" }} />
                 </ListItemIcon>
-                <ListItemText primary={title} sx={{ color: "#c4072c" }} />
+
+                <h6
+                  style={{
+                    color: "#c4072c",
+                    fontFamily: '"Kanit", sans-serif',
+                  }}
+                >
+                  {title}
+                </h6>
               </ListItemButton>
             </ListItem>
           </Link>
@@ -188,7 +202,9 @@ function Navbar(props) {
             <ListItemIcon>
               <CategoryIcon sx={{ color: "#c4072c" }} />
             </ListItemIcon>
-            <ListItemText primary={"Categorías"} sx={{ color: "#c4072c" }} />
+            <h6 style={{ color: "#c4072c", fontFamily: '"Kanit", sans-serif' }}>
+              Categorias
+            </h6>
           </ListItemButton>
         </ListItem>
 
@@ -201,6 +217,8 @@ function Navbar(props) {
                 style={{
                   width: "100%",
                   textDecoration: "none", // Agregamos para eliminar subrayado
+                  color: "#c4072c",
+                  fontFamily: '"Kanit", sans-serif',
                 }}
               >
                 <Typography
@@ -210,6 +228,8 @@ function Navbar(props) {
                     fontSize: isNarrowScreen ? "0.8rem" : "1rem",
                     color: "#c4072c",
                     textAlign: "left",
+                    color: "#c4072c",
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                 >
                   {cat.name}
@@ -223,7 +243,9 @@ function Navbar(props) {
             <ListItemIcon>
               <LogoutIcon sx={{ color: "#c4072c" }} />
             </ListItemIcon>
-            <ListItemText primary={"Cerrar sesion"} sx={{ color: "#c4072c" }} />
+            <h6 style={{ color: "#c4072c", fontFamily: '"Kanit", sans-serif' }}>
+              Cerrar Sesion
+            </h6>
           </ListItemButton>
         </ListItem>
       </List>
@@ -333,9 +355,7 @@ function Navbar(props) {
                     height: "100%",
                     textAlign: "center", // Altura del h1
                   }}
-                >
-                  Mayorista
-                </h1>
+                ></h1>
               </div>
             </Link>
             <Link

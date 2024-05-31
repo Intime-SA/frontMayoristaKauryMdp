@@ -286,9 +286,8 @@ function CheckOut() {
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: "center",
             flexDirection: "column",
-            marginRight: "1rem",
             flexBasis: isMobile ? 440 : 1000,
           }}
         >
@@ -299,19 +298,23 @@ function CheckOut() {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "flex-start",
+                  justifyContent: "center",
                   flexDirection: "column",
                   margin: "1rem",
                 }}
               >
                 <div>
-                  <strong>Entrega</strong>
+                  <strong style={{ fontFamily: '"Kanit", sans-serif' }}>
+                    Entrega
+                  </strong>
                   <TipoEnvio />
                   {!desabilitarEnvio && userOrderData.tipoEnvio === 1 && (
                     <div>
                       <FormControlLabel
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
                         control={
                           <Checkbox
+                            style={{ fontFamily: '"Kanit", sans-serif' }}
                             checked={envioSeleccionado === "envioDomicilio"}
                             onChange={handleCheckboxChange}
                             name="envioDomicilio"
@@ -320,8 +323,10 @@ function CheckOut() {
                         label="Envio a domicilio"
                       />
                       <FormControlLabel
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
                         control={
                           <Checkbox
+                            style={{ fontFamily: '"Kanit", sans-serif' }}
                             checked={envioSeleccionado === "envioSucursal"}
                             onChange={handleCheckboxChange}
                             name="envioSucursal"
@@ -333,10 +338,12 @@ function CheckOut() {
                   )}
 
                   {userOrderData.tipoEnvio === 2 && (
-                    <div>
+                    <div style={{}}>
                       <FormControlLabel
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
                         control={
                           <Checkbox
+                            style={{ fontFamily: '"Kanit", sans-serif' }}
                             checked={tipoDePago.pagoTransferencia}
                             onChange={handleChange}
                             name="pagoTransferencia"
@@ -345,8 +352,10 @@ function CheckOut() {
                         label="Transferencia"
                       />
                       <FormControlLabel
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
                         control={
                           <Checkbox
+                            style={{ fontFamily: '"Kanit", sans-serif' }}
                             checked={tipoDePago.pagoEfectivo}
                             onChange={handleChange}
                             name="pagoEfectivo"
@@ -371,14 +380,23 @@ function CheckOut() {
                 />
                 {dataCliente && (
                   <>
-                    <Typography variant="body2">
+                    <Typography
+                      style={{ fontFamily: '"Kanit", sans-serif' }}
+                      variant="body2"
+                    >
                       <strong>Nombre:</strong> {dataCliente.name}{" "}
                       {dataCliente.apellido}
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography
+                      style={{ fontFamily: '"Kanit", sans-serif' }}
+                      variant="body2"
+                    >
                       <strong>Correo electrónico:</strong> {dataCliente.email}
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography
+                      style={{ fontFamily: '"Kanit", sans-serif' }}
+                      variant="body2"
+                    >
                       <strong>Teléfono:</strong> {dataCliente.telefono}
                     </Typography>
                     <div
@@ -391,32 +409,59 @@ function CheckOut() {
                       <Typography variant="h6" style={{ marginBottom: "10px" }}>
                         <strong>Datos de Envío / Facturacion</strong>
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
+                        variant="body2"
+                      >
                         <strong>Provincia:</strong>{" "}
                         {dataCliente.datosEnvio.provincia}
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
+                        variant="body2"
+                      >
                         <strong>Ciudad:</strong> {dataCliente.datosEnvio.ciudad}
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
+                        variant="body2"
+                      >
                         <strong>Código Postal:</strong>{" "}
                         {dataCliente.datosEnvio.codigoPostal}
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
+                        variant="body2"
+                      >
                         <strong>Calle:</strong> {dataCliente.datosEnvio.calle}
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
+                        variant="body2"
+                      >
                         <strong>Número:</strong> {dataCliente.datosEnvio.numero}
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
+                        variant="body2"
+                      >
                         <strong>Piso/Dpto:</strong>{" "}
                         {dataCliente.datosEnvio.pisoDpto}
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography
+                        style={{ fontFamily: '"Kanit", sans-serif' }}
+                        variant="body2"
+                      >
                         <strong>Barrio:</strong> {dataCliente.datosEnvio.barrio}
                       </Typography>
                     </div>
-                    <Typography variant="body2" style={{ marginTop: "20px" }}>
+                    <Typography
+                      variant="body2"
+                      style={{
+                        marginTop: "20px",
+                        fontFamily: '"Kanit", sans-serif',
+                      }}
+                    >
                       Fecha de inicio:{" "}
                       {new Date(
                         dataCliente.fechaInicio.seconds * 1000
@@ -441,6 +486,7 @@ function CheckOut() {
                         borderRadius: "20px",
                         margin: "1rem",
                         width: "100%",
+                        fontFamily: '"Kanit", sans-serif',
                       }}
                     >
                       CONTINUAR PARA EL PAGO
@@ -451,8 +497,12 @@ function CheckOut() {
             </div>
           ) : (
             <>
-              <h4>Pago se realizo con exito</h4>
-              <h4>orden de compra: {orderId}</h4>
+              <h4 style={{ fontFamily: '"Kanit", sans-serif' }}>
+                Pago se realizo con exito
+              </h4>
+              <h4 style={{ fontFamily: '"Kanit", sans-serif' }}>
+                orden de compra: {orderId}
+              </h4>
               <Link to="/">Volver a la tienda</Link>
             </>
           )}
@@ -516,7 +566,7 @@ function CheckOut() {
                   <Typography
                     variant="body2"
                     style={{
-                      fontFamily: '"Roboto Condensed", sans-serif',
+                      fontFamily: '"Kanit", sans-serif',
                       margin: "1rem",
                     }}
                     gutterBottom
@@ -528,7 +578,7 @@ function CheckOut() {
                   </Typography>
                   <Typography
                     variant="body2"
-                    style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                    style={{ fontFamily: '"Kanit", sans-serif' }}
                     gutterBottom
                     component="div"
                     color="black"
@@ -568,7 +618,7 @@ function CheckOut() {
               <Typography
                 variant="body2"
                 style={{
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                   fontSize: "50%",
                 }}
                 gutterBottom
@@ -580,7 +630,7 @@ function CheckOut() {
               <Typography
                 variant="body2"
                 style={{
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                   fontSize: "50%",
                 }}
                 gutterBottom
@@ -612,7 +662,7 @@ function CheckOut() {
               <Typography
                 variant="body2"
                 style={{
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                   fontSize: "50%",
                 }}
                 gutterBottom
@@ -624,7 +674,7 @@ function CheckOut() {
               <Typography
                 variant="body2"
                 style={{
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                   fontSize: "50%",
                 }}
                 gutterBottom
@@ -673,7 +723,7 @@ function CheckOut() {
             <Typography
               variant="h6"
               style={{
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Kanit", sans-serif',
                 marginLeft: "0.5rem",
                 fontWeight: "900",
               }}
@@ -686,7 +736,7 @@ function CheckOut() {
             <Typography
               variant="h6"
               style={{
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Kanit", sans-serif',
                 fontWeight: "900",
               }}
               gutterBottom

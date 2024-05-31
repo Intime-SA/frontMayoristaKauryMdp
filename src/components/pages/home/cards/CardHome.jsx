@@ -47,7 +47,7 @@ export default function CardHome({
             }}
           >
             <Typography
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
               gutterBottom
               variant="h5"
               component="div"

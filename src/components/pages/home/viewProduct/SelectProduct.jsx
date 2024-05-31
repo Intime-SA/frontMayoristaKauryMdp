@@ -133,7 +133,7 @@ const SelectProduct = ({ article }) => {
         border: "1px solid #e0e0e0",
         borderRadius: "8px",
         margin: "1rem",
-        fontFamily: '"Roboto Condensed", sans-serif',
+        fontFamily: '"Kanit", sans-serif',
         borderTop: "0px",
         borderTopLeftRadius: "0px",
         borderTopRightRadius: "0px",
@@ -151,7 +151,7 @@ const SelectProduct = ({ article }) => {
         <>
           <Typography
             style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
               fontWeight: 600,
               fontStyle: "normal",
             }}
@@ -160,7 +160,7 @@ const SelectProduct = ({ article }) => {
           </Typography>
           <Typography
             style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
               fontWeight: 900,
               fontStyle: "normal",
               color: "#c4072c",
@@ -224,29 +224,33 @@ const SelectProduct = ({ article }) => {
                 color: "#D27611",
                 display: "flex",
                 alignItems: "center",
+                height: "auto",
               }}
             >
               <h6
                 style={{
+                  display: "flex",
                   textAlign: "center",
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                   fontSize: "40%",
                 }}
               >
                 <span
-                  style={{ color: "#D27611", fontSize: "100%" }}
+                  style={{ color: "#D27611", fontSize: "200%" }}
                   className="material-symbols-outlined"
                 >
                   warning
                 </span>{" "}
-                Por cualquier consulta que tengas no dudes en escribirnos por
-                WhatsApp 2233485438
+                <p style={{ fontFamily: '"Kanit", sans-serif' }}>
+                  Por cualquier consulta que tengas no dudes en escribirnos por
+                  WhatsApp 2233485438
+                </p>
               </h6>
             </div>
             <Divider />
             <Typography
               sx={{
-                fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+                fontFamily: '"Kanit", sans-serif', // Fuente especificada
                 color: "#c4072c", // Color especificado
                 margin: "0 10px", // Margen horizontal para separar el contador
               }}
@@ -276,14 +280,14 @@ const SelectProduct = ({ article }) => {
               <Box>
                 <Typography
                   variant="body2"
-                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  style={{ fontFamily: '"Kanit", sans-serif' }}
                   gutterBottom
                 >
                   {`Talle: ${product.talle}`}
                 </Typography>
                 <Typography
                   variant="body2"
-                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  style={{ fontFamily: '"Kanit", sans-serif' }}
                   gutterBottom
                 >
                   {`Precio: ${product.unit_price.toLocaleString("es-AR", {
@@ -294,14 +298,14 @@ const SelectProduct = ({ article }) => {
                 </Typography>
                 <Typography
                   variant="body2"
-                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  style={{ fontFamily: '"Kanit", sans-serif' }}
                   gutterBottom
                 >
                   {`Color: ${product.color}`}
                 </Typography>
                 <Typography
                   variant="body2"
-                  style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                  style={{ fontFamily: '"Kanit", sans-serif' }}
                   gutterBottom
                 >
                   {`Stock: ${product.stock}`}
@@ -332,7 +336,7 @@ const SelectProduct = ({ article }) => {
               disabled={count <= 1}
               sx={{
                 color: "#c4072c", // Color especificado
-                fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+                fontFamily: '"Kanit", sans-serif', // Fuente especificada
               }}
             >
               <HorizontalRuleIcon />
@@ -340,7 +344,7 @@ const SelectProduct = ({ article }) => {
             <Typography
               variant="h6"
               sx={{
-                fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+                fontFamily: '"Kanit", sans-serif', // Fuente especificada
                 color: "#c4072c", // Color especificado
                 margin: "0 10px", // Margen horizontal para separar el contador
               }}
@@ -353,7 +357,7 @@ const SelectProduct = ({ article }) => {
               disabled={isButtonDisabled} // Utiliza el estado para deshabilitar el botón
               sx={{
                 color: "#c4072c", // Color especificado
-                fontFamily: '"Roboto Condensed", sans-serif', // Fuente especificada
+                fontFamily: '"Kanit", sans-serif', // Fuente especificada
               }}
             >
               <AddIcon />
@@ -363,7 +367,7 @@ const SelectProduct = ({ article }) => {
             <Typography
               variant="body2"
               color="error"
-              sx={{ marginTop: "10px" }}
+              sx={{ marginTop: "10px", fontFamily: '"Kanit", sans-serif' }}
             >
               {errorMessage}
             </Typography>
@@ -377,7 +381,11 @@ const SelectProduct = ({ article }) => {
           >
             <Typography
               variant="body2"
-              sx={{ marginTop: "1rem", color: "grey" }}
+              sx={{
+                marginTop: "1rem",
+                color: "grey",
+                fontFamily: '"Kanit", sans-serif',
+              }}
             >
               <span
                 style={{ fontSize: "100%" }}
@@ -395,7 +403,7 @@ const SelectProduct = ({ article }) => {
               fullWidth
               style={{
                 borderRadius: "20px",
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Kanit", sans-serif',
               }}
               disabled={!product}
               color="error"

@@ -171,7 +171,7 @@ const ClientForm = ({
   }, [updateSuccess]);
 
   return (
-    <div style={{ width: "100%", zoom: "0.9" }}>
+    <div style={{ width: "auto", zoom: "0.9" }}>
       {updateSuccess && userData ? (
         <div>{userData && <div></div>}</div>
       ) : (
@@ -182,6 +182,7 @@ const ClientForm = ({
             padding: "1rem",
             marginBottom: "1rem",
             backgroundColor: "rgba(255, 255, 255, 0.4)",
+            width: "auto",
           }}
         >
           <form
@@ -196,9 +197,10 @@ const ClientForm = ({
                   padding: "1rem",
                   marginBottom: "0.5rem",
                   backgroundColor: "rgba(255, 255, 255, 0.4)",
-                  width: "100%",
+                  width: "auto",
                   display: "flex",
                   flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
                 <h5
@@ -208,7 +210,9 @@ const ClientForm = ({
                     marginLeft: "1rem",
                   }}
                 >
-                  <strong>Datos de destinatario</strong>
+                  <strong style={{ fontFamily: '"Kanit", sans-serif' }}>
+                    Datos de destinatario
+                  </strong>
                 </h5>
                 <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                   <TextField
@@ -220,7 +224,6 @@ const ClientForm = ({
                     style={{
                       marginBottom: "1rem",
                       width: "100%",
-                      maxWidth: "400px",
                     }}
                     InputLabelProps={{ shrink: true }}
                     disabled
@@ -247,7 +250,8 @@ const ClientForm = ({
                     style={{
                       marginBottom: "1rem",
                       width: "100%",
-                      maxWidth: "400px",
+
+                      fontFamily: '"Kanit", sans-serif',
                     }}
                     InputLabelProps={{ shrink: true }}
                     error={errorTelefono !== ""}
@@ -266,7 +270,8 @@ const ClientForm = ({
                     style={{
                       marginBottom: "1rem",
                       width: "100%",
-                      maxWidth: "400px",
+
+                      fontFamily: '"Kanit", sans-serif',
                     }}
                     InputLabelProps={{ shrink: true }}
                   />
@@ -288,9 +293,12 @@ const ClientForm = ({
                   marginTop: "0rem",
                   marginBottom: "2rem",
                   marginLeft: "1rem",
+                  fontFamily: '"Kanit", sans-serif',
                 }}
               >
-                <strong>Datos de Envío / Facturacion </strong>
+                <strong style={{ fontFamily: '"Kanit", sans-serif' }}>
+                  Datos de Envío / Facturacion{" "}
+                </strong>
               </h5>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                 <TextField
@@ -312,7 +320,6 @@ const ClientForm = ({
                   style={{
                     marginBottom: "1rem",
                     width: "100%",
-                    maxWidth: "400px",
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
@@ -336,7 +343,6 @@ const ClientForm = ({
                   style={{
                     marginBottom: "1rem",
                     width: "100%",
-                    maxWidth: "400px",
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
@@ -358,7 +364,8 @@ const ClientForm = ({
                   style={{
                     marginBottom: "1rem",
                     width: "100%",
-                    maxWidth: "400px",
+
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
@@ -381,7 +388,8 @@ const ClientForm = ({
                   style={{
                     marginBottom: "1rem",
                     width: "100%",
-                    maxWidth: "400px",
+
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
@@ -403,7 +411,8 @@ const ClientForm = ({
                   style={{
                     marginBottom: "1rem",
                     width: "100%",
-                    maxWidth: "400px",
+
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
@@ -426,7 +435,8 @@ const ClientForm = ({
                   style={{
                     marginBottom: "1rem",
                     width: "100%",
-                    maxWidth: "400px",
+
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
@@ -449,7 +459,8 @@ const ClientForm = ({
                   style={{
                     marginBottom: "1rem",
                     width: "100%",
-                    maxWidth: "400px",
+
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
@@ -461,7 +472,12 @@ const ClientForm = ({
               type="submit"
               variant="contained"
               color="primary"
-              style={{ marginBottom: "1rem", width: "100%", maxWidth: "700px" }}
+              style={{
+                marginBottom: "1rem",
+                width: "100%",
+
+                fontFamily: '"Kanit", sans-serif',
+              }}
             >
               Confirmar Datos
             </Button>

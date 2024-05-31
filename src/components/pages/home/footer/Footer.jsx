@@ -34,25 +34,15 @@ const Footer = () => {
           }}
         />
       </Link>
-      <Typography
-        variant="p"
-        gutterBottom
-        style={{
-          fontSize: isNarrowScreen ? "50%" : "70%",
-          fontWeight: 100,
 
-          fontFamily: "'Roboto Condensed', sans-serif",
-          textAlign: "center",
-        }}
-      >
-        @kaurymdp
-      </Typography>
       <div style={{ display: "flex", alignItems: "center", marginTop: "1rem" }}>
-        <img
-          style={{ width: "3vw", marginBottom: "1rem" }}
-          src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/00000altanticdev-removebg-preview.png?alt=media&token=933ef3e7-fc96-48ac-bd20-8a43858dceab"
-          alt=""
-        />
+        <a href="https://atlantics.dev">
+          <img
+            style={{ width: "3vw", marginBottom: "1rem" }}
+            src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/00000altanticdev-removebg-preview.png?alt=media&token=933ef3e7-fc96-48ac-bd20-8a43858dceab"
+            alt=""
+          />
+        </a>
         <p
           style={{
             fontSize: isNarrowScreen ? "20%" : "40%",

@@ -8,7 +8,7 @@ const EmptyCartMessage = () => {
         variant="h4"
         style={{
           fontWeight: 600,
-          fontFamily: '"Roboto Condensed", sans-serif',
+          fontFamily: '"Kanit", sans-serif',
           color: "#c4072c",
         }}
       >
@@ -17,7 +17,8 @@ const EmptyCartMessage = () => {
       <Typography
         variant="body1"
         style={{
-          fontFamily: '"Roboto Condensed", sans-serif',
+          fontSize: "45%",
+          fontFamily: '"Kanit", sans-serif',
           marginTop: "1rem",
         }}
       >

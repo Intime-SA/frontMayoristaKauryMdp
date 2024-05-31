@@ -26,7 +26,7 @@ const Redes = () => {
           maxWidth: "400px", // Ancho máximo
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
+          justifyContent: "center",
           alignItems: "center",
           height: "50%",
         }}
@@ -47,9 +47,10 @@ const Redes = () => {
           gutterBottom
           style={{
             marginBottom: "0.5rem",
-            fontSize: isNarrowScreen ? "30%" : "60%",
+            marginTop: "0.5rem",
+            fontSize: isNarrowScreen ? "30%" : "50%",
             fontWeight: 100,
-            fontFamily: '"Roboto Condensed", sans-serif',
+            fontFamily: '"Kanit", sans-serif',
           }}
         >
           Estamos en instagram
@@ -61,11 +62,12 @@ const Redes = () => {
             borderRadius: "20px",
             color: "red",
             border: "1px solid red",
-            fontSize: isNarrowScreen ? "20%" : "40%",
+            fontSize: isNarrowScreen ? "20%" : "30%",
+            fontFamily: '"Kanit", sans-serif',
           }}
         >
           <Link
-            style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+            style={{ fontFamily: '"Kanit", sans-serif' }}
             to="https://www.instagram.com/kaurymdp"
           >
             SEGUINOS

@@ -30,7 +30,7 @@ const TipoEnvio = () => {
         <h6
           style={{
             marginLeft: "1rem",
-            fontFamily: '"Roboto Condensed", sans-serif',
+            fontFamily: '"Kanit", sans-serif',
           }}
         >
           Envío a domicilio
@@ -59,14 +59,14 @@ const TipoEnvio = () => {
           <h6
             style={{
               margin: "1rem",
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
             }}
           >
             Andreani Estandar
           </h6>
           <h6
             style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
               fontSize: "50%",
               color: "grey",
               marginLeft: "1rem",
@@ -86,7 +86,7 @@ const TipoEnvio = () => {
         <h6
           style={{
             marginLeft: "1rem",
-            fontFamily: '"Roboto Condensed", sans-serif',
+            fontFamily: '"Kanit", sans-serif',
           }}
         >
           Retirar por
@@ -115,14 +115,14 @@ const TipoEnvio = () => {
           <h6
             style={{
               margin: "1rem",
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
             }}
           >
             <span style={{ color: "grey" }}>Punto de Retiro</span> - ( GRATIS )
           </h6>
           <h6
             style={{
-              fontFamily: '"Roboto Condensed", sans-serif',
+              fontFamily: '"Kanit", sans-serif',
               fontSize: "50%",
               color: "grey",
               marginLeft: "1rem",

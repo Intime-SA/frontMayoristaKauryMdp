@@ -64,8 +64,11 @@ export const logOut = () => {
 let googleProvider = new GoogleAuthProvider();
 
 export const loginGoogle = async () => {
+  console.log(auth);
   try {
+    console.log(auth);
     const res = await signInWithPopup(auth, googleProvider);
+
     return res;
   } catch (error) {}
 };

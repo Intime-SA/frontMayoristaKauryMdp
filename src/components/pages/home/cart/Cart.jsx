@@ -273,7 +273,7 @@ const Cart = () => {
                       component="div"
                       style={{
                         fontWeight: 600,
-                        fontFamily: '"Roboto Condensed", sans-serif',
+                        fontFamily: '"Kanit", sans-serif',
                       }}
                     >
                       {producto.name}
@@ -291,13 +291,13 @@ const Cart = () => {
                   >
                     <Typography
                       variant="body2"
-                      style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                      style={{ fontFamily: '"Kanit", sans-serif' }}
                     >
                       {producto.quantity}
                     </Typography>
                     <Typography
                       variant="body2"
-                      style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+                      style={{ fontFamily: '"Kanit", sans-serif' }}
                     >
                       {(producto.unit_price * producto.quantity).toLocaleString(
                         "es-ES",
@@ -325,7 +325,7 @@ const Cart = () => {
                 component="div"
                 style={{
                   fontWeight: 600,
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                 }}
               >
                 Subtotal (sin envio) :
@@ -336,7 +336,7 @@ const Cart = () => {
                 component="div"
                 style={{
                   fontWeight: 600,
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                 }}
               >
                 {precioFormateado}
@@ -351,15 +351,21 @@ const Cart = () => {
                 color: "#D27611",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <h6 style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
-                <span
-                  style={{ color: "#D27611" }}
-                  className="material-symbols-outlined"
-                >
-                  warning
-                </span>{" "}
+              <span
+                style={{ color: "#D27611", margin: "0.5rem" }}
+                className="material-symbols-outlined"
+              >
+                warning
+              </span>{" "}
+              <h6
+                style={{
+                  fontFamily: '"Kanit", sans-serif',
+                  marginTop: "0.5rem",
+                }}
+              >
                 Por cualquier consulta que tengas no dudes en escribirnos por
                 WhatsApp 2233485438
               </h6>
@@ -372,7 +378,7 @@ const Cart = () => {
               <h6
                 style={{
                   marginLeft: "1rem",
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                 }}
               >
                 Envío a domicilio / sucursal
@@ -408,14 +414,14 @@ const Cart = () => {
                 <h6
                   style={{
                     margin: "1rem",
-                    fontFamily: '"Roboto Condensed", sans-serif',
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                 >
                   Andreani Estandar
                 </h6>
                 <h6
                   style={{
-                    fontFamily: '"Roboto Condensed", sans-serif',
+                    fontFamily: '"Kanit", sans-serif',
                     fontSize: "50%",
                     color: "grey",
                     marginLeft: "1rem",
@@ -433,7 +439,7 @@ const Cart = () => {
               <h6
                 style={{
                   marginLeft: "1rem",
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                 }}
               >
                 Retirar por
@@ -469,15 +475,23 @@ const Cart = () => {
                 <h6
                   style={{
                     margin: "1rem",
-                    fontFamily: '"Roboto Condensed", sans-serif',
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                 >
-                  <span style={{ color: "grey" }}>Punto de Retiro</span> - (
-                  GRATIS )
+                  <span
+                    style={{
+                      color: "grey",
+                      fontFamily: '"Kanit", sans-serif',
+                      fontWeight: "500",
+                    }}
+                  >
+                    Punto de Retiro
+                  </span>{" "}
+                  - ( GRATIS )
                 </h6>
                 <h6
                   style={{
-                    fontFamily: '"Roboto Condensed", sans-serif',
+                    fontFamily: '"Kanit", sans-serif',
                     fontSize: "50%",
                     color: "grey",
                     marginLeft: "1rem",
@@ -487,7 +501,7 @@ const Cart = () => {
                 </h6>
                 <h6
                   style={{
-                    fontFamily: '"Roboto Condensed", sans-serif',
+                    fontFamily: '"Kanit", sans-serif',
                     fontSize: "50%",
                     color: "#e0e0e0",
                     marginLeft: "1rem",
@@ -498,7 +512,7 @@ const Cart = () => {
             <h6
               style={{
                 marginLeft: "1rem",
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Kanit", sans-serif',
               }}
             >
               El tiempo de entrega no considera feriados.
@@ -528,7 +542,7 @@ const Cart = () => {
                         <h6
                           style={{
                             marginLeft: "1rem",
-                            fontFamily: '"Roboto Condensed", sans-serif',
+                            fontFamily: '"Kanit", sans-serif',
                           }}
                         >
                           Nuestros Locales
@@ -558,7 +572,11 @@ const Cart = () => {
                           <TableBody>
                             {locales.map((local) => (
                               <TableRow key={local.id}>
-                                <TableCell component="th" scope="row">
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  style={{ fontFamily: '"Kanit", sans-serif' }}
+                                >
                                   <Checkbox
                                     checked={selectedLocal === local.id}
                                     onChange={(event) =>
@@ -590,7 +608,7 @@ const Cart = () => {
                 component="div"
                 style={{
                   fontWeight: 800,
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                   color: "#c4072c",
                   fontSize: "100%",
                 }}
@@ -602,7 +620,7 @@ const Cart = () => {
                 component="div"
                 style={{
                   fontWeight: 800,
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                   color: "#c4072c",
                   fontSize: "100%",
                 }}
@@ -619,7 +637,7 @@ const Cart = () => {
                   <Button
                     style={{
                       borderRadius: "20px",
-                      fontFamily: '"Roboto Condensed", sans-serif',
+                      fontFamily: '"Kanit", sans-serif',
                     }}
                     color="error"
                     variant="contained"
@@ -645,7 +663,7 @@ const Cart = () => {
                     component="div"
                     style={{
                       fontWeight: 100,
-                      fontFamily: '"Roboto Condensed", sans-serif',
+                      fontFamily: '"Kanit", sans-serif',
                       color: "#c4072c",
                     }}
                   >
@@ -664,7 +682,7 @@ const Cart = () => {
               <Link
                 style={{
                   fontSize: "50%",
-                  fontFamily: '"Roboto Condensed", sans-serif',
+                  fontFamily: '"Kanit", sans-serif',
                 }}
                 to="/"
               >

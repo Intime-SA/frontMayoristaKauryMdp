@@ -95,7 +95,7 @@ const Home = () => {
                   <p
                     style={{
                       margin: "0px",
-                      fontFamily: '"Roboto Condensed", sans-serif',
+                      fontFamily: '"Kanit", sans-serif',
                     }}
                   >
                     Si queres revender nuestros productos, no dudes en
@@ -161,12 +161,15 @@ const Home = () => {
                     justifyContent: "center",
                     alignItems: "flex-start",
                     fontSize: "50%",
+                    fontFamily: '"Kanit", sans-serif',
                   }}
                 >
                   <p style={{ margin: "0px" }}>
                     <strong>Tarjetas de credito y debito</strong>
                   </p>
-                  <p style={{ margin: "0px" }}>
+                  <p
+                    style={{ margin: "0px", fontFamily: '"Kanit", sans-serif' }}
+                  >
                     Podes abonar con tarjeta de credito y debito. Compra 100%
                     segura
                   </p>
@@ -232,10 +235,14 @@ const Home = () => {
                     fontSize: "50%",
                   }}
                 >
-                  <p style={{ margin: "0px" }}>
+                  <p
+                    style={{ margin: "0px", fontFamily: '"Kanit", sans-serif' }}
+                  >
                     <strong>Envio para todo el pais</strong>
                   </p>
-                  <p style={{ margin: "0px" }}>
+                  <p
+                    style={{ margin: "0px", fontFamily: '"Kanit", sans-serif' }}
+                  >
                     Enviamos tu producto KAURY por andreani o correo argentino
                   </p>
                 </div>
@@ -300,10 +307,14 @@ const Home = () => {
                     fontSize: "50%",
                   }}
                 >
-                  <p style={{ margin: "0px" }}>
+                  <p
+                    style={{ margin: "0px", fontFamily: '"Kanit", sans-serif' }}
+                  >
                     <strong>Quedate en casa</strong>
                   </p>
-                  <p style={{ margin: "0px" }}>
+                  <p
+                    style={{ margin: "0px", fontFamily: '"Kanit", sans-serif' }}
+                  >
                     Te llevamos tu producto sin que salgas de tu casa
                   </p>
                 </div>
@@ -335,8 +346,8 @@ const Home = () => {
       <Typography
         variant="h4"
         style={{
-          fontFamily: '"Roboto Condensed", sans-serif',
-          fontWeight: 700,
+          fontFamily: '"Kanit", sans-serif',
+          fontWeight: 900,
           marginBottom: "1rem",
           color: "#c4072c",
         }}

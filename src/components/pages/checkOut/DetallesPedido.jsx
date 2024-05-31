@@ -26,10 +26,13 @@ const DetallesPedido = ({ userOrder }) => {
 
   const renderDatosEnvio = () => {
     const iconColor = "#c4072c";
-    const tituloStyle = { fontWeight: "bold" };
+    const tituloStyle = {
+      fontWeight: "bold",
+      fontFamily: '"Kanit", sans-serif',
+    };
     const renderStyle = {
       color: "black",
-      fontFamily: '"Roboto Condensed", sans-serif',
+      fontFamily: '"Kanit", sans-serif',
     };
 
     if (userOrder.tipoEnvio === 1) {
@@ -44,7 +47,7 @@ const DetallesPedido = ({ userOrder }) => {
             </span>
             <Typography
               variant="body2"
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
             >
               <span style={tituloStyle}>Email:</span>{" "}
               <span style={renderStyle}>{dataClient.email}</span>
@@ -68,7 +71,7 @@ const DetallesPedido = ({ userOrder }) => {
             </span>
             <Typography
               variant="body2"
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
             >
               <span style={tituloStyle}>Dirección de Envío:</span>
               {userOrder.envioSeleccionado === "envioDomicilio" ? (
@@ -131,7 +134,7 @@ const DetallesPedido = ({ userOrder }) => {
           <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
             <Typography
               variant="body2"
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
             >
               <span style={tituloStyle}>Precio Total:</span>{" "}
               <span style={renderStyle}>
@@ -159,10 +162,10 @@ const DetallesPedido = ({ userOrder }) => {
             </span>
             <Typography
               variant="body2"
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
             >
               <span style={tituloStyle}>Punto de Retiro</span>
-              <div>
+              <div style={{ fontFamily: '"Kanit", sans-serif' }}>
                 {userOrder.sucursal === 1 && (
                   <>
                     Showroom - José Mármol 970 timbre 104. Atención de lunes a
@@ -182,7 +185,7 @@ const DetallesPedido = ({ userOrder }) => {
           <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
             <Typography
               variant="body2"
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
             >
               <span
                 className="material-symbols-outlined"
@@ -200,7 +203,7 @@ const DetallesPedido = ({ userOrder }) => {
           <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
             <Typography
               variant="body2"
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
             >
               <span
                 className="material-symbols-outlined"
@@ -236,7 +239,7 @@ const DetallesPedido = ({ userOrder }) => {
           <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
             <Typography
               variant="body2"
-              style={{ fontFamily: '"Roboto Condensed", sans-serif' }}
+              style={{ fontFamily: '"Kanit", sans-serif' }}
             >
               <span style={tituloStyle}>Precio Total:</span>{" "}
               <span style={renderStyle}>

@@ -8,7 +8,7 @@ const SelectProductMessage = () => {
         <Typography
           variant="body2"
           style={{
-            fontFamily: '"Roboto Condensed", sans-serif',
+            fontFamily: '"Kanit", sans-serif',
             marginTop: "1rem",
             color: "grey",
           }}
@@ -29,7 +29,7 @@ const SelectProductMessage = () => {
         <Typography
           variant="body2"
           style={{
-            fontFamily: '"Roboto Condensed", sans-serif',
+            fontFamily: '"Kanit", sans-serif',
             marginTop: "1rem",
             color: "grey",
           }}

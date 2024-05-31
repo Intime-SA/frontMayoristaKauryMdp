@@ -9,10 +9,16 @@ const steps = ["Carrito", "Entrega", "Pago"];
 const CustomStepper = ({ step }) => {
   return (
     <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={step} alternativeLabel>
+      <Stepper
+        style={{ fontFamily: '"Kanit", sans-serif' }}
+        activeStep={step}
+        alternativeLabel
+      >
         {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
+          <Step style={{ fontFamily: '"Kanit", sans-serif' }} key={label}>
+            <StepLabel style={{ fontFamily: '"Kanit", sans-serif' }}>
+              {label}
+            </StepLabel>
           </Step>
         ))}
       </Stepper>

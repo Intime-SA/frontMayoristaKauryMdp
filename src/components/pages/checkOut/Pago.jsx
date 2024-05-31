@@ -352,17 +352,24 @@ const Pago = () => {
             backgroundColor: "#DD083126",
           }}
         >
-          <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
+            <span class="material-symbols-outlined">info</span>
             <h6
               style={{
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Kanit", sans-serif',
                 fontSize: "40%",
                 color: "#912137",
+                margin: "1rem",
               }}
             >
-              <span class="material-symbols-outlined">info</span> Por cualquier
-              consulta que tengas no dudes en escribirnos por WhatsApp
-              2233485438
+              Por cualquier consulta que tengas no dudes en escribirnos por
+              WhatsApp 2233485438
             </h6>
           </div>
         </div>
@@ -387,17 +394,18 @@ const Pago = () => {
                   backgroundColor: "#E8F6E4", // Cambiar el color de fondo al color de éxito más claro
                 }}
               >
-                <div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span className="material-symbols-outlined">
+                    check_circle
+                  </span>{" "}
                   <h6
                     style={{
-                      fontFamily: '"Roboto Condensed", sans-serif',
+                      fontFamily: '"Kanit", sans-serif',
                       fontSize: "40%",
-                      color: "#388E3C", // Cambiar el color del texto al color de éxito más oscuro
+                      color: "#388E3C",
+                      margin: "1rem", // Cambiar el color del texto al color de éxito más oscuro
                     }}
                   >
-                    <span className="material-symbols-outlined">
-                      check_circle
-                    </span>{" "}
                     SU ORDEN DE COMPRA FUE CREADA CON ÉXITO!
                   </h6>
                 </div>
@@ -406,11 +414,14 @@ const Pago = () => {
             <Typography
               variant="body2"
               style={{
-                fontFamily: '"Roboto Condensed", sans-serif',
+                fontFamily: '"Kanit", sans-serif',
                 marginLeft: "2rem",
               }}
             >
-              Numero de Orden #{numberOrder}
+              Numero de Orden #
+              <strong style={{ fontFamily: '"Kanit", sans-serif' }}>
+                {numberOrder}
+              </strong>
             </Typography>
             {userOrder.tipoEnvio === 1 && <DetalleCuenta />}
           </>
@@ -431,7 +442,12 @@ const Pago = () => {
             }}
           >
             {renderOrder && (
-              <Button onClick={() => volver()} variant="contained" color="info">
+              <Button
+                style={{ fontFamily: '"Kanit", sans-serif' }}
+                onClick={() => volver()}
+                variant="contained"
+                color="info"
+              >
                 Volver
               </Button>
             )}
@@ -450,14 +466,17 @@ const Pago = () => {
           <Button
             variant="contained"
             color="success"
-            style={{ borderRadius: "50px" }}
+            style={{ borderRadius: "50px", fontFamily: '"Kanit", sans-serif' }}
             onClick={realizarPedido}
           >
             Realizar Pedido
           </Button>
           <Link to="/">
             <Button
-              style={{ borderRadius: "50px" }}
+              style={{
+                borderRadius: "50px",
+                fontFamily: '"Kanit", sans-serif',
+              }}
               variant="contained"
               color="error"
             >
