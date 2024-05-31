@@ -387,7 +387,7 @@ function Row(props) {
           <TableCell
             style={{
               width: "15%",
-              fontSize: isMobile ? "0.9rem" : "1.2rem",
+              fontSize: isMobile ? "0.8rem" : "1.2rem",
               fontFamily: '"Kanit", sans-serif',
             }}
             align="right"
@@ -400,7 +400,7 @@ function Row(props) {
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: "1rem",
-                fontSize: isMobile ? "0.9rem" : "1.2rem",
+                fontSize: isMobile ? "0.8rem" : "1.2rem",
                 fontFamily: '"Kanit", sans-serif',
               }}
             >
@@ -657,7 +657,7 @@ function UserOrdersDetail({
               <TableCell
                 align="left"
                 style={{
-                  width: "30%",
+                  width: "25%",
                   fontFamily: '"Kanit", sans-serif',
                   fontSize: "1.5rem",
                 }}
@@ -667,7 +667,7 @@ function UserOrdersDetail({
               <TableCell
                 align="center"
                 style={{
-                  width: "15%",
+                  width: "10%",
                   fontFamily: '"Kanit", sans-serif',
                   fontSize: "1.5rem",
                 }}
@@ -690,7 +690,7 @@ function UserOrdersDetail({
               <TableCell
                 align="center"
                 style={{
-                  width: "10%",
+                  width: "5%",
                   fontFamily: '"Kanit", sans-serif',
                   fontSize: "1.5rem",
                 }}
