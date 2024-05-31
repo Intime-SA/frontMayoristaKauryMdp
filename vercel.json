@@ -6,7 +6,7 @@
     { "source": "/viewProduct/:id", "destination": "/" },
     { "source": "/listArticles/:id", "destination": "/" },
     { "source": "/pago", "destination": "/" },
-    { "source": "/login", "destination": "/" }
+    { "source": "/login", "destination": "/" },
     { "source": "/compras", "destination": "/" }
   ]
 }
