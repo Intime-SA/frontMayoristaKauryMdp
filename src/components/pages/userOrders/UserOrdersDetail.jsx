@@ -51,6 +51,8 @@ function Row(props) {
     selected,
     handleChangeCheckbox,
     setProgress,
+    scroll,
+    setScroll,
   } = props;
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -70,6 +72,7 @@ function Row(props) {
       const snapShotCollection = await getDocs(refCollection);
 
       setOpenOrder(true);
+      setScroll(!scroll);
 
       snapShotCollection.forEach((element) => {
         const data = element.data();
@@ -566,12 +569,13 @@ function UserOrdersDetail({
   const [totalOrders, setTotalOrders] = useState([]);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
     if (openOrder) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [openOrder]);
+  }, [openOrder, scroll]);
 
   const handleCheckboxChange = (order) => {
     // Verifica si la orden ya está seleccionada
@@ -710,7 +714,9 @@ function UserOrdersDetail({
                   openOrder={openOrder}
                   selected={selectedOrders} // Indicar si la orden está seleccionada
                   handleChangeCheckbox={handleCheckboxChange}
-                  setProgress={setProgress} // Pasar la función de manejo de cambio del checkbox
+                  setProgress={setProgress}
+                  setScroll={setScroll}
+                  scroll={scroll} // Pasar la función de manejo de cambio del checkbox
                 />
               ))}
             </TableBody>
