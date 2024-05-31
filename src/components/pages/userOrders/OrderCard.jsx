@@ -214,26 +214,28 @@ const OrderCard = ({ dataOrder, setChangeStatus, changeStatus, openForm }) => {
 
           <div>{estadoRender(dataOrder.status)}</div>
         </div>
-        <Tooltip title="Contacto">
-          <div
-            style={{
-              width: "100%",
-              textAlign: "right",
-            }}
+
+        <div
+          style={{
+            width: "100%",
+            textAlign: "right",
+          }}
+        >
+          <Button
+            style={{ marginBottom: "0.5rem" }}
+            onClick={() => phoneNumber(/* dataCliente?.telefono */)}
           >
-            <Button
-              style={{ marginBottom: "0.5rem" }}
-              onClick={() => phoneNumber(/* dataCliente?.telefono */)}
-            >
+            {" "}
+            <Tooltip title="Contacto">
               <img
                 style={{ marginTop: "0.5rem" }}
                 width="25rem"
                 src="https://firebasestorage.googleapis.com/v0/b/mayoristakaurymdp.appspot.com/o/1384023%20(1).png?alt=media&token=51c00452-bfcd-448d-b520-a62d44d58788"
                 alt="logowsp"
               />
-            </Button>
-          </div>
-        </Tooltip>
+            </Tooltip>
+          </Button>
+        </div>
 
         <Typography
           variant="body1"

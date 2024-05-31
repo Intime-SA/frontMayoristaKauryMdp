@@ -106,9 +106,10 @@ function Row(props) {
               marginTop: "10%",
               fontSize: "75%",
               fontFamily: '"Kanit", sans-serif',
+              textAlign: "center",
             }}
           >
-            Pendiente
+            {!isMobile && "Pendiente"}
           </AlertTitle>
           {/* <strong>El pedido ya fue preparado</strong> */}
         </Alert>
@@ -116,11 +117,15 @@ function Row(props) {
     } else if (estado === "Empaquetada") {
       return (
         <Alert
-          style={{ fontSize: "75%", fontFamily: '"Kanit", sans-serif' }}
+          style={{
+            fontSize: "75%",
+            fontFamily: '"Kanit", sans-serif',
+            textAlign: "center",
+          }}
           size="small"
           severity="info"
         >
-          Empaquetada
+          {!isMobile && "Empaquetada"}
         </Alert>
       );
     } else if (estado === "Pago Recibido") {
@@ -131,10 +136,11 @@ function Row(props) {
               marginTop: "10%",
               fontSize: "75%",
               fontFamily: '"Kanit", sans-serif',
+              textAlign: "center",
             }}
             variant="outlined"
           >
-            Pago Recibido
+            {!isMobile && "Pago Recibido"}
           </AlertTitle>
           {/* <strong>El pedido fue entregado con exito</strong> */}
         </Alert>
@@ -147,9 +153,12 @@ function Row(props) {
               marginTop: "10%",
               fontSize: "75%",
               fontFamily: '"Kanit", sans-serif',
+              textAlign: "center",
+              display: "flex",
+              marginLeft: "1rem",
             }}
           >
-            En Distribucion
+            {!isMobile && "En Distribucion"}
           </AlertTitle>
           {/* <strong>El pedido fue entregado con exito</strong> */}
         </Alert>
@@ -157,14 +166,22 @@ function Row(props) {
     } else if (estado === "Cancelada") {
       return (
         <Alert
-          style={{ fontSize: "100%", fontFamily: '"Kanit", sans-serif' }}
+          style={{
+            fontSize: "100%",
+            fontFamily: '"Kanit", sans-serif',
+            textAlign: "center",
+          }}
           variant="outlined"
           severity="error"
         >
           <AlertTitle
-            style={{ fontSize: "75%", fontFamily: '"Kanit", sans-serif' }}
+            style={{
+              fontSize: "75%",
+              fontFamily: '"Kanit", sans-serif',
+              textAlign: "center",
+            }}
           >
-            Cancelado
+            {!isMobile && "Cancelada"}
           </AlertTitle>
         </Alert>
       );
@@ -172,9 +189,13 @@ function Row(props) {
       return (
         <Alert variant="contained" color="info">
           <AlertTitle
-            style={{ fontSize: "100%", fontFamily: '"Kanit", sans-serif' }}
+            style={{
+              fontSize: "100%",
+              fontFamily: '"Kanit", sans-serif',
+              textAlign: "center",
+            }}
           >
-            Archivada
+            {!isMobile && "Archivada"}
           </AlertTitle>
         </Alert>
       );
@@ -333,18 +354,27 @@ function Row(props) {
             </TableCell>
           )}
 
-          <TableCell align="center" style={{ width: "5%", fontSize: "1.2rem" }}>
-            <Button
-              style={{ fontSize: "1.2rem", fontFamily: '"Kanit", sans-serif' }}
-              onClick={() => openDataOrderCard(row.id)}
+          {!isMobile && (
+            <TableCell
+              align="center"
+              style={{ width: "5%", fontSize: "1.2rem" }}
             >
-              #{" "}
-              <strong style={{ fontFamily: '"Kanit", sans-serif' }}>
-                {" "}
-                {row.numberOrder}{" "}
-              </strong>
-            </Button>
-          </TableCell>
+              <Button
+                style={{
+                  fontSize: "1.2rem",
+                  fontFamily: '"Kanit", sans-serif',
+                }}
+                onClick={() => openDataOrderCard(row.id)}
+              >
+                #{" "}
+                <strong style={{ fontFamily: '"Kanit", sans-serif' }}>
+                  {" "}
+                  {row.numberOrder}{" "}
+                </strong>
+              </Button>
+            </TableCell>
+          )}
+
           <TableCell
             style={{
               width: "15%",
@@ -399,7 +429,15 @@ function Row(props) {
           )}
 
           <TableCell style={{ width: "15%", fontSize: "1.2rem" }} align="right">
-            <div>{estadoRender(status)}</div>
+            <Button
+              style={{
+                fontSize: "1.2rem",
+                fontFamily: '"Kanit", sans-serif',
+              }}
+              onClick={() => openDataOrderCard(row.id)}
+            >
+              <div>{estadoRender(status)}</div>
+            </Button>
           </TableCell>
         </TableRow>
       )}
@@ -593,18 +631,21 @@ function UserOrdersDetail({
                   <span class="material-symbols-outlined">check_box</span>
                 </TableCell>
               )}
-              <TableCell
-                align="center"
-                style={{
-                  width: "5%",
-                  paddingLeft: "8px",
-                  fontFamily: '"Kanit", sans-serif',
-                  fontSize: "1.5rem",
-                  fontSize: "1.5rem",
-                }}
-              >
-                ID
-              </TableCell>
+              {!isMobile && (
+                <TableCell
+                  align="center"
+                  style={{
+                    width: "5%",
+                    paddingLeft: "8px",
+                    fontFamily: '"Kanit", sans-serif',
+                    fontSize: "1.5rem",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  ID
+                </TableCell>
+              )}
+
               <TableCell
                 align="left"
                 style={{
@@ -646,7 +687,7 @@ function UserOrdersDetail({
                   fontSize: "1.5rem",
                 }}
               >
-                Estado
+                {!isMobile && "Estado"}
               </TableCell>
             </TableHead>
             <TableBody>
