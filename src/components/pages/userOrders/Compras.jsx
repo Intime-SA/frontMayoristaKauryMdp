@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserOrders = () => {
+const Compras = () => {
   return (
     <div
       style={{
@@ -18,4 +18,4 @@ const UserOrders = () => {
   );
 };
 
-export default UserOrders;
+export default Compras;

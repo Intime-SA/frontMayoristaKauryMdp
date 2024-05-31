@@ -55,7 +55,7 @@ const Newsletter = () => {
         gutterBottom
         style={{
           marginBottom: "0.5rem",
-          fontSize: isNarrowScreen ? "12  px" : "20px",
+          fontSize: isNarrowScreen ? "12px" : "20px",
           fontWeight: 300,
           fontFamily: '"Kanit", sans-serif',
         }}

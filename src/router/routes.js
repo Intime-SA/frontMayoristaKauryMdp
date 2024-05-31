@@ -4,6 +4,7 @@ import Home from "../components/pages/home/Home";
 import ListArticles from "../components/pages/home/cards/ListArticles";
 import Cart from "../components/pages/home/cart/Cart";
 import ViewProduct from "../components/pages/home/viewProduct/ViewProduct";
+import Compras from "../components/pages/userOrders/Compras";
 
 export const routes = [
   {
@@ -35,5 +36,10 @@ export const routes = [
     id: "pago",
     path: "/pago",
     Element: Pago,
+  },
+  {
+    id: "compras",
+    path: "/compras",
+    Element: Compras,
   },
 ];
