@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createContext } from "react";
 
 export const CartContext = createContext();
@@ -9,12 +9,14 @@ const CartContextComponente = ({ children }) => {
   );
 
   const addToCart = (product) => {
+    const timestamp = new Date().getTime(); // Obtener el timestamp actual
+
     let existe = cart.some((e) => e.idc === product.idc);
 
     if (existe) {
       let newArr = cart.map((elemento) => {
         if (elemento.idc === product.idc) {
-          return { ...elemento, quantity: product.quantity };
+          return { ...elemento, quantity: product.quantity, timestamp }; // Añadir timestamp
         } else {
           return elemento;
         }
@@ -23,8 +25,9 @@ const CartContextComponente = ({ children }) => {
       setCart(newArr);
       console.log(cart);
     } else {
-      localStorage.setItem("cart", JSON.stringify([...cart, product]));
-      setCart([...cart, product]);
+      const updatedCart = [...cart, { ...product, timestamp }]; // Añadir timestamp
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setCart(updatedCart);
     }
   };
 
@@ -52,6 +55,28 @@ const CartContextComponente = ({ children }) => {
   };
 
   const [regresoDePago, setRegresoDePago] = useState(false);
+
+  // Función loadOrder para verificar y eliminar pedidos expirados
+  const loadOrder = () => {
+    const data = JSON.parse(localStorage.getItem("cart"));
+    if (data) {
+      const currentTime = new Date().getTime();
+      const timeDifference = currentTime - data[0].timestamp;
+
+      const hoursDifference = timeDifference / (1000 * 60 * 60);
+
+      if (hoursDifference >= 24) {
+        clearCart();
+        return null; // El pedido ha expirado
+      }
+      return data; // Devuelve el pedido si no ha expirado
+    }
+    return null; // No hay pedido guardado
+  };
+
+  // useEffect para cargar y verificar el pedido al montar el componente
+
+  loadOrder();
 
   let data = {
     cart,
