@@ -149,6 +149,7 @@ function CheckOut() {
   const [costos, setCostos] = useState([]);
   const [andreaniAsucursal, setAndreaniAsucursal] = useState(0);
   const [andreaniCostoDomicilio, setAndreaniCostoDomicilio] = useState(0);
+  const [transferencia, setTransferencia] = useState(0);
 
   useEffect(() => {
     const fetchCostos = async () => {
@@ -163,6 +164,7 @@ function CheckOut() {
         if (costosData.length > 0) {
           setAndreaniAsucursal(costosData[0].andreaniAsucursal || 0);
           setAndreaniCostoDomicilio(costosData[0].andreaniCostoDomicilio || 0);
+          setTransferencia(costosData[0].transferencia || 0);
         }
       } catch (error) {
         console.error("Error fetching costos:", error);
@@ -171,6 +173,7 @@ function CheckOut() {
 
     fetchCostos();
   }, []);
+  console.log(transferencia);
 
   useEffect(() => {
     if (costos.length > 0) {
@@ -249,16 +252,16 @@ function CheckOut() {
 
   useEffect(() => {
     if (shouldApplyEffect) {
-      // Lógica para aplicar o quitar el descuento del 15% según el método de pago seleccionado
+      // Lógica para aplicar o quitar el descuento del transferencia% según el método de pago seleccionado
       let newTotalOrder = totalOrder;
 
       if (tipoDePago.pagoTransferencia) {
-        newTotalOrder += (totalOrder * 15) / 100; // Se añade el 15% al total
+        newTotalOrder += (totalOrder * transferencia) / 100; // Se añade el transferencia% al total
       } else if (
         tipoDePagoAnterior.pagoTransferencia &&
         tipoDePago.pagoEfectivo
       ) {
-        newTotalOrder -= (totalOrderOriginal * 15) / 100; // Se quita el 15% al total
+        newTotalOrder -= (totalOrderOriginal * transferencia) / 100; // Se quita el transferencia% al total
       }
 
       setTotalOrderPago(newTotalOrder);
