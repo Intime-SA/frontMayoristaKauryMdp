@@ -146,9 +146,37 @@ function CheckOut() {
     console.error("Error al analizar el JSON:", error);
   }
 
-  let andreaniAsucursal = 6900;
-  let andreaniCostoDomicilio = 8550;
-  let sinEnvio = 0;
+  const [costos, setCostos] = useState([]);
+  const [andreaniAsucursal, setAndreaniAsucursal] = useState(0);
+  const [andreaniCostoDomicilio, setAndreaniCostoDomicilio] = useState(0);
+
+  useEffect(() => {
+    const fetchCostos = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "costos"));
+        const costosData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCostos(costosData);
+
+        if (costosData.length > 0) {
+          setAndreaniAsucursal(costosData[0].andreaniAsucursal || 0);
+          setAndreaniCostoDomicilio(costosData[0].andreaniCostoDomicilio || 0);
+        }
+      } catch (error) {
+        console.error("Error fetching costos:", error);
+      }
+    };
+
+    fetchCostos();
+  }, []);
+
+  useEffect(() => {
+    if (costos.length > 0) {
+      console.log(costos[0].andreaniAsucursal);
+    }
+  }, [costos]);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const containerWidth = isMobile ? "100vw" : "90vw";
@@ -157,6 +185,8 @@ function CheckOut() {
     pagoTransferencia: false,
     pagoEfectivo: true,
   });
+
+  let sinEnvio = 0;
 
   const [tipoDePagoAnterior, setTipoDePagoAnterior] = useState({
     pagoTransferencia: false,
