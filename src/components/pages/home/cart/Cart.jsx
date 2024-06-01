@@ -184,7 +184,7 @@ const Cart = () => {
       total: totalOrder,
       tipoEnvio: selectedCheckbox,
       sucursal: selectedLocal,
-      // Añadir timestamp aquí
+      timestamp: new Date().getTime(), // Añadir timestamp aquí
     };
 
     // Guardar userOrder en localStorage

@@ -13,7 +13,6 @@ const AuthContextComponent = ({ children }) => {
   const handleLogin = (userLogged) => {
     setUser(userLogged);
     setIsLogged(true);
-    console.log(true);
     localStorage.setItem("userInfo", JSON.stringify(userLogged));
     localStorage.setItem("isLogged", JSON.stringify(true));
   };

@@ -32,6 +32,7 @@ import Redes from "../../pages/home/redes/Redes";
 import Footer from "../../pages/home/footer/Footer";
 import { CartContext } from "../../context/CartContext";
 import { useTheme } from "@mui/material/styles";
+import { AuthContext } from "../../context/AuthContext";
 const drawerWidth = 200;
 
 function Navbar(props) {
@@ -41,6 +42,7 @@ function Navbar(props) {
   const [cartItemCount, setCartItemCount] = useState(0);
   const theme = useTheme();
   const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const { handleLogoutContext } = useContext(AuthContext);
 
   const [category, setCategory] = useState([]);
 
@@ -143,6 +145,7 @@ function Navbar(props) {
   };
 
   const cerrarSesion = () => {
+    handleLogoutContext();
     navigate("/login");
   };
 
