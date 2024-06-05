@@ -61,7 +61,9 @@ const CartContextComponente = ({ children }) => {
     const data = JSON.parse(localStorage.getItem("cart"));
     if (data) {
       const currentTime = new Date().getTime();
+      console.log("current time servidor: " + currentTime);
       const timeDifference = currentTime - data[0].timestamp;
+      console.log("timeDifference servidor: " + timeDifference);
 
       const hoursDifference = timeDifference / (1000 * 60 * 60);
       console.log("horas difference" + hoursDifference);
@@ -69,7 +71,7 @@ const CartContextComponente = ({ children }) => {
       if (hoursDifference >= 24) {
         clearCart();
         console.log(hoursDifference);
-        return null; // El pedido ha expirado
+        return null; // El pedido ha expirado.
       }
       return data; // Devuelve el pedido si no ha expirado
     }
