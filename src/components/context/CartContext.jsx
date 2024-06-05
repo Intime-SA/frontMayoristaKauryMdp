@@ -59,15 +59,21 @@ const CartContextComponente = ({ children }) => {
   // Función loadOrder para verificar y eliminar pedidos expirados
   const loadOrder = () => {
     const data = JSON.parse(localStorage.getItem("cart"));
-    if (data) {
+    if (data && data[0] && data[0].timestamp) {
       const currentTime = new Date().getTime();
       console.log("current time servidor: " + currentTime);
-      console.log(data[0].timestamp);
-      const timeDifference = currentTime - data[0].timestamp;
+
+      // Asegúrate de que el timestamp esté en milisegundos
+      const timestamp =
+        data[0].timestamp.seconds * 1000 +
+        Math.floor(data[0].timestamp.nanoseconds / 1000000);
+      console.log("timestamp convertido: " + timestamp);
+
+      const timeDifference = currentTime - timestamp;
       console.log("timeDifference servidor: " + timeDifference);
 
       const hoursDifference = timeDifference / (1000 * 60 * 60);
-      console.log("horas difference" + hoursDifference);
+      console.log("horas difference: " + hoursDifference);
 
       if (hoursDifference >= 24) {
         clearCart();
@@ -78,8 +84,6 @@ const CartContextComponente = ({ children }) => {
     }
     return null; // No hay pedido guardado
   };
-
-  // useEffect para cargar y verificar el pedido al montar el componente
 
   loadOrder();
 
