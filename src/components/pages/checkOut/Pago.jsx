@@ -284,6 +284,7 @@ const Pago = () => {
           client: userRef,
           date: serverTimestamp(),
           numberOrder: numberOrder,
+          timestamp: new Date().getTime(), // Añadir timestamp aquí
         };
         console.log(modifiedUserOrder);
 

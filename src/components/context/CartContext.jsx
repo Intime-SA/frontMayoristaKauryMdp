@@ -64,9 +64,11 @@ const CartContextComponente = ({ children }) => {
       const timeDifference = currentTime - data[0].timestamp;
 
       const hoursDifference = timeDifference / (1000 * 60 * 60);
+      console.log("horas difference" + hoursDifference);
 
       if (hoursDifference >= 24) {
         clearCart();
+        console.log(hoursDifference);
         return null; // El pedido ha expirado
       }
       return data; // Devuelve el pedido si no ha expirado
