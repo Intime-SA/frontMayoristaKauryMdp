@@ -62,7 +62,7 @@ const CartContextComponente = ({ children }) => {
     if (data) {
       const currentTime = new Date().getTime();
       console.log("current time servidor: " + currentTime);
-      console.log(data[0]);
+      console.log(data[0].timestamp);
       const timeDifference = currentTime - data[0].timestamp;
       console.log("timeDifference servidor: " + timeDifference);
 
