@@ -64,9 +64,7 @@ const CartContextComponente = ({ children }) => {
       console.log("current time servidor: " + currentTime);
 
       // Asegúrate de que el timestamp esté en milisegundos
-      const timestamp =
-        data[0].timestamp.seconds * 1000 +
-        Math.floor(data[0].timestamp.nanoseconds / 1000000);
+      const timestamp = data[0].timestamp;
       console.log("timestamp convertido: " + timestamp);
 
       const timeDifference = currentTime - timestamp;
