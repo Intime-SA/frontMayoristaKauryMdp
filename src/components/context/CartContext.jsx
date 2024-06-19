@@ -45,6 +45,9 @@ const CartContextComponente = ({ children }) => {
     const newArr = cart.filter((elemento) => elemento.idc !== id);
     localStorage.setItem("cart", JSON.stringify(newArr));
     setCart(newArr);
+    if (newArr.length === 0) {
+      clearCart();
+    }
   };
 
   const getTotalPrice = () => {
@@ -59,7 +62,20 @@ const CartContextComponente = ({ children }) => {
   // Función loadOrder para verificar y eliminar pedidos expirados
   const loadOrder = () => {
     const data = JSON.parse(localStorage.getItem("cart"));
-    if (data && data[0] && data[0].timestamp) {
+
+    if (data) {
+      if (!data[0].timestamp) {
+        clearCart();
+        return null;
+      } else {
+        console.log("continua sin timestamp");
+      }
+    }
+
+    // Verificar si data es un array y tiene elementos
+
+    // No hay timestamp, eliminar el carrito y retornar null
+    else if (data && data[0] && data[0].timestamp) {
       const currentTime = new Date().getTime();
       console.log("current time servidor: " + currentTime);
 
