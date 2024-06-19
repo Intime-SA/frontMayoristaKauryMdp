@@ -488,7 +488,7 @@ function CheckOut() {
                         <strong>Barrio:</strong> {dataCliente.datosEnvio.barrio}
                       </Typography>
                     </div>
-                    <Typography
+                    {/*                     <Typography
                       variant="body2"
                       style={{
                         marginTop: "20px",
@@ -499,7 +499,7 @@ function CheckOut() {
                       {new Date(
                         dataCliente.fechaInicio.seconds * 1000
                       ).toLocaleDateString()}
-                    </Typography>
+                    </Typography> */}
                   </>
                 )}
               </div>

@@ -49,6 +49,31 @@ const Cart = () => {
   const [open, setOpen] = useState(false);
   const [selectedLocal, setSelectedLocal] = useState([]);
   const [estadoError, setEstadoError] = useState(false);
+  const [minimoCompra, setMinimoCompra] = useState(null);
+
+  useEffect(() => {
+    const fetchMinimo = async () => {
+      try {
+        const docRef = doc(db, "costos", "envio");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.minimoCompra) {
+            const minimo = data.minimoCompra;
+
+            setMinimoCompra(minimo);
+          }
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document: ", error);
+      }
+    };
+
+    fetchMinimo();
+  }, []);
 
   let total = getTotalPrice();
 
@@ -166,7 +191,7 @@ const Cart = () => {
   const handleSubmit = async () => {
     let total = await getTotalPrice();
 
-    if (total <= 50000) {
+    if (total <= minimoCompra) {
       setEstadoError(true);
       return;
     }
@@ -668,7 +693,12 @@ const Cart = () => {
                       color: "#c4072c",
                     }}
                   >
-                    La compra minima en el sitio mayorista es de $50.000,00
+                    La compra minima en el sitio mayorista es de{" "}
+                    {minimoCompra.toLocaleString("es-AR", {
+                      style: "currency",
+                      currency: "ARS",
+                      minimumFractionDigits: 2,
+                    })}
                   </Typography>
                 </div>
               )}

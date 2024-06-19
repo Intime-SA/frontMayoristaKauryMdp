@@ -1,7 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useMediaQuery } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -29,6 +36,32 @@ const SelectProduct = ({ article }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useContext(CartContext);
+
+  const [minimoCompra, setMinimoCompra] = useState(null);
+
+  useEffect(() => {
+    const fetchMinimo = async () => {
+      try {
+        const docRef = doc(db, "costos", "envio");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.minimoCompra) {
+            const minimo = data.minimoCompra;
+
+            setMinimoCompra(minimo);
+          }
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document: ", error);
+      }
+    };
+
+    fetchMinimo();
+  }, []);
 
   const handleChange = (event) => {
     setProduct(event.target.value);
@@ -76,10 +109,13 @@ const SelectProduct = ({ article }) => {
       console.log(snapShotProducts);
       const newArray = [];
       snapShotProducts.forEach((product) => {
+        console.log(product.data());
         if (product.data().stock > 0) {
           newArray.push(product.data());
         }
       });
+
+      console.log(newArray);
 
       setPriceDefaultArticle(newArray[0].unit_price);
       setCategory(newArray[0].category);
@@ -393,7 +429,14 @@ const SelectProduct = ({ article }) => {
               >
                 production_quantity_limits
               </span>{" "}
-              La compra mínima de un carrito es de $40.000,00 ARS.
+              La compra mínima de un carrito es de{" "}
+              {minimoCompra !== undefined && minimoCompra !== null
+                ? minimoCompra.toLocaleString("es-AR", {
+                    style: "currency",
+                    currency: "ARS",
+                    minimumFractionDigits: 2,
+                  })
+                : ""}
             </Typography>
           </div>
           <Box sx={{ marginTop: "20px" }}>
