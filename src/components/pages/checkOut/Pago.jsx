@@ -380,7 +380,7 @@ const Pago = () => {
         {renderOrder && (
           <>
             <div>
-              <EmailKaury userOrder={userOrder} email={email} toname={toname} />
+              {/* <EmailKaury userOrder={userOrder} email={email} toname={toname} /> */}
               <div
                 style={{
                   borderRadius: "10px",
