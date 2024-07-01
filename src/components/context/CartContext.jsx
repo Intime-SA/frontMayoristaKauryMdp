@@ -68,14 +68,14 @@ const CartContextComponente = ({ children }) => {
         clearCart();
         return null;
       } else {
-        console.log("continua sin timestamp");
+        console.log("continua con timestamp");
       }
     }
 
     // Verificar si data es un array y tiene elementos
 
     // No hay timestamp, eliminar el carrito y retornar null
-    else if (data && data[0] && data[0].timestamp) {
+    if (data && data[0] && data[0].timestamp) {
       const currentTime = new Date().getTime();
       console.log("current time servidor: " + currentTime);
 
